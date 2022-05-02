@@ -63,7 +63,7 @@ curl -X 'POST' \
 ```
 
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `UserInfo` with your credentials.
 
 Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
 
@@ -98,7 +98,7 @@ curl -X 'POST' \
 ```
 
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `UserInfo` with your credentials.
 
 Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
 
