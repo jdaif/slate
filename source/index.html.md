@@ -65,11 +65,18 @@ curl -X 'POST' \
 
 > Make sure to replace `UserInfo` with your credentials.
 
-Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
-
-MIU Contracts expects for the API token to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp `
+Here is a detailed description of how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu Python API client: 
+ 
+1.	If you do not have a project for Miu Contracts, you can create one in pycharm.
+ 
+2.	You can set up a virtual environment to install the dependencies for the Miu-API python without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.
+4.	Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users\[user]\PycharmProjects\Python2\venv\Scripts
+ 
+5.	Open the Command Prompt in Windows and redirect to the above directory using the following script: Cd C:\Users\[user]\PycharmProjects\Python2\venv\Scripts
+ 
+6.	Run this script to install requirements to the new virtual environment : pip install -r requirements.txt
+7.	Run this script to install miu-api client : pip install miu-api-client --extra-index-url=https://pypi.miuinsights.com/srwz2bogyPJO7NRcOA8cPO1Q0HXpnYyGfU55TibhVKV 
+ 
 
 <aside class="notice">
 It is important to keep your password secure! Please place your password in a seperate file which you can reference; Do not expose your password in every script
