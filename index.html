@@ -404,11 +404,16 @@ curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">
 <p>Make sure to replace <code>UserInfo</code> with your credentials.</p>
 </blockquote>
 
-<p>Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: <a href="https://www.miuinsights.com/login?returnUrl=contracts">MIU Insight</a>.</p>
+<p>Here is a detailed description of how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu Python API client: </p>
 
-<p>MIU Contracts expects for the API token to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp</code></p>
+<ol>
+<li><p>If you do not have a project for Miu Contracts, you can create one in pycharm.</p></li>
+<li><p>You can set up a virtual environment to install the dependencies for the Miu-API python without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.</p></li>
+<li><p>Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users[user]\PycharmProjects\Python2\venv\Scripts</p></li>
+<li><p>Open the Command Prompt in Windows and redirect to the above directory using the following script: Cd C:\Users[user]\PycharmProjects\Python2\venv\Scripts</p></li>
+<li><p>Run this script to install requirements to the new virtual environment : pip install -r requirements.txt</p></li>
+<li><p>Run this script to install miu-api client : pip install miu-api-client --extra-index-url=https://pypi.miuinsights.com/srwz2bogyPJO7NRcOA8cPO1Q0HXpnYyGfU55TibhVKV </p></li>
+</ol>
 
 <aside class="notice">
 It is important to keep your password secure! Please place your password in a seperate file which you can reference; Do not expose your password in every script
