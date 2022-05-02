@@ -3,8 +3,9 @@ title: MIU Contracts API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - ruby
   - python
-
+  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -112,19 +113,16 @@ It is important to keep your password secure! Please place your password in a se
 
 # Exposure Library
 
-Exposure in Contracts is sepearted into 3 types:
-
-- ELT Event Loss Tables
-- PLT Period Loss Tables
-- SF-ELT Share Factor Event Loss Tables
-
-The exposure piece below allows you to run general querries that returns availbale exposures by data version, Peril, Region and/or  ...
-
 ## Exposure
 
 ### Find Exposures
 
+```ruby
+require 'kittn'
 
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
 
 ```python
 import kittn
@@ -138,69 +136,46 @@ curl "http://example.com/api/kittens" \
   -H "Authorization: meowmeowmeow"
 ```
 
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let kittens = api.kittens.get();
+```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
   {
-    "exposureUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "companyUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "isPublic": true,
-    "createdBy": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "createdAt": "2022-04-18T06:24:44.216Z",
-    "exposureType": {},
-    "description": "string",
-    "dataVersionUuids": [
-      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    ],
-    "unitCode": "string",
-    "modelUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "perilUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "regionUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "subRegionResolutionUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "subPerilUuids": [
-      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    ],
-    "subRegionUuids": [
-      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    ],
-    "lobUuids": [
-      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-    ],
-    "isIlc": true,
-    "totalExposure": 0,
-    "isShareFactor": true,
-    "startDate": "2022-04-18T06:24:44.216Z",
-    "endDate": "2022-04-18T06:24:44.216Z",
-    "periodMin": {},
-    "periodMax": {}
+    "id": 1,
+    "name": "Fluffums",
+    "breed": "calico",
+    "fluffiness": 6,
+    "cuteness": 7
+  },
+  {
+    "id": 2,
+    "name": "Max",
+    "breed": "unknown",
+    "fluffiness": 5,
+    "cuteness": 10
   }
 ]
 ```
 
-This Call retrieves all Exposures available in the data library; Event loss tables, Period Loss Tables and Share factors. 
+This endpoint retrieves all kittens.
 
-##### HTTP Request
+### HTTP Request
 
 `GET http://example.com/api/kittens`
 
-##### Query Parameters
-Executing a call without providing any parameters returns a list of all the available exposure in the risk library.
+### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-uuid      | -       | If Exposure Uuid is provided, the call returns information on that Uuid
-dataVersionUuid | -    | If not provided the function will return exposure data for all data versions.
-perilUuid | -    | Peril Uuid 
-regionUuid | -    | If not provided the function will return exposure data for all data versions.
-subRegionResolutionUuid | -    | If not provided the function will return exposure data for all data versions.
-subPerilUuid | -    | If not provided the function will return exposure data for all data versions.
-subRegionUuid | -    | If not provided the function will return exposure data for all data versions.
-lobUuid | -    | If not provided the function will return exposure data for all data versions.
-isUnderlyingIlc | -    | If not provided the function will return exposure data for all data versions.
-isShareFactor | -    | If not provided the function will return exposure data for all data versions.
-emptySubPerils | -    | If not provided the function will return exposure data for all data versions.
+include_cats | false | If set to true, the result will also include cats.
+available | true | If set to false, the result will include kittens that have already been adopted.
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
