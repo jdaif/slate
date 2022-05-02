@@ -1,0 +1,287 @@
+---
+title: MIU Contracts API
+
+language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+  - ruby
+  - python
+  - javascript
+
+toc_footers:
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+
+includes:
+  - errors
+
+search: true
+
+code_clipboard: true
+
+meta:
+  - name: description
+    content: Documentation for the Kittn API
+---
+
+# Introduction
+
+Welcome. This guide is a general overview of the Miu micro-services and APIs.
+
+The Miu APIs are REST APIs and use JSON format requests and responses.
+
+In general, all programming languages that can access RESful services can be used to access Miu APIs. We recommend the following languages:
+
+- Python
+
+- Java
+
+- C#
+
+- JavaScrip
+
+- Visual Basic
+
+- R
+# Miu client-api library install:
+
+> To install Miu API Python library, you will need to use the following 
+
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+```
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl -X 'POST' \
+  'https://cms.miuinsights.com/v2/oauth2/token' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'username=USERNAMME%40CLIENT.com&password=PASSWORD!&grant_type=password'
+```
+
+
+> Make sure to replace `meowmeowmeow` with your API key.
+
+Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
+
+MIU Contracts expects for the API token to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp `
+
+<aside class="notice">
+It is important to keep your password secure! Please place your password in a seperate file which you can reference; Do not expose your password in every script
+</aside>
+
+# Authentication
+
+> To authorize, use this code:
+
+
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+```
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl -X 'POST' \
+  'https://cms.miuinsights.com/v2/oauth2/token' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'username=USERNAMME%40CLIENT.com&password=PASSWORD!&grant_type=password'
+```
+
+
+> Make sure to replace `meowmeowmeow` with your API key.
+
+Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
+
+MIU Contracts expects for the API token to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp `
+
+<aside class="notice">
+It is important to keep your password secure! Please place your password in a seperate file which you can reference; Do not expose your password in every script
+</aside>
+
+# Exposure Library
+
+## Exposure
+
+### Find Exposures
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "http://example.com/api/kittens" \
+  -H "Authorization: meowmeowmeow"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let kittens = api.kittens.get();
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Fluffums",
+    "breed": "calico",
+    "fluffiness": 6,
+    "cuteness": 7
+  },
+  {
+    "id": 2,
+    "name": "Max",
+    "breed": "unknown",
+    "fluffiness": 5,
+    "cuteness": 10
+  }
+]
+```
+
+This endpoint retrieves all kittens.
+
+### HTTP Request
+
+`GET http://example.com/api/kittens`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+include_cats | false | If set to true, the result will also include cats.
+available | true | If set to false, the result will include kittens that have already been adopted.
+
+<aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside>
+
+## Get a Specific Kitten
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get(2)
+```
+
+```python
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+api.kittens.get(2)
+```
+
+```shell
+curl "http://example.com/api/kittens/2" \
+  -H "Authorization: meowmeowmeow"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let max = api.kittens.get(2);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 2,
+  "name": "Max",
+  "breed": "unknown",
+  "fluffiness": 5,
+  "cuteness": 10
+}
+```
+
+This endpoint retrieves a specific kitten.
+
+<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+
+### HTTP Request
+
+`GET http://example.com/kittens/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the kitten to retrieve
+
+## Delete a Specific Kitten
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.delete(2)
+```
+
+```python
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+api.kittens.delete(2)
+```
+
+```shell
+curl "http://example.com/api/kittens/2" \
+  -X DELETE \
+  -H "Authorization: meowmeowmeow"
+```
+
+```javascript
+const kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
+let max = api.kittens.delete(2);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 2,
+  "deleted" : ":("
+}
+```
+
+This endpoint deletes a specific kitten.
+
+### HTTP Request
+
+`DELETE http://example.com/kittens/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the kitten to delete
+
