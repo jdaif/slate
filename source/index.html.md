@@ -125,8 +125,14 @@ Exposure in Contracts is sepearted into 3 types:
 - PLT Period Loss Tables
 - SF-ELT Share Factor Event Loss Tables
 
-The exposure piece below allows you to run general querries that returns availbale exposures by data version, Peril, Region and/or  ...
+The exposure piece below allows you to run general queries that return available exposures by data version, Peril, Region, and...
 ## Event Info
+This section contains calls that help retrieve Events information; the calls below are :
+
+1. Get event data by This call allows you to get event data by Peril, Region, data version.
+2. Get event data by EventId: This call allows you to get event data by providing the EventId
+
+Both calls return either one object or a series of objects that describe the Event and its metadata.
 
 
 ### Get Event data,  by specifying Peril, Region, Data version and if requred a limit and an offset to the number of eventd to be imported.
@@ -428,11 +434,221 @@ curl -X 'POST' \
 }
   
 ```
+## ELT event Loss tables
 
-### HTTP Request
+The series of calls below are specific to Event loss tables or ELTs. 
 
-`DELETE http://example.com/kittens/<ID>`
+1. Find ELTs: This call retrieves information about all available ELTs
+2. Delete ELT UUID: This call deletes an existing ELT using its UUID
+3. Find ELT by UUID: This call retrieves information about a specific ELT using the UUID
+4. Find ELT data: This call returns the Event loss table(Data)for a ceratin Uuid UUID
+### Find ELTs
 
+You can provide the data version, ELT uuids- one or more and specify whether the ELT is public or an ILC. The last piece is helpful if you want to retrieve ILC data.
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.elt.all(data_version_uuid='4b292524-d70c-4edb-9137-e9bc4bb41016',is_public=False,is_ilc=False)
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/elts?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&isPublic=false&isIlc=false' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'
+}'
+```
+> The above command returns this JSON with a description of the specified ELT :
+
+```json
+[
+  {
+    "uuid": "03807e71-9e03-459a-bb00-d7b15dff4bb3",
+    "companyUuid": "c6c70ba8-1405-48f1-9c65-00b5a2d5cdb9",
+    "isPublic": false,
+    "createdBy": "61ca4afb-8792-4fe8-a385-d232264b56c3",
+    "createdAt": "2022-04-28T22:51:40.837929Z",
+    "modifiedBy": "61ca4afb-8792-4fe8-a385-d232264b56c3",
+    "modifiedAt": "2022-04-28T22:51:40.837929Z",
+    "description": "Test ELT",
+    "dataVersionUuids": [
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
+    "regionUuid": "5b07643e-2bd8-4014-a837-569ab1ba1404",
+    "subRegionResolutionUuid": "7581d3ae-600b-44b4-85d9-27e821867792",
+    "subPerilUuids": [],
+    "subRegionUuids": [],
+    "lobUuids": [],
+    "unitCode": "USD",
+    "rowCount": 25152,
+    "isIlc": false
+  },
+```
+
+### Delete ELT with specific
+
+Delete ELT UUID: This call deletes an existing ELT using its UUID.
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.elt.delete("2fe56132-ac9b-4d1c-843d-8ddcdf7f6ac2")
+```
+
+```shell
+curl -X 'DELETE' \
+  'https://exposurelibrary.miuinsights.com/v1/elts/2fe56132-ac9b-4d1c-843d-8ddcdf7f6ac2' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN''
+```
+> The above command returns this JSON with a description of the specified ELT :
+
+```json
+
+```
+
+### Find ELT by providing specific ELT UUID
+
+This call provides detailed description and information on a certain ELT.
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.elt.get_by_uuid("73aa6c0d-adc7-4b23-86e6-f1364bfba093")
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/elts/73aa6c0d-adc7-4b23-86e6-f1364bfba093' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'
+```
+> The above command returns this JSON with a description of the specified ELT :
+
+```json
+{
+  "uuid": "73aa6c0d-adc7-4b23-86e6-f1364bfba093",
+  "companyUuid": "c6c70ba8-1405-48f1-9c65-00b5a2d5cdb9",
+  "isPublic": false,
+  "createdBy": "61ca4afb-8792-4fe8-a385-d232264b56c3",
+  "createdAt": "2022-04-29T01:45:52.300050Z",
+  "modifiedBy": "61ca4afb-8792-4fe8-a385-d232264b56c3",
+  "modifiedAt": "2022-04-29T01:45:52.300050Z",
+  "description": "Test ELT",
+  "dataVersionUuids": [
+    "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  ],
+  "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
+  "regionUuid": "5b07643e-2bd8-4014-a837-569ab1ba1404",
+  "subRegionResolutionUuid": "7581d3ae-600b-44b4-85d9-27e821867792",
+  "subPerilUuids": [],
+  "subRegionUuids": [],
+  "lobUuids": [],
+  "unitCode": "USD",
+  "rowCount": 35210,
+  "isIlc": false
+}
+```
+
+### Find ELT Data by providing specific ELT UUID
+
+This call provides the  Event Loss table/Data for the ELT UUID provided. You can limit the nymber of rows returned by providing a limit and an offset
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.elt.get_data_by_uuid("2fe56132-ac9b-4d1c-843d-8ddcdf7f6ac2", limit=10)
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/elts/73aa6c0d-adc7-4b23-86e6-f1364bfba093/data?limit=10' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'
+```
+> The above command returns this JSON object for every Event in the event loss table of the specified ELT :
+
+```json
+[
+  {
+    "eventId": "1510001",
+    "rate": 0.26696619,
+    "stdDevCorrelated": 401.13,
+    "stdDevIndependent": 12968.51,
+    "totalExposure": 22785298,
+    "mean": 573.59
+  },
+  {
+    "eventId": "1510002",
+    "rate": 0.52179788,
+    "stdDevCorrelated": 10948.2,
+    "stdDevIndependent": 29428.75,
+    "totalExposure": 838596086,
+    "mean": 7680.38
+  },
+  {
+    "eventId": "1510004",
+    "rate": 0.334991912,
+    "stdDevCorrelated": 37980.52,
+    "stdDevIndependent": 116615.96,
+    "totalExposure": 3525375374,
+    "mean": 24237.18
+  },
+  {
+    "eventId": "1510005",
+    "rate": 0.22089557,
+    "stdDevCorrelated": 19791.26,
+    "stdDevIndependent": 165322.29,
+    "totalExposure": 804412605.22,
+    "mean": 22842.22
+  },
+  {
+    "eventId": "1510006",
+    "rate": 0.07194286,
+    "stdDevCorrelated": 859.37,
+    "stdDevIndependent": 5934.76,
+    "totalExposure": 140057413,
+    "mean": 369.63
+  },
+  {
+    "eventId": "1510008",
+    "rate": 0.165102656,
+    "stdDevCorrelated": 158.73,
+    "stdDevIndependent": 2308.2,
+    "totalExposure": 118062674,
+    "mean": 58.22
+  },
+  {
+    "eventId": "1510009",
+    "rate": 0.563560457,
+    "stdDevCorrelated": 5189.05,
+    "stdDevIndependent": 28288.6,
+    "totalExposure": 792189552,
+    "mean": 4732.52
+  },
+  {
+    "eventId": "1510010",
+    "rate": 0.421624885,
+    "stdDevCorrelated": 22861.41,
+    "stdDevIndependent": 47031.34,
+    "totalExposure": 1627031981,
+    "mean": 21455.5
+  },
+  ........
+```
 ### URL Parameters
 
 Parameter | Description
