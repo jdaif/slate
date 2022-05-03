@@ -67,7 +67,7 @@ curl -X 'POST' \
 
 Here is a detailed description of how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu Python API client: 
  
-1.	If you do not have a project for Miu Contracts, you can create one in pycharm.
+1.	You can create a Miu Contracts  in pycharm.
  
 2.	You can set up a virtual environment to install the dependencies for the Miu-API python without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.
 4.	Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users\[user]\PycharmProjects\Python2\venv\Scripts
@@ -126,6 +126,53 @@ Exposure in Contracts is sepearted into 3 types:
 - SF-ELT Share Factor Event Loss Tables
 
 The exposure piece below allows you to run general querries that returns availbale exposures by data version, Peril, Region and/or  ...
+## Event Info
+
+
+### Get Event data by specifying Peril, Region, Data version and if requred a limit and an offset to the number of eventd to be imported.
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.event_info.get('WS','US','4b292524-d70c-4edb-9137-e9bc4bb41016')
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/events?perilCode=WS&regionCode=US&dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&limit=100' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer trihPlWCssXdQvMn73vPJ46YN8ROVpt8w7mBPJ3G'
+```
+> The above command returns this JSON with a description of every EventId 
+
+```json
+[
+  {
+    "eventId": 2847001,
+    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
+    "perilCode": "WS",
+    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "primaryRegionCode": "NA",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016",
+    "rate": 1e-10,
+    "alternativeRate": 1e-10
+  },
+  {
+    "eventId": 2847002,
+    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
+    "perilCode": "WS",
+    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "primaryRegionCode": "NA",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016",
+    "rate": 1e-10,
+    "alternativeRate": 1e-10
+  }, 
+  .....
+  
+```
+
 
 ## Exposure
 
