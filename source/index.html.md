@@ -224,6 +224,8 @@ curl -X 'GET' \
   
 ```
 
+
+
 ## Exposure
 
 ### Find Exposures
@@ -310,50 +312,72 @@ emptySubPerils | -    | If not provided the function will return exposure data f
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
+### Add data versions to exposures:
 ```python
-import kittn
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+AddExposureDataVersionJson = {
+    "exposureUuids": [
+        "0802a08f-d521-42ec-95d0-684a65f89479"
+    ],
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
+}
+Credentials.exposure.add_data_version(AddExposureDataVersionJson)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl -X 'POST' \
+  'https://exposurelibrary.miuinsights.com/v1/exposures/addDataVersion' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer sPfhI60JZCgeMMvSwYAqf2WQEa5nMHN90zFmiUrk' \
+  -d '{
+    "exposureUuids": [
+        "0802a08f-d521-42ec-95d0-684a65f89479"
+    ],
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
+}'
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> The above command returns this JSON with a description of the specified EventId and it's rate per dataversion
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+ {
+    "eventId": 2847001,
+    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
+    "perilCode": "WS",
+    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "primaryRegionCode": "NA",
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150",
+    "typeCode": "STOC",
+    "name": "NOTNAMED, 06/25/1851",
+    "description": "NOTNAMED, 06/25/1851: TX-C1 GM1",
+    "rate": 1e-10,
+    "alternativeRate": 1e-10,
+    "landFallInfo": {
+      "first": {
+        "category": "1",
+        "gateRegionCode": "Texas",
+        "state": "TX",
+        "latitude": "28.13",
+        "longitude": "-96.67",
+        "oneMinuteWindSpeed": "92",
+        "byPassing": "L",
+        "direction": "282",
+        "forwardVelocity": "6",
+        "rMaxRight": "-96.67"
+      }
+    },
+    "magnitude": "0",
+    "segment": "1"
+  },
+  
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
+Executing this call assigns a new data version to the exposures mentioend in the list.
 ### HTTP Request
 
 `GET http://example.com/kittens/<ID>`
