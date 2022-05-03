@@ -340,27 +340,24 @@
                     <a href="#exposure" class="toc-h2 toc-link" data-title="Exposure">Exposure</a>
 					  <ul class="toc-list-h3">
 						  <li>
-							<a href="#find-exposures" class="toc-h3 toc-link" data-title="Find Exposures">Find Exposures</a>
+							<a href="#find-exposures-by-providing-characteristics" class="toc-h3 toc-link" data-title="Find Exposures by providing characteristics">Find Exposures by providing characteristics</a>
+							  <ul class="toc-list-h4">
+								  <li>
+									<a href="#peril-uuid-region-uuid-subregionresolutionuuid-subregionuuid-lobuuid" class="toc-h4 toc-link" data-title=": Peril Uuid, Region Uuid, subRegionResolutionUuid,subRegionUuid,lobUuid">: Peril Uuid, Region Uuid, subRegionResolutionUuid,subRegionUuid,lobUuid</a>
+								  </li>
+							  </ul>
 						  </li>
 						  <li>
 							<a href="#add-data-versions-to-exposures" class="toc-h3 toc-link" data-title="Add data versions to exposures:">Add data versions to exposures:</a>
+						  </li>
+						  <li>
+							<a href="#find-exposure-39-s-peril-amp-region" class="toc-h3 toc-link" data-title="Find exposure's Peril &amp; Region">Find exposure's Peril &amp; Region</a>
 						  </li>
 						  <li>
 							<a href="#http-request-2" class="toc-h3 toc-link" data-title="HTTP Request">HTTP Request</a>
 						  </li>
 						  <li>
 							<a href="#url-parameters" class="toc-h3 toc-link" data-title="URL Parameters">URL Parameters</a>
-						  </li>
-					  </ul>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
-					  <ul class="toc-list-h3">
-						  <li>
-							<a href="#http-request-3" class="toc-h3 toc-link" data-title="HTTP Request">HTTP Request</a>
-						  </li>
-						  <li>
-							<a href="#url-parameters-2" class="toc-h3 toc-link" data-title="URL Parameters">URL Parameters</a>
 						  </li>
 					  </ul>
                   </li>
@@ -547,12 +544,17 @@ It is important to keep your password secure! Please place your password in a se
     </span><span class="nl">"segment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
 
-</span></code></pre></div><h2 id='exposure'>Exposure</h2><h3 id='find-exposures'>Find Exposures</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+</span></code></pre></div><h2 id='exposure'>Exposure</h2><h3 id='find-exposures-by-providing-characteristics'>Find Exposures by providing characteristics</h3><h4 id='peril-uuid-region-uuid-subregionresolutionuuid-subregionuuid-lobuuid'>: Peril Uuid, Region Uuid, subRegionResolutionUuid,subRegionUuid,lobUuid</h4><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">exposure</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">uuids</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">data_version_uuid</span><span class="o">=</span><span class="s">'4b292524-d70c-4edb-9137-e9bc4bb41016'</span><span class="p">,</span><span class="n">peril_uuid</span><span class="o">=</span><span class="s">'4e2c16bc-1cf4-45e2-b7e5-86591b9802a2'</span><span class="p">,</span>
+                         <span class="n">region_uuid</span><span class="o">=</span><span class="s">'5b07643e-2bd8-4014-a837-569ab1ba1404'</span><span class="p">,</span><span class="n">sub_region_resolution_uuid</span><span class="o">=</span><span class="s">'7581d3ae-600b-44b4-85d9-27e821867792'</span><span class="p">,</span>
+                        <span class="n">sub_peril_uuids</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">sub_region_uuids</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">lob_uuids</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">is_underlying_ilc</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">is_share_factor</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://exposurelibrary.miuinsights.com/v1/exposures?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&amp;perilUuid=4e2c16bc-1cf4-45e2-b7e5-86591b9802a2&amp;regionUuid=5b07643e-2bd8-4014-a837-569ab1ba1404&amp;subRegionResolutionUuid=7581d3ae-600b-44b4-85d9-27e821867792&amp;isUnderlyingIlc=false&amp;isShareFactor=false&amp;emptySubPerils=true'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 8YvIkh61xaRL2T3oAtAShzqMeHfSPVkSAKiPHGog'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -664,7 +666,7 @@ It is important to keep your password secure! Please place your password in a se
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember 
 </aside>
 <h3 id='add-data-versions-to-exposures'>Add data versions to exposures:</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
@@ -726,48 +728,47 @@ Remember — a happy kitten is an authenticated kitten!
 
 </span></code></pre></div>
 <p>Executing this call assigns a new data version to the exposures mentioend in the list.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id='find-exposure-39-s-peril-amp-region'>Find exposure&#39;s Peril &amp; Region</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">AddExposureDataVersionJson</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"exposureUuids"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">"0802a08f-d521-42ec-95d0-684a65f89479"</span>
+    <span class="p">],</span>
+    <span class="s">"dataVersionUuid"</span><span class="p">:</span> <span class="s">"ca9d8219-776e-4024-b6be-1247f4e28150"</span>
+<span class="p">}</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">exposure</span><span class="p">.</span><span class="n">add_data_version</span><span class="p">(</span><span class="n">AddExposureDataVersionJson</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">\</span>
+  <span class="s1">'https://exposurelibrary.miuinsights.com/v1/exposures/addDataVersion'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer sPfhI60JZCgeMMvSwYAqf2WQEa5nMHN90zFmiUrk'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "exposureUuids": [
+        "0802a08f-d521-42ec-95d0-684a65f89479"
+    ],
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
+}'</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns this JSON with a description of the specified EventId and it&#39;s rate per dataversion</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="nl">"perils"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4e2c16bc-1cf4-45e2-b7e5-86591b9802a2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"regionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"5b07643e-2bd8-4014-a837-569ab1ba1404"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+
+</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
