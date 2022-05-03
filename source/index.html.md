@@ -129,7 +129,7 @@ The exposure piece below allows you to run general querries that returns availba
 ## Event Info
 
 
-### Get Event data by specifying Peril, Region, Data version and if requred a limit and an offset to the number of eventd to be imported.
+### Get Event data,  by specifying Peril, Region, Data version and if requred a limit and an offset to the number of eventd to be imported.
 ```python
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
@@ -172,7 +172,57 @@ curl -X 'GET' \
   .....
   
 ```
+### Get Event data by providing EventId:
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.event_info.get_by_event_id("2847001")
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/events/2847001' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer trihPlWCssXdQvMn73vPJ46YN8ROVpt8w7mBPJ3G'
+```
+> The above command returns this JSON with a description of the specified EventId and it's rate per dataversion
+
+```json
+[
+ {
+    "eventId": 2847001,
+    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
+    "perilCode": "WS",
+    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "primaryRegionCode": "NA",
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150",
+    "typeCode": "STOC",
+    "name": "NOTNAMED, 06/25/1851",
+    "description": "NOTNAMED, 06/25/1851: TX-C1 GM1",
+    "rate": 1e-10,
+    "alternativeRate": 1e-10,
+    "landFallInfo": {
+      "first": {
+        "category": "1",
+        "gateRegionCode": "Texas",
+        "state": "TX",
+        "latitude": "28.13",
+        "longitude": "-96.67",
+        "oneMinuteWindSpeed": "92",
+        "byPassing": "L",
+        "direction": "282",
+        "forwardVelocity": "6",
+        "rMaxRight": "-96.67"
+      }
+    },
+    "magnitude": "0",
+    "segment": "1"
+  },
+  
+```
 
 ## Exposure
 
