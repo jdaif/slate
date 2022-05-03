@@ -359,6 +359,9 @@
                     <a href="#elt-event-loss-tables" class="toc-h2 toc-link" data-title="ELT event Loss tables">ELT event Loss tables</a>
 					  <ul class="toc-list-h3">
 						  <li>
+							<a href="#find-elts" class="toc-h3 toc-link" data-title="Find ELTs">Find ELTs</a>
+						  </li>
+						  <li>
 							<a href="#delete-elt-with-specific" class="toc-h3 toc-link" data-title="Delete ELT with specific">Delete ELT with specific</a>
 						  </li>
 						  <li>
@@ -793,20 +796,17 @@ Remember
 <li>Find ELTs: This call retrieves information about all available ELTs</li>
 <li>Delete ELT UUID: This call deletes an existing ELT using its UUID</li>
 <li>Find ELT by UUID: This call retrieves information about a specific ELT using the UUID</li>
-<li>Find ELT data: This call returns the Event loss table(Data)for a ceratin Uuid UUID
-### Find ELTs</li>
+<li>Find ELT data: This call returns the Event loss table(Data)for a ceratin Uuid UUID</li>
 </ol>
+<h3 id='find-elts'>Find ELTs</h3>
+<p>You can provide the data version, ELT uuids- one or more and specify whether the ELT is public or an ILC. The last piece is helpful if you want to retrieve ILC data.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
-<p>You can provide the data version, ELT uuids- one or more and specify whether the ELT is public or an ILC. The last piece is helpful if you want to retrieve ILC data.
-```python
-from commons.utils.clients import *
-from apiclient.exposurelibrary.elt_client import *</p>
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
 
-<p>Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)</p>
-
-<p>Credentials.elt.all(data_version_uuid=&#39;4b292524-d70c-4edb-9137-e9bc4bb41016&#39;,is_public=False,is_ilc=False)
-```</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">elt</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">data_version_uuid</span><span class="o">=</span><span class="s">'4b292524-d70c-4edb-9137-e9bc4bb41016'</span><span class="p">,</span><span class="n">is_public</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">is_ilc</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
   <span class="s1">'https://exposurelibrary.miuinsights.com/v1/elts?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&amp;isPublic=false&amp;isIlc=false'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'</span>
