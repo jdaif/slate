@@ -342,11 +342,9 @@
 						  <li>
 							<a href="#find-exposures" class="toc-h3 toc-link" data-title="Find Exposures">Find Exposures</a>
 						  </li>
-					  </ul>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-					  <ul class="toc-list-h3">
+						  <li>
+							<a href="#add-data-versions-to-exposures" class="toc-h3 toc-link" data-title="Add data versions to exposures:">Add data versions to exposures:</a>
+						  </li>
 						  <li>
 							<a href="#http-request-2" class="toc-h3 toc-link" data-title="HTTP Request">HTTP Request</a>
 						  </li>
@@ -668,35 +666,66 @@ It is important to keep your password secure! Please place your password in a se
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id='add-data-versions-to-exposures'>Add data versions to exposures:</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">AddExposureDataVersionJson</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"exposureUuids"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">"0802a08f-d521-42ec-95d0-684a65f89479"</span>
+    <span class="p">],</span>
+    <span class="s">"dataVersionUuid"</span><span class="p">:</span> <span class="s">"ca9d8219-776e-4024-b6be-1247f4e28150"</span>
+<span class="p">}</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">exposure</span><span class="p">.</span><span class="n">add_data_version</span><span class="p">(</span><span class="n">AddExposureDataVersionJson</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">\</span>
+  <span class="s1">'https://exposurelibrary.miuinsights.com/v1/exposures/addDataVersion'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer sPfhI60JZCgeMMvSwYAqf2WQEa5nMHN90zFmiUrk'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "exposureUuids": [
+        "0802a08f-d521-42ec-95d0-684a65f89479"
+    ],
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
+}'</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns this JSON with a description of the specified EventId and it&#39;s rate per dataversion</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2847001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1978b0b-8cde-4ada-8943-c82fae79a569"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"perilCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"primaryRegionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb19d52b-a19c-4e56-970f-568f7881be56"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"primaryRegionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca9d8219-776e-4024-b6be-1247f4e28150"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOTNAMED, 06/25/1851"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOTNAMED, 06/25/1851: TX-C1 GM1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1e-10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"alternativeRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1e-10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"landFallInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"first"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gateRegionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Texas"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TX"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.13"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-96.67"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"oneMinuteWindSpeed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"byPassing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"282"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"forwardVelocity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rMaxRight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-96.67"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"magnitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"segment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+</span></code></pre></div>
+<p>Executing this call assigns a new data version to the exposures mentioend in the list.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
