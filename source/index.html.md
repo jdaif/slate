@@ -442,9 +442,11 @@ The series of calls below are specific to Event loss tables or ELTs.
 2. Delete ELT UUID: This call deletes an existing ELT using its UUID
 3. Find ELT by UUID: This call retrieves information about a specific ELT using the UUID
 4. Find ELT data: This call returns the Event loss table(Data)for a ceratin Uuid UUID
+
 ### Find ELTs
 
 You can provide the data version, ELT uuids- one or more and specify whether the ELT is public or an ILC. The last piece is helpful if you want to retrieve ILC data.
+
 ```python
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
