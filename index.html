@@ -353,8 +353,19 @@
 						  <li>
 							<a href="#find-exposure-39-s-peril-amp-region" class="toc-h3 toc-link" data-title="Find exposure's Peril &amp; Region">Find exposure's Peril &amp; Region</a>
 						  </li>
+					  </ul>
+                  </li>
+                  <li>
+                    <a href="#elt-event-loss-tables" class="toc-h2 toc-link" data-title="ELT event Loss tables">ELT event Loss tables</a>
+					  <ul class="toc-list-h3">
 						  <li>
-							<a href="#http-request-2" class="toc-h3 toc-link" data-title="HTTP Request">HTTP Request</a>
+							<a href="#delete-elt-with-specific" class="toc-h3 toc-link" data-title="Delete ELT with specific">Delete ELT with specific</a>
+						  </li>
+						  <li>
+							<a href="#find-elt-by-providing-specific-elt-uuid" class="toc-h3 toc-link" data-title="Find ELT by providing specific ELT UUID">Find ELT by providing specific ELT UUID</a>
+						  </li>
+						  <li>
+							<a href="#find-elt-data-by-providing-specific-elt-uuid" class="toc-h3 toc-link" data-title="Find ELT Data by providing specific ELT UUID">Find ELT Data by providing specific ELT UUID</a>
 						  </li>
 						  <li>
 							<a href="#url-parameters" class="toc-h3 toc-link" data-title="URL Parameters">URL Parameters</a>
@@ -461,8 +472,17 @@ It is important to keep your password secure! Please place your password in a se
 <li>SF-ELT Share Factor Event Loss Tables</li>
 </ul>
 
-<p>The exposure piece below allows you to run general querries that returns availbale exposures by data version, Peril, Region and/or  ...</p>
-<h2 id='event-info'>Event Info</h2><h3 id='get-event-data-by-specifying-peril-region-data-version-and-if-requred-a-limit-and-an-offset-to-the-number-of-eventd-to-be-imported'>Get Event data,  by specifying Peril, Region, Data version and if requred a limit and an offset to the number of eventd to be imported.</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<p>The exposure piece below allows you to run general queries that return available exposures by data version, Peril, Region, and...</p>
+<h2 id='event-info'>Event Info</h2>
+<p>This section contains calls that help retrieve Events information; the calls below are :</p>
+
+<ol>
+<li>Get event data by This call allows you to get event data by Peril, Region, data version.</li>
+<li>Get event data by EventId: This call allows you to get event data by providing the EventId</li>
+</ol>
+
+<p>Both calls return either one object or a series of objects that describe the Event and its metadata.</p>
+<h3 id='get-event-data-by-specifying-peril-region-data-version-and-if-requred-a-limit-and-an-offset-to-the-number-of-eventd-to-be-imported'>Get Event data,  by specifying Peril, Region, Data version and if requred a limit and an offset to the number of eventd to be imported.</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -766,9 +786,196 @@ Remember
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+</span></code></pre></div><h2 id='elt-event-loss-tables'>ELT event Loss tables</h2>
+<p>The series of calls below are specific to Event loss tables or ELTs. </p>
+
+<ol>
+<li>Find ELTs: This call retrieves information about all available ELTs</li>
+<li>Delete ELT UUID: This call deletes an existing ELT using its UUID</li>
+<li>Find ELT by UUID: This call retrieves information about a specific ELT using the UUID</li>
+<li>Find ELT data: This call returns the Event loss table(Data)for a ceratin Uuid UUID
+### Find ELTs</li>
+</ol>
+
+<p>You can provide the data version, ELT uuids- one or more and specify whether the ELT is public or an ILC. The last piece is helpful if you want to retrieve ILC data.
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *</p>
+
+<p>Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)</p>
+
+<p>Credentials.elt.all(data_version_uuid=&#39;4b292524-d70c-4edb-9137-e9bc4bb41016&#39;,is_public=False,is_ilc=False)
+```</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://exposurelibrary.miuinsights.com/v1/elts?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&amp;isPublic=false&amp;isIlc=false'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'</span>
+<span class="o">}</span><span class="s1">'
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns this JSON with a description of the specified ELT :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03807e71-9e03-459a-bb00-d7b15dff4bb3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6c70ba8-1405-48f1-9c65-00b5a2d5cdb9"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61ca4afb-8792-4fe8-a385-d232264b56c3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-28T22:51:40.837929Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61ca4afb-8792-4fe8-a385-d232264b56c3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-28T22:51:40.837929Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test ELT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b5a2bd67-f6f2-433f-8a43-76d35b1da722"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"regionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b07643e-2bd8-4014-a837-569ab1ba1404"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subRegionResolutionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7581d3ae-600b-44b4-85d9-27e821867792"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subPerilUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"subRegionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"lobUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"unitCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rowCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">25152</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isIlc"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span></code></pre></div><h3 id='delete-elt-with-specific'>Delete ELT with specific</h3>
+<p>Delete ELT UUID: This call deletes an existing ELT using its UUID.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+
+<span class="n">Credentials</span><span class="p">.</span><span class="n">elt</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"2fe56132-ac9b-4d1c-843d-8ddcdf7f6ac2"</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'DELETE'</span> <span class="se">\</span>
+  <span class="s1">'https://exposurelibrary.miuinsights.com/v1/elts/2fe56132-ac9b-4d1c-843d-8ddcdf7f6ac2'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN''
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns this JSON with a description of the specified ELT :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre></div><h3 id='find-elt-by-providing-specific-elt-uuid'>Find ELT by providing specific ELT UUID</h3>
+<p>This call provides detailed description and information on a certain ELT.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+
+<span class="n">Credentials</span><span class="p">.</span><span class="n">elt</span><span class="p">.</span><span class="n">get_by_uuid</span><span class="p">(</span><span class="s">"73aa6c0d-adc7-4b23-86e6-f1364bfba093"</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://exposurelibrary.miuinsights.com/v1/elts/73aa6c0d-adc7-4b23-86e6-f1364bfba093'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns this JSON with a description of the specified ELT :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"73aa6c0d-adc7-4b23-86e6-f1364bfba093"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6c70ba8-1405-48f1-9c65-00b5a2d5cdb9"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61ca4afb-8792-4fe8-a385-d232264b56c3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-29T01:45:52.300050Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61ca4afb-8792-4fe8-a385-d232264b56c3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-29T01:45:52.300050Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test ELT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b5a2bd67-f6f2-433f-8a43-76d35b1da722"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"regionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b07643e-2bd8-4014-a837-569ab1ba1404"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subRegionResolutionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7581d3ae-600b-44b4-85d9-27e821867792"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subPerilUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"subRegionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"lobUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"unitCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rowCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">35210</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"isIlc"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='find-elt-data-by-providing-specific-elt-uuid'>Find ELT Data by providing specific ELT UUID</h3>
+<p>This call provides the  Event Loss table/Data for the ELT UUID provided. You can limit the nymber of rows returned by providing a limit and an offset</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+
+<span class="n">Credentials</span><span class="p">.</span><span class="n">elt</span><span class="p">.</span><span class="n">get_data_by_uuid</span><span class="p">(</span><span class="s">"2fe56132-ac9b-4d1c-843d-8ddcdf7f6ac2"</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://exposurelibrary.miuinsights.com/v1/elts/73aa6c0d-adc7-4b23-86e6-f1364bfba093/data?limit=10'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns this JSON object for every Event in the event loss table of the specified ELT :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.26696619</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">401.13</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">12968.51</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">22785298</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">573.59</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510002"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.52179788</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">10948.2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">29428.75</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">838596086</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">7680.38</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510004"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.334991912</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">37980.52</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">116615.96</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">3525375374</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">24237.18</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510005"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.22089557</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">19791.26</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">165322.29</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mf">804412605.22</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">22842.22</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510006"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07194286</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">859.37</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">5934.76</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">140057413</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">369.63</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510008"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.165102656</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">158.73</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">2308.2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">118062674</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">58.22</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510009"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.563560457</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">5189.05</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">28288.6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">792189552</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">4732.52</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510010"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.421624885</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">22861.41</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">47031.34</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">1627031981</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">21455.5</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">........</span><span class="w">
+</span></code></pre></div><h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
