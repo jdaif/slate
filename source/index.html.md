@@ -228,20 +228,26 @@ curl -X 'GET' \
 
 ## Exposure
 
-### Find Exposures
+### Find Exposures by providing characteristics	 
+#### : Peril Uuid, Region Uuid, subRegionResolutionUuid,subRegionUuid,lobUuid
 
 
 
 ```python
-import kittn
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.exposure.all(uuids=None,data_version_uuid='4b292524-d70c-4edb-9137-e9bc4bb41016',peril_uuid='4e2c16bc-1cf4-45e2-b7e5-86591b9802a2',
+                         region_uuid='5b07643e-2bd8-4014-a837-569ab1ba1404',sub_region_resolution_uuid='7581d3ae-600b-44b4-85d9-27e821867792',
+                        sub_peril_uuids=None,sub_region_uuids=None,lob_uuids=None,is_underlying_ilc=False,is_share_factor=False)
 ```
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/exposures?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&perilUuid=4e2c16bc-1cf4-45e2-b7e5-86591b9802a2&regionUuid=5b07643e-2bd8-4014-a837-569ab1ba1404&subRegionResolutionUuid=7581d3ae-600b-44b4-85d9-27e821867792&isUnderlyingIlc=false&isShareFactor=false&emptySubPerils=true' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8YvIkh61xaRL2T3oAtAShzqMeHfSPVkSAKiPHGog'
 ```
 
 
@@ -309,7 +315,7 @@ isShareFactor | -    | If not provided the function will return exposure data fo
 emptySubPerils | -    | If not provided the function will return exposure data for all data versions.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember 
 </aside>
 
 ### Add data versions to exposures:
@@ -378,55 +384,50 @@ curl -X 'POST' \
 ```
 
 Executing this call assigns a new data version to the exposures mentioend in the list.
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
+### Find exposure's Peril & Region
 ```python
-import kittn
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+AddExposureDataVersionJson = {
+    "exposureUuids": [
+        "0802a08f-d521-42ec-95d0-684a65f89479"
+    ],
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
+}
+Credentials.exposure.add_data_version(AddExposureDataVersionJson)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl -X 'POST' \
+  'https://exposurelibrary.miuinsights.com/v1/exposures/addDataVersion' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer sPfhI60JZCgeMMvSwYAqf2WQEa5nMHN90zFmiUrk' \
+  -d '{
+    "exposureUuids": [
+        "0802a08f-d521-42ec-95d0-684a65f89479"
+    ],
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
+}'
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> The above command returns this JSON with a description of the specified EventId and it's rate per dataversion
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "perils": [
+    {
+      "perilUuid": "4e2c16bc-1cf4-45e2-b7e5-86591b9802a2",
+      "regionUuids": [
+        "5b07643e-2bd8-4014-a837-569ab1ba1404"
+      ]
+    }
+  ]
 }
+  
 ```
-
-This endpoint deletes a specific kitten.
 
 ### HTTP Request
 
