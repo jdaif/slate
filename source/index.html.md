@@ -43,7 +43,7 @@ In general, all programming languages that can access RESful services can be use
 - R
 # Miu client-api library install:
 
-> To install Miu API Python library, you will need to use the following 
+> To import Miu API Python library, you will need to import both commonsutils.clients and apiclient.exposurelibrary.elt_client
 
 
 ```python
@@ -53,38 +53,28 @@ from apiclient.exposurelibrary.elt_client import *
 Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl -X 'POST' \
-  'https://cms.miuinsights.com/v2/oauth2/token' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'username=USERNAMME%40CLIENT.com&password=PASSWORD!&grant_type=password'
-```
+
 
 
 > Make sure to replace `UserInfo` with your credentials.
 
 Here is a detailed description of how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu Python API client: 
  
-1.	You can create a Miu Contracts  in pycharm.
- 
+1.	Create a new Miu Contracts dedicated environment in pycharm.
 2.	You can set up a virtual environment to install the dependencies for the Miu-API python without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.
 4.	Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users\[user]\PycharmProjects\Python2\venv\Scripts
- 
 5.	Open the Command Prompt in Windows and redirect to the above directory using the following script: Cd C:\Users\[user]\PycharmProjects\Python2\venv\Scripts
- 
-6.	Run this script to install requirements to the new virtual environment : pip install -r requirements.txt
-7.	Run this script to install miu-api client : pip install miu-api-client --extra-index-url=https://pypi.miuinsights.com/srwz2bogyPJO7NRcOA8cPO1Q0HXpnYyGfU55TibhVKV 
+6.	Run the following code to install requirements to the new virtual environment : pip install -r requirements.txt
+7.	Run the following code to install miu-api client : pip install miu-api-client --extra-index-url=https://pypi.miuinsights.com/srwz2bogyPJO7NRcOA8cPO1Q0HXpnYyGfU55TibhVKV 
  
 
 <aside class="notice">
-It is important to keep your password secure! Please place your password in a seperate file which you can reference; Do not expose your password in every script
+It is important to keep your password secure! Please place your password in a separate file which you can always reference when initiating your session; Do not expose your password in every script
 </aside>
 
 # Authentication
 
-> To authorize, use this code:
+> To authorize,use this code:
 
 
 
@@ -114,28 +104,161 @@ MIU Contracts expects for the API token to be included in all API requests to th
 `Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp `
 
 <aside class="notice">
-It is important to keep your password secure! Please place your password in a seperate file which you can reference; Do not expose your password in every script
+Borrowed:Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization
 </aside>
 
 # Exposure Library
 
-Exposure in Contracts is sepearted into 3 types:
 
-- ELT Event Loss Tables
-- PLT Period Loss Tables
-- SF-ELT Share Factor Event Loss Tables
+Miu Contracts users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors such as an ELT or an HD PLT tagged as SF_ELT and SF_PLT. All those Loss table types fall under the exposure category.
+When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and Hd-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. Below are the API calls included in this section.
 
-The exposure piece below allows you to run general queries that return available exposures by data version, Peril, Region, and...
-## Event Info
-This section contains calls that help retrieve Events information; the calls below are :
+[MIU Exposure](https://www.miuinsights.com/docs/exposurelibrary)
 
-1. Get event data by This call allows you to get event data by Peril, Region, data version.
-2. Get event data by EventId: This call allows you to get event data by providing the EventId
+- Event Catalogs: Returns all available Event info catalogs by Peril, Region, and data version 
+- Event Data: This call retrieves Event info data by Peril/Region/Data version combination or simply by an EventId  
+- Exposures: A series of Get and Post calls to retrieve, share or edit one or all available exposures by Peril, Region, or type.  
+- ELT Event Loss Table: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available ELTs by Peril, Region.
+- PLT Period Loss Tables: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available PLTs by Peril, Region.
+- HD-PLT RMs models HD: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available HD-PLTs by Peril, Region.
+- SF-ELT: A series of Get, Post, and Delete calls to create, retrieve, share or edit one or all available ELTs by Peril, Region.
+- SF-PLT: A series of Get, Post, and Delete calls to create, retrieve, share or edit one or all available HD-PLTs by Peril, Region.
 
-Both calls return either one object or a series of objects that describe the Event and its metadata.
 
 
-### Get Event data,  by specifying Peril, Region, Data version and if requred a limit and an offset to the number of eventd to be imported.
+<aside class="notice">
+Available Data versions for:  ELT: V17, V18 and V21  ||  HD-PLT: V1.0 and V2.0
+</aside>
+
+## Event 
+
+Under this section:
+Calls to retrieve Event set Information from the central library. There is a unique Event-Info table for every Peril, Region, and Data-version. A catalog of all available Peril Region and Data-versions combinations is accessible through the Find event catalogs call in
+ [MIU Exposure](https://www.miuinsights.com/docs/exposurelibrary)
+
+> Event Object
+
+```json
+
+  {
+    "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
+    "perilCode": "CS",
+    "regionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "regionCode": "NA",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  }
+
+```
+
+Catalog Object includes:
+
+ | Parameter        | Description                                               | 
+ |------------------|-----------------------------------------------------------| 
+ | perilUuid        | Unique identification Uuid for Peril across all Library   | 
+ | perilCode        | Unique identification two letters Code for Peril          | 
+ | regionUuid       | Unique identification Uuid for Region                     | 
+ | regionCode       | Unique identification two letters  code for Region        | 
+ | dataVersionUuid  | Unique identification Uuid for a dataversion              | 
+
+Key Code/Uuid:
+
+
+| Peril Code | Uuid                                 |
+|------------|--------------------------------------|
+| WS         | e1978b0b-8cde-4ada-8943-c82fae79a569 | 
+| EQ         | cae66c3b-8665-4366-ba33-dae34eec426b | 
+| WT         | 4e2c16bc-1cf4-45e2-b7e5-86591b9802a2 |
+| SC         | b5a2bd67-f6f2-433f-8a43-76d35b1da722 |
+
+| Region Code | Uuid                                 |
+|-------------|--------------------------------------|
+| US          | 5b07643e-2bd8-4014-a837-569ab1ba1404 | 
+| JP          | 4742837d-f60f-4a08-bbf0-94d79c9aae86 | 
+| MX          | 51b4d101-56c4-4ba3-b348-6db353d42e93 |
+| EU          | 65215ad1-9ab6-485f-b0f2-0d4ee3df8a11 |
+
+
+| Data Version | Uuid                                 |
+|--------------|--------------------------------------|
+| V21.0        | 4b292524-d70c-4edb-9137-e9bc4bb41016 | 
+| V18.0        | ca9d8219-776e-4024-b6be-1247f4e28150 | 
+| V 1.0        | 04446b5e-d16a-4023-b7e2-a9b519d801f3 |
+| UNMD         | c59980b8-1e1f-4280-ae5f-d277d428ac6a | 
+
+
+
+### Get Event Catalogs  
+
+This command lists the Event info databases for all modeled Peril/Region; the response includes perilUuid, perilCode, regionUuid, regionCode, and dataVersionUuid for every Event dataset in RMS Catalogue
+
+ | Parameter        | Description                                               | 
+ |------------------|-----------------------------------------------------------| 
+ | perilUuid        | Unique identification Uuid for Peril across all Library   | 
+ | perilCode        | Unique identification two letters Code for Peril          | 
+ | regionUuid       | Unique identification Uuid for Region                     | 
+ | regionCode       | Unique identification two letters  code for Region        | 
+ | dataVersionUuid  | Unique identification Uuid for a dataversion              | 
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.event_catalog.all()
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/eventCatalogs' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer aM6JruRuSiCARpMFZtbXjS2N2q9tGK0oyWIBf9ja'
+```
+> Response
+
+```json
+[
+  {
+    "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
+    "perilCode": "CS",
+    "regionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "regionCode": "NA",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  },
+  {
+    "perilUuid": "cae66c3b-8665-4366-ba33-dae34eec426b",
+    "perilCode": "EQ",
+    "regionUuid": "44d3cb7e-b70c-40a4-856e-03b739b86ab2",
+    "regionCode": "IL",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  }]
+
+  
+```
+
+### Get Event data.
+
+By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.
+
+> Parameters
+
+| Parameter         | Description                  |
+|-------------------|------------------------------|
+| eventId           | -                            | 
+| perilUuid         | -                            | 
+| perilCode         | -                            |
+| primaryRegionUuid | Uuid of Parent Region        | 
+| primaryRegionCode | Code of Parent Region        |
+| dataVersionUuid   | -                            | 
+| description       | -                            |
+| rate              | LTR rate for WS              | 
+| alternativeRate   | MTR rate for WS              |
+| landFallInfo      | Available for every Landfall | 
+
+<aside class="notice">
+Primary regions are parent regions within the region hierarchy. North America is a parent region to the US which is a parent region to all 50 states.
+</aside>
+
 ```python
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
@@ -151,34 +274,45 @@ curl -X 'GET' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer trihPlWCssXdQvMn73vPJ46YN8ROVpt8w7mBPJ3G'
 ```
-> The above command returns this JSON with a description of every EventId 
+> RESPONSE
 
 ```json
-[
-  {
+{
     "eventId": 2847001,
     "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
     "perilCode": "WS",
     "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
     "primaryRegionCode": "NA",
-    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016",
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150",
+    "typeCode": "STOC",
+    "name": "NOTNAMED, 06/25/1851",
+    "description": "NOTNAMED, 06/25/1851: TX-C1 GM1",
     "rate": 1e-10,
-    "alternativeRate": 1e-10
-  },
-  {
-    "eventId": 2847002,
-    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
-    "perilCode": "WS",
-    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
-    "primaryRegionCode": "NA",
-    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016",
-    "rate": 1e-10,
-    "alternativeRate": 1e-10
-  }, 
-  .....
+    "alternativeRate": 1e-10,
+    "landFallInfo": {
+      "first": {
+        "category": "1",
+        "gateRegionCode": "Texas",
+        "state": "TX",
+        "latitude": "28.13",
+        "longitude": "-96.67",
+        "oneMinuteWindSpeed": "92",
+        "byPassing": "L",
+        "direction": "282",
+        "forwardVelocity": "6",
+        "rMaxRight": "-96.67"
+      }
+    },
+    "magnitude": "0",
+    "segment": "1"
+  }
+
   
 ```
-### Get Event data by providing EventId:
+### Get Event data by EventId:
+
+The above command returns a JSON with a detailed description of the specified EventId under every RMS data version.
+
 ```python
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
@@ -194,7 +328,7 @@ curl -X 'GET' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer trihPlWCssXdQvMn73vPJ46YN8ROVpt8w7mBPJ3G'
 ```
-> The above command returns this JSON with a description of the specified EventId and it's rate per dataversion
+> RESPONSE
 
 ```json
 [
@@ -226,7 +360,7 @@ curl -X 'GET' \
     },
     "magnitude": "0",
     "segment": "1"
-  },
+  }]
   
 ```
 
@@ -306,19 +440,19 @@ This Call retrieves all Exposures available in the data library; Event loss tabl
 ##### Query Parameters
 Executing a call without providing any parameters returns a list of all the available exposure in the risk library.
 
-Parameter | Default | Description
---------- | ------- | -----------
-uuid      | -       | If Exposure Uuid is provided, the call returns information on that Uuid
-dataVersionUuid | -    | If not provided the function will return exposure data for all data versions.
-perilUuid | -    | Peril Uuid 
-regionUuid | -    | If not provided the function will return exposure data for all data versions.
-subRegionResolutionUuid | -    | If not provided the function will return exposure data for all data versions.
-subPerilUuid | -    | If not provided the function will return exposure data for all data versions.
-subRegionUuid | -    | If not provided the function will return exposure data for all data versions.
-lobUuid | -    | If not provided the function will return exposure data for all data versions.
-isUnderlyingIlc | -    | If not provided the function will return exposure data for all data versions.
-isShareFactor | -    | If not provided the function will return exposure data for all data versions.
-emptySubPerils | -    | If not provided the function will return exposure data for all data versions.
+| Parameter               | Default | Description                                                                   | 
+|-------------------------|---------|-------------------------------------------------------------------------------| 
+| uuid                    | -       | If Exposure Uuid is provided, the call returns information on that Uuid       | 
+| dataVersionUuid         | -       | If not provided the function will return exposure data for all data versions. | 
+| perilUuid               | -       | Peril Uuid                                                                    | 
+| regionUuid              | -       | If not provided the function will return exposure data for all data versions. | 
+| subRegionResolutionUuid | -       | If not provided the function will return exposure data for all data versions. | 
+| subPerilUuid            | -       | If not provided the function will return exposure data for all data versions. | 
+| subRegionUuid           | -       | If not provided the function will return exposure data for all data versions. | 
+| lobUuid                 | -       | If not provided the function will return exposure data for all data versions. | 
+| isUnderlyingIlc         | -       | If not provided the function will return exposure data for all data versions. | 
+| isShareFactor           | -       | If not provided the function will return exposure data for all data versions. | 
+| emptySubPerils          | -       | If not provided the function will return exposure data for all data versions. | 
 
 <aside class="success">
 Remember 
@@ -385,11 +519,11 @@ curl -X 'POST' \
     },
     "magnitude": "0",
     "segment": "1"
-  },
+  }]
   
 ```
 
-Executing this call assigns a new data version to the exposures mentioend in the list.
+Executing this call assigns a new data version to the exposures mentioned in the list.
 ### Find exposure's Peril & Region
 ```python
 from commons.utils.clients import *
@@ -488,7 +622,7 @@ curl -X 'GET' \
     "unitCode": "USD",
     "rowCount": 25152,
     "isIlc": false
-  },
+  }]
 ```
 
 ### Delete ELT with specific
@@ -648,8 +782,8 @@ curl -X 'GET' \
     "stdDevIndependent": 47031.34,
     "totalExposure": 1627031981,
     "mean": 21455.5
-  },
-  ........
+  }]
+
 ```
 ### URL Parameters
 
