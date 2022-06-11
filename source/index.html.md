@@ -196,7 +196,25 @@ Key Code/Uuid:
 ### Get Event Catalogs  
 
 This command lists the Event info databases for all modeled Peril/Region; the response includes perilUuid, perilCode, regionUuid, regionCode, and dataVersionUuid for every Event dataset in RMS Catalogue
+```json
+[
+  {
+    "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
+    "perilCode": "CS",
+    "regionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "regionCode": "NA",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  },
+  {
+    "perilUuid": "cae66c3b-8665-4366-ba33-dae34eec426b",
+    "perilCode": "EQ",
+    "regionUuid": "44d3cb7e-b70c-40a4-856e-03b739b86ab2",
+    "regionCode": "IL",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  }]
 
+  
+```
 
 | Parameter    | Description |
 |--------------|-------------|
@@ -223,29 +241,45 @@ curl -X 'GET' \
 ```
 > Response
 
-```json
-[
-  {
-    "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
-    "perilCode": "CS",
-    "regionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
-    "regionCode": "NA",
-    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
-  },
-  {
-    "perilUuid": "cae66c3b-8665-4366-ba33-dae34eec426b",
-    "perilCode": "EQ",
-    "regionUuid": "44d3cb7e-b70c-40a4-856e-03b739b86ab2",
-    "regionCode": "IL",
-    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
-  }]
 
-  
-```
 
 ### Get Event data.
 
 By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.
+
+```json
+{
+    "eventId": 2847001,
+    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
+    "perilCode": "WS",
+    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "primaryRegionCode": "NA",
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150",
+    "typeCode": "STOC",
+    "name": "NOTNAMED, 06/25/1851",
+    "description": "NOTNAMED, 06/25/1851: TX-C1 GM1",
+    "rate": 1e-10,
+    "alternativeRate": 1e-10,
+    "landFallInfo": {
+      "first": {
+        "category": "1",
+        "gateRegionCode": "Texas",
+        "state": "TX",
+        "latitude": "28.13",
+        "longitude": "-96.67",
+        "oneMinuteWindSpeed": "92",
+        "byPassing": "L",
+        "direction": "282",
+        "forwardVelocity": "6",
+        "rMaxRight": "-96.67"
+      }
+    },
+    "magnitude": "0",
+    "segment": "1"
+  }
+
+  
+```
 
 > Parameters
 
@@ -283,39 +317,7 @@ curl -X 'GET' \
 ```
 > RESPONSE
 
-```json
-{
-    "eventId": 2847001,
-    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
-    "perilCode": "WS",
-    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
-    "primaryRegionCode": "NA",
-    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150",
-    "typeCode": "STOC",
-    "name": "NOTNAMED, 06/25/1851",
-    "description": "NOTNAMED, 06/25/1851: TX-C1 GM1",
-    "rate": 1e-10,
-    "alternativeRate": 1e-10,
-    "landFallInfo": {
-      "first": {
-        "category": "1",
-        "gateRegionCode": "Texas",
-        "state": "TX",
-        "latitude": "28.13",
-        "longitude": "-96.67",
-        "oneMinuteWindSpeed": "92",
-        "byPassing": "L",
-        "direction": "282",
-        "forwardVelocity": "6",
-        "rMaxRight": "-96.67"
-      }
-    },
-    "magnitude": "0",
-    "segment": "1"
-  }
 
-  
-```
 ### Get Event data by EventId:
 
 The above command returns a JSON with a detailed description of the specified EventId under every RMS data version.
@@ -982,26 +984,26 @@ Object structure varies between program and portfolio analysis
 }
 
 ```
-| Parameter           | Description                                                                              |
-|---------------------|------------------------------------------------------------------------------------------|
-| analysisUuid        | -                                                                                        | 
-| analysisName        | -                                                                                        | 
-| jobCreationDa te    | -                                                                                        |
-| jobStartDate        | Uuid of Parent Region                                                                    | 
-| jobEndDate          | Code of Parent Region                                                                    |
-| companyUuid         | -                                                                                        | 
-| userUuid            | -                                                                                        |
-| status              | LTR rate for WS                                                                          | 
-| analysisType        | MTR rate for WS                                                                          |
-| startDate           | Available for every Landfall                                                             | 
-| endDate             | Available for every Landfall                                                             | 
-| periodStart         | Available for every Landfall                                                             | 
-| periodEnd           | Available for every Landfall                                                             | 
-| stochasticYltUuids  | Available for every Landfall                                                             | 
-| programUuid         | Available for every Landfall                                                             | 
-| programRevisionUuid | Available for every Landfall                                                             | 
-| cplts               | Available for every Landfall                                                             | 
-| currencySetUuid     | [CPLT](http://cawl113430.local:4567/?python#find-exposures-by-providing-characteristics) | 
+| Parameter           | Description                                                  |
+|---------------------|--------------------------------------------------------------|
+| analysisUuid        | -                                                            | 
+| analysisName        | -                                                            | 
+| jobCreationDa te    | -                                                            |
+| jobStartDate        | Uuid of Parent Region                                        | 
+| jobEndDate          | Code of Parent Region                                        |
+| companyUuid         | -                                                            | 
+| userUuid            | -                                                            |
+| status              | LTR rate for WS                                              | 
+| analysisType        | MTR rate for WS                                              |
+| startDate           | Available for every Landfall                                 | 
+| endDate             | Available for every Landfall                                 | 
+| periodStart         | Available for every Landfall                                 | 
+| periodEnd           | Available for every Landfall                                 | 
+| stochasticYltUuids  | Available for every Landfall                                 | 
+| programUuid         | Available for every Landfall                                 | 
+| programRevisionUuid | Available for every Landfall                                 | 
+| cplts               | Available for every Landfall                                 | 
+| currencySetUuid     | [CPLT](https://jdaif.github.io/slate/#get-cplt-by-analysis ) | 
 
 
 
