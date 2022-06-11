@@ -58,7 +58,7 @@ Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=Us
 
 > Make sure to replace `UserInfo` with your credentials.
 
-Here is a detailed description of how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu Python API client: 
+Quick guide on how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu API python Library: 
  
 1.	Create a new Miu Contracts dedicated environment in pycharm.
 2.	You can set up a virtual environment to install the dependencies for the Miu-API python without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.
@@ -69,7 +69,7 @@ Here is a detailed description of how to build a virtual environment in pycharm 
  
 
 <aside class="notice">
-It is important to keep your password secure! Please place your password in a separate file which you can always reference when initiating your session; Do not expose your password in every script
+It is important to keep your password secure! Please place your password in a separate file that you can always reference when initiating your session; Do not expose your password in every script
 </aside>
 
 # Authentication
@@ -99,7 +99,7 @@ curl -X 'POST' \
 
 Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
 
-MIU Contracts expects for the API token to be included in all API requests to the server in a header that looks like the following:
+MIU Contracts expects an API token to be included in with every API requests to the server in a header that looks like the following:
 
 `Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp `
 
@@ -110,8 +110,11 @@ Borrowed:Access tokens are used in token-based authentication to allow an applic
 # Exposure Library
 
 
-Miu Contracts users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors such as an ELT or an HD PLT tagged as SF_ELT and SF_PLT. All those Loss table types fall under the exposure category.
-When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and Hd-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. Below are the API calls included in this section.
+Now you can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors such as an ELT or an HD PLT tagged as SF_ELT and SF_PLT. All those Loss table types fall under the exposure category.
+When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. Below are the API calls included in this section.
+
+
+
 
 [MIU Exposure](https://www.miuinsights.com/docs/exposurelibrary)
 
@@ -152,13 +155,16 @@ Calls to retrieve Event set Information from the central library. There is a uni
 
 Catalog Object includes:
 
- | Parameter        | Description                                               | 
- |------------------|-----------------------------------------------------------| 
- | perilUuid        | Unique identification Uuid for Peril across all Library   | 
- | perilCode        | Unique identification two letters Code for Peril          | 
- | regionUuid       | Unique identification Uuid for Region                     | 
- | regionCode       | Unique identification two letters  code for Region        | 
- | dataVersionUuid  | Unique identification Uuid for a dataversion              | 
+| Parameter    | Description |
+|--------------|-------------|
+| Peril Uuid   | -           | 
+| Peril Code   | -           | 
+| Region Uuid  | -           |
+| Region Code  | -           |
+| Data Version | -           |
+
+
+
 
 Key Code/Uuid:
 
@@ -191,13 +197,14 @@ Key Code/Uuid:
 
 This command lists the Event info databases for all modeled Peril/Region; the response includes perilUuid, perilCode, regionUuid, regionCode, and dataVersionUuid for every Event dataset in RMS Catalogue
 
- | Parameter        | Description                                               | 
- |------------------|-----------------------------------------------------------| 
- | perilUuid        | Unique identification Uuid for Peril across all Library   | 
- | perilCode        | Unique identification two letters Code for Peril          | 
- | regionUuid       | Unique identification Uuid for Region                     | 
- | regionCode       | Unique identification two letters  code for Region        | 
- | dataVersionUuid  | Unique identification Uuid for a dataversion              | 
+
+| Parameter    | Description |
+|--------------|-------------|
+| Peril Uuid   | -           | 
+| Peril Code   | -           | 
+| Region Uuid  | -           |
+| Region Code  | -           |
+| Data Version | -           |
 
 ```python
 from commons.utils.clients import *
@@ -440,19 +447,7 @@ This Call retrieves all Exposures available in the data library; Event loss tabl
 ##### Query Parameters
 Executing a call without providing any parameters returns a list of all the available exposure in the risk library.
 
-| Parameter               | Default | Description                                                                   | 
-|-------------------------|---------|-------------------------------------------------------------------------------| 
-| uuid                    | -       | If Exposure Uuid is provided, the call returns information on that Uuid       | 
-| dataVersionUuid         | -       | If not provided the function will return exposure data for all data versions. | 
-| perilUuid               | -       | Peril Uuid                                                                    | 
-| regionUuid              | -       | If not provided the function will return exposure data for all data versions. | 
-| subRegionResolutionUuid | -       | If not provided the function will return exposure data for all data versions. | 
-| subPerilUuid            | -       | If not provided the function will return exposure data for all data versions. | 
-| subRegionUuid           | -       | If not provided the function will return exposure data for all data versions. | 
-| lobUuid                 | -       | If not provided the function will return exposure data for all data versions. | 
-| isUnderlyingIlc         | -       | If not provided the function will return exposure data for all data versions. | 
-| isShareFactor           | -       | If not provided the function will return exposure data for all data versions. | 
-| emptySubPerils          | -       | If not provided the function will return exposure data for all data versions. | 
+
 
 <aside class="success">
 Remember 
@@ -742,52 +737,180 @@ curl -X 'GET' \
     "stdDevIndependent": 116615.96,
     "totalExposure": 3525375374,
     "mean": 24237.18
-  },
-  {
-    "eventId": "1510005",
-    "rate": 0.22089557,
-    "stdDevCorrelated": 19791.26,
-    "stdDevIndependent": 165322.29,
-    "totalExposure": 804412605.22,
-    "mean": 22842.22
-  },
-  {
-    "eventId": "1510006",
-    "rate": 0.07194286,
-    "stdDevCorrelated": 859.37,
-    "stdDevIndependent": 5934.76,
-    "totalExposure": 140057413,
-    "mean": 369.63
-  },
-  {
-    "eventId": "1510008",
-    "rate": 0.165102656,
-    "stdDevCorrelated": 158.73,
-    "stdDevIndependent": 2308.2,
-    "totalExposure": 118062674,
-    "mean": 58.22
-  },
-  {
-    "eventId": "1510009",
-    "rate": 0.563560457,
-    "stdDevCorrelated": 5189.05,
-    "stdDevIndependent": 28288.6,
-    "totalExposure": 792189552,
-    "mean": 4732.52
-  },
-  {
-    "eventId": "1510010",
-    "rate": 0.421624885,
-    "stdDevCorrelated": 22861.41,
-    "stdDevIndependent": 47031.34,
-    "totalExposure": 1627031981,
-    "mean": 21455.5
   }]
 
 ```
 ### URL Parameters
+# Contract
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+## Contract Object
 
+## Find a Contract
+
+## Create a contract
+
+
+# Program 
+
+## Program Object
+
+## Program Revision Object
+
+## List all programs
+
+## Create a program
+
+## Get all program revision summary
+
+## Get the latest revision summary
+
+## Delete specific program revision
+
+## Delete a program
+
+## Update program revision name
+
+# Portfolio
+
+## Portfolio Object
+
+## Portfolio Revision Object
+
+## Find portfolio
+
+## Find latest portfolio revision
+
+## Find portfolio revision
+
+## Create portfolio
+
+## Edit portfolio
+
+## Update portfolio name
+
+## Get exposure contained in portfolio
+
+## 
+
+# Analysis 
+
+Miu uses a simulation methodology that produces a sequence of event losses during a simulated investment period and supports the modelling of complex financial structures.
+
+With Miu Contracts, you can import also pre-simulated losses and run them along.
+
+
+## Analysis Object
+
+This is an object representing the analysis details. You can retrieve it to see the properties of your analysis, 
+
+Object structure varies between program and portfolio analysis
+> Analysis Object
+
+```json
+{
+  "analysisUuid": "31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b",
+  "analysisName": "Cat Bond 144a",
+  "jobCreationDate": "2022-06-11T00:33:13.736628Z",
+  "jobStartDate": "2022-06-11T00:33:13.736636Z",
+  "jobEndDate": "2022-06-11T00:39:21.233987Z",
+  "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+  "userUuid": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "status": "FINISHED",
+  "analysisType": "SIMULATED",
+  "startDate": "2022-01-01T00:00:00",
+  "endDate": "2022-12-31T23:59:59.999",
+  "periodStart": 1,
+  "periodEnd": 10000,
+  "stochasticYltUuids": [
+    "d95d92d3-f7aa-4918-adf1-e15beea0d3cf"
+  ],
+  "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016",
+  "programUuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+  "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+  "cplts": [
+    {
+      "uuid": "c65d8ed0-7834-4f28-a8ff-01b4043b113f",
+      "ipltUuid": "34ecbcea-dd8b-46f3-a3c9-0123fbf21de6",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    },
+    {
+      "uuid": "628367f0-5bf7-44a1-9bbf-2cf31ae51e42",
+      "ipltUuid": "2a46626f-90f7-41c4-b6e8-4ccab3ac9501",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "69c63942-a586-4c49-b3e4-411f82ec6aba",
+      "termCurrencyCode": "USD",
+      "totalAmount": 50000000
+    },
+    {
+      "uuid": "343000f2-3a3a-4c1b-a16f-d365a64e6619",
+      "ipltUuid": "e3f226db-e26e-4ec1-8239-6ca64972e3d1",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "9c3f1c9a-09b3-449f-825e-0a7807df85e3",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    },
+    {
+      "uuid": "1d5b3c13-21c9-47c6-a907-09f05f7bbd44",
+      "ipltUuid": "13002faf-c70e-4ae5-a06b-1c8947bee02f",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "c6deec63-6b23-49e8-a61b-4c2d90c1f1f8",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    }
+  ],
+  "complexityScore": 60,
+  "totalContracts": 4,
+  "currencySetUuid": "10dde323-735b-457f-a64b-1fe8a45d31f0",
+  "inputs": [],
+  "outputs": [
+    "EPCURVES",
+    "ANALYSIS_METRICS",
+    "PERIL_REGION_METRICS"
+  ],
+  "currencyCode": "USD"
+}
+
+```
+| Parameter           | Description                                                                              |
+|---------------------|------------------------------------------------------------------------------------------|
+| analysisUuid        | -                                                                                        | 
+| analysisName        | -                                                                                        | 
+| jobCreationDa te    | -                                                                                        |
+| jobStartDate        | Uuid of Parent Region                                                                    | 
+| jobEndDate          | Code of Parent Region                                                                    |
+| companyUuid         | -                                                                                        | 
+| userUuid            | -                                                                                        |
+| status              | LTR rate for WS                                                                          | 
+| analysisType        | MTR rate for WS                                                                          |
+| startDate           | Available for every Landfall                                                             | 
+| endDate             | Available for every Landfall                                                             | 
+| periodStart         | Available for every Landfall                                                             | 
+| periodEnd           | Available for every Landfall                                                             | 
+| stochasticYltUuids  | Available for every Landfall                                                             | 
+| programUuid         | Available for every Landfall                                                             | 
+| programRevisionUuid | Available for every Landfall                                                             | 
+| cplts               | Available for every Landfall                                                             | 
+| currencySetUuid     | [CPLT](http://cawl113430.local:4567/?python#find-exposures-by-providing-characteristics) | 
+
+
+
+## Run analysis
+
+## Resubmit analysis
+
+## Find analysis
+
+## Delete Analysis
+
+## Get persisted metrics
+
+## Get EP curves
+
+## Get CPLT
+
+### Get CPLT by Analysis 
+
+### Get CPLT by Contract
