@@ -1,6 +1,6 @@
 ruby '>= 2.5'
 source 'https://rubygems.org'
-
+require 'rbconfig'
 # Middleman
 gem 'middleman', '~> 4.4'
 gem 'middleman-syntax', '~> 3.2'
@@ -11,6 +11,5 @@ gem 'redcarpet', '~> 3.5.0'
 gem 'nokogiri', '~> 1.12.1'
 gem 'sass'
 gem 'webrick'
-require 'rbconfig'
-gem 'wdm', '>= 0.1.0' if RbConfig::CONFIG['target_os'] =~ /mswin|mingw/i
+gem 'wdm','>= 0.1.0', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
