@@ -196,6 +196,8 @@ Key Code/Uuid:
 ### Get Event Catalogs  
 
 This command lists the Event info databases for all modeled Peril/Region; the response includes perilUuid, perilCode, regionUuid, regionCode, and dataVersionUuid for every Event dataset in RMS Catalogue
+> Response
+
 ```json
 [
   {
@@ -777,7 +779,13 @@ The structure varies from one Contract to another depending on the contract calc
       "fromContract": "Cat Bond 144a WS"
     }
   ],
-  "exposures": [],
+    "exposures": [
+    {
+      "uuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+      "exposureType": "ELT",
+      "scalingFactor": 1
+    }
+  ],
   "templateUuid": "48fed8e6-141b-472e-8146-b0ce7452c79d",
   "templateSubstitutions": {
     "InitialPayout": "0.0",
@@ -794,35 +802,245 @@ The structure varies from one Contract to another depending on the contract calc
 }
 ```
 
-| Parameter        | Description                                       |
-|------------------|---------------------------------------------------|
-| name             | Contract Name                                     | 
-| VerticalSeq      | Location of Contract in the column(Tower)         | 
-| Status           | -                                                 |
-| termCurrencyCode | Currency used to produce results for the template |
-| riskStartDate    | Format yyyy-mm-ddThh:ss:mm                        |
-| riskEndDate      | Format yyyy-mm-ddThh:ss:mm                        | 
-| lossFlows        | LossFlow                                          | 
-| Status           | -                                                 |
-| termCurrencyCode | Currency used to produce results for the template |
-| riskStartDate    |                                                   |
-| name             | Contract Name                                     | 
-| VerticalSeq      | Location of Contract in the column(Tower)         | 
-| Status           | -                                                 |
-| termCurrencyCode | Currency used to produce results for the template |
-| riskStartDate    |                                                   |
+| Parameter             | Description                                                                                           |
+|-----------------------|-------------------------------------------------------------------------------------------------------|
+| name                  | Contract Name                                                                                         | 
+| VerticalSeq           | Location of Contract in the column(Tower)                                                             | 
+| Status                | [program status](https://jdaif.github.io/slate/#program) Draft, Finalized, Public                     |
+| termCurrencyCode      | Currency used to produce results for the template                                                     |
+| riskStartDate         | Format yyyy-mm-ddThh:ss:mm                                                                            |
+| riskEndDate           | Format yyyy-mm-ddThh:ss:mm                                                                            | 
+| lossFlows             | [LossFlow](https://jdaif.github.io/slate/#inuring<br/>-columns-amp-loss-flow)                         | 
+| exposures             | Exposures added to the Contract, includes the uuid of the exposure, exposure typle and scaling factor |
+| templateUuid          | [Contract Templates](https://jdaif.github.io/slate/#contract-templates)                               |
+| templateSubstitutions | Different for each contract, [Contract Templates](https://jdaif.github.io/slate/#contract-templates)  |
+| uuid                  | Contract Name                                                                                         | 
+| totalAmount           | Location of Contract in the column(Tower)                                                             | 
+| canParticipate        | Turned off for sub-Contracts, and ON for final parent Contracts where investor can participate        |
+| metadata              | -                                                                                                     |
+
 
 ## Find Contracts
+To find Contracts by program revision, uuid, program status, isPublic status, ISIN or to filter by latest revision or exposure uuid, you can use this call.
+
+> Response
+
+```json
+
+{
+  "name": "A",
+  "verticalSeq": 0,
+  "status": "Written",
+  "termCurrencyCode": "USD",
+  "riskStartDate": "2022-01-01T00:00:00",
+  "riskEndDate": "2022-12-31T23:59:59.999",
+  "lossFlows": [
+    {
+      "lossType": "payout",
+      "fromContractUuid": "f2bce488-c2f9-4296-9cd0-315ea9d80fb2",
+      "fromContract": "Cat Bond 144a Flood",
+      "primitiveBody": "Scale by 1.05"
+    },
+    {
+      "lossType": "payout",
+      "fromContractUuid": "9d5bd5fb-fa61-4cf2-8deb-249bdadab91b",
+      "fromContract": "Cat Bond 144a WS"
+    }
+  ],
+    "exposures": [
+    {
+      "uuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+      "exposureType": "ELT",
+      "scalingFactor": 1
+    }
+  ],
+  "templateUuid": "48fed8e6-141b-472e-8146-b0ce7452c79d",
+  "templateSubstitutions": {
+    "InitialPayout": "0.0",
+    "AggregateLimit": "100000000",
+    "AggregateAttachment": "0",
+    "Reinstatement": "0.0",
+    "AggregateErosion": "0.0",
+    "Principal": "100000000"
+  },
+  "uuid": "bfacd979-850f-4c78-9c4b-4fbcc929c980",
+  "totalAmount": 100000000,
+  "canParticipate": true,
+  "metadata": []
+}
+```
+
+Parameters:
+
+| Parameter              | Description                                                                                                                       |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| uuid                   | You can provide the uuid, same as call [Find a Contract](https://jdaif.github.io/slate/#find-a-contract)                          | 
+| programRevisionUuid    | Retrieves all Contracts available under a certain [program revision](https://jdaif.github.io/slate/#program-revision-object) Uuid | 
+| canParticipate         | Filter those where investor can participate                                                                                       |
+| programStatus          | -                                                                                                                                 | 
+| isPublic               | Filter contracts to those made public by RMS (144a bond public deal library)                                                      |
+| isin                   | provide a collection of isin numbers                                                                                              | 
+| hasSecondaryContractId | -                                                                                                                                 |
+| terminal               | Whether to return only terminal contracts (contracts that no other contract has dependency on)                                    | 
+| exposureUuid           | MTR rate for WS                                                                                                                   |
+| latestRevisionOnly     | Filter by latest [revision](https://jdaif.github.io/slate/#program-revision-object) of every program                              | 
+
+> Response 
+
+```json
+[
+  {
+    "uuid": "0bec92dd-96d0-40b7-bf11-56469306604b",
+    "programUuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+    "programCompanyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "programName": "Cat Bond 144a",
+    "programRevisionUuid": "4fec4be4-01fa-4284-b083-3b3f99931e3c",
+    "programRevisionDataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "programRevisionName": "Revision 3",
+    "programRevisionSource": "Original",
+    "programStatus": "Finalized",
+    "name": "A",
+    "termCurrencyCode": "USD",
+    "canParticipate": true,
+    "totalAmount": 100000000,
+    "riskStartDate": "2022-01-01T00:00:00",
+    "riskEndDate": "2022-12-31T23:59:59.999",
+    "isPublic": false,
+    "isLatestFinalizedRevision": true
+  },
+  {
+    "uuid": "3ffa49b0-c4e3-4394-a2af-e86dbe0e2442",
+    "programUuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+    "programCompanyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "programName": "Cat Bond 144a",
+    "programRevisionUuid": "4fec4be4-01fa-4284-b083-3b3f99931e3c",
+    "programRevisionDataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "programRevisionName": "Revision 3",
+    "programRevisionSource": "Original",
+    "programStatus": "Finalized",
+    "name": "B",
+    "termCurrencyCode": "USD",
+    "canParticipate": true,
+    "totalAmount": 100000000,
+    "riskStartDate": "2022-01-01T00:00:00",
+    "riskEndDate": "2022-12-31T23:59:59.999",
+    "isPublic": false,
+    "isLatestFinalizedRevision": true
+  }
+]
+
+```
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.program.get_contracts(contract_uuids=None,program_revision_uuids="4fec4be4-01fa-4284-b083-3b3f99931e3c",can_participate=True,program_status='Finalized',has_secondary_contract_id=None,exposure_uuids=None,is_public=False,latest_revision_only=False)
+
+```
+
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/contracts?programRevisionUuid=4fec4be4-01fa-4284-b083-3b3f99931e3c&canParticipate=true&programStatus=Finalized&isPublic=false&hasSecondaryContractId=false&terminal=true&latestRevisionOnly=true' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer gKsMWElli6R7qgJstIFcLGO1LS0gBaM8tKFb75yr'
+```
 
 ## Find a Contract
 
 ## Create a contract
 
 ## Contract Templates
-
+Contract Templates represent the most common types of bonds and treaties in the market. Terms and conditions vary depending on the template. 
 ### First and Subsequent
 
-Contract Templates represent the most common types of bonds and treaties in the market. Terms and conditions vary depending on the template. 
+Uuid for FS template is aead0f2e-866a-4cc3-9a6b-72bed098bf01
+
+The class triggers with each event that has an index value in excess of the attachment point.
+
+Summary of the example below:
+
+100,000,000 principal proportionally covering 100,000,000 excess 100,000 with 2 reinstatement and 0.0 initial payout
+
+> First and subsequent template Object
+
+```json
+ "templateUuid" : "aead0f2e-866a-4cc3-9a6b-72bed098bf01",
+  "templateSubstitutions": {
+    "InitialPayout": "0.0",
+    "Attachment": "100000",
+    "Limit": "100000000",
+    "Reinstatement": "2",
+    "Principal": "100000000"
+  }
+```
+
+### Aggregate
+
+Uuid for Aggregate template is 48fed8e6-141b-472e-8146-b0ce7452c79d
+
+The class triggers when the total loss arising from all events exceeds the aggregate attachment point.
+
+
+Summary of the example below:
+
+100,000,000 principal proportionally covering 100,000,000 excess 0 aggregate loss with 0.0 reinstatement and 0.0 initial payout and 0.0 aggregate erosion
+
+> First and subsequent template Object
+
+```json
+
+ "templateUuid" : "48fed8e6-141b-472e-8146-b0ce7452c79d",
+  "templateSubstitutions": {
+    "InitialPayout": "0.0",
+    "AggregateLimit": "100000000",
+    "AggregateAttachment": "0",
+    "Reinstatement": "0.0",
+    "AggregateErosion": "0.0",
+    "Principal": "100000000"
+  }
+
+```
+
+### Kth event
+
+Uuid for Aggregate template is 532d7517-2e7b-434d-84fc-6f05151760a5
+
+The class is on-risk after a specified number of triggering events. A triggering event has an index value in excess of the trigger amount
+
+
+Summary of the example below:
+
+Kth event protection with 100,000,000 principal starting with event 2 proportionally covering 100,000,000 aggregate loss with occurrence terms 25,000,000 excess 100,000 and qualified event trigger of 100,000 and 0.0 initial payout and 0.0 qualified events
+
+> First and subsequent template Object
+
+```json
+
+"templateUuid": "532d7517-2e7b-434d-84fc-6f05151760a5",
+  "templateSubstitutions": {
+    "EventLimit": "25000000",
+    "EventAttachment": "100000",
+    "InitialPayout": "0.0",
+    "QualifiedEventTrigger": "100000",
+    "Principal": "100000000",
+    "AggregateLimit": "100000000",
+    "QualifiedEvents": "0.0",
+    "K": "2"
+  }
+
+```
+
 
 # Program 
 
