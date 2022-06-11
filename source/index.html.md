@@ -742,19 +742,125 @@ curl -X 'GET' \
 ```
 ### URL Parameters
 # Contract
+A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can one or many contracts in a program.
 
 ## Contract Object
+This is an object representing the Contract details. You can retrieve it to see the properties of your Contract and its structure.
+The structure varies from one Contract to another depending on the contract calculation template, number of attached exposures, and the loss flow.
+
+> Contract Object
+
+```json
+
+{
+  "name": "A",
+  "verticalSeq": 0,
+  "status": "Written",
+  "termCurrencyCode": "USD",
+  "riskStartDate": "2022-01-01T00:00:00",
+  "riskEndDate": "2022-12-31T23:59:59.999",
+  "lossFlows": [
+    {
+      "lossType": "payout",
+      "fromContractUuid": "f2bce488-c2f9-4296-9cd0-315ea9d80fb2",
+      "fromContract": "Cat Bond 144a Flood",
+      "primitiveBody": "Scale by 1.05"
+    },
+    {
+      "lossType": "payout",
+      "fromContractUuid": "9d5bd5fb-fa61-4cf2-8deb-249bdadab91b",
+      "fromContract": "Cat Bond 144a WS"
+    }
+  ],
+  "exposures": [],
+  "templateUuid": "48fed8e6-141b-472e-8146-b0ce7452c79d",
+  "templateSubstitutions": {
+    "InitialPayout": "0.0",
+    "AggregateLimit": "100000000",
+    "AggregateAttachment": "0",
+    "Reinstatement": "0.0",
+    "AggregateErosion": "0.0",
+    "Principal": "100000000"
+  },
+  "uuid": "bfacd979-850f-4c78-9c4b-4fbcc929c980",
+  "totalAmount": 100000000,
+  "canParticipate": true,
+  "metadata": []
+}
+```
+
+| Parameter        | Description                                       |
+|------------------|---------------------------------------------------|
+| name             | Contract Name                                     | 
+| VerticalSeq      | Location of Contract in the column(Tower)         | 
+| Status           | -                                                 |
+| termCurrencyCode | Currency used to produce results for the template |
+| riskStartDate    | Format yyyy-mm-ddThh:ss:mm                        |
+| riskEndDate      | Format yyyy-mm-ddThh:ss:mm                        | 
+| lossFlows        | LossFlow                                          | 
+| Status           | -                                                 |
+| termCurrencyCode | Currency used to produce results for the template |
+| riskStartDate    |                                                   |
+| name             | Contract Name                                     | 
+| VerticalSeq      | Location of Contract in the column(Tower)         | 
+| Status           | -                                                 |
+| termCurrencyCode | Currency used to produce results for the template |
+| riskStartDate    |                                                   |
+
+## Find Contracts
 
 ## Find a Contract
 
 ## Create a contract
 
+## Contract Templates
+
+### First and Subsequent
+
+Contract Templates represent the most common types of bonds and treaties in the market. Terms and conditions vary depending on the template. 
 
 # Program 
+
+Users can create and analyze ILS program risk. A program is a collection of ILS classes—often with a defined inuring order. For example:
+
+What are “Draft Programs”?
+
+Programs with terms and conditions that are not confirmed should be left as “draft”. 
+Draft programs can continue to be modified and edited. Each time you edit a 
+program and save it, you will create a new version.
+
+What are “Finalized Programs”?
+Programs with terms and conditions that have been confirmed and signed should be 
+“finalized”. Finalized programs can no longer be modified and will prevent further 
+changes to be made.
+
+What are “Public Programs”?
+
+All the programs modelled by RMS that are available on the public market—i.e. 144a 
+bonds.
 
 ## Program Object
 
 ## Program Revision Object
+
+### Inuring Columns & Loss Flow
+Losses can inure from Contracts in one column to another. Losses flow from left to right. Losses can not inure from Contracts to others under the same column.
+
+What are Inuring Losses?
+
+Inuring Losses consist of the Net Loss and Payout of a contract. They can be defined 
+as Inputs to a subsequent contract
+
+What is Net Loss?
+
+Net Loss is the loss remaining after the terms and conditions of a contract are 
+applied. Net Loss data is in the form of a PLT.
+
+What is Payout?
+
+Payout is the loss absorbed by the terms and conditions of a contract. Payout data is 
+in the form of a PLT.
+
 
 ## List all programs
 
@@ -769,6 +875,8 @@ curl -X 'GET' \
 ## Delete a program
 
 ## Update program revision name
+
+## Finalize a program
 
 # Portfolio
 
