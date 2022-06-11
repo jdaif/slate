@@ -982,26 +982,26 @@ Object structure varies between program and portfolio analysis
 }
 
 ```
-| Parameter           | Description                                                                              |
-|---------------------|------------------------------------------------------------------------------------------|
-| analysisUuid        | -                                                                                        | 
-| analysisName        | -                                                                                        | 
-| jobCreationDa te    | -                                                                                        |
-| jobStartDate        | Uuid of Parent Region                                                                    | 
-| jobEndDate          | Code of Parent Region                                                                    |
-| companyUuid         | -                                                                                        | 
-| userUuid            | -                                                                                        |
-| status              | LTR rate for WS                                                                          | 
-| analysisType        | MTR rate for WS                                                                          |
-| startDate           | Available for every Landfall                                                             | 
-| endDate             | Available for every Landfall                                                             | 
-| periodStart         | Available for every Landfall                                                             | 
-| periodEnd           | Available for every Landfall                                                             | 
-| stochasticYltUuids  | Available for every Landfall                                                             | 
-| programUuid         | Available for every Landfall                                                             | 
-| programRevisionUuid | Available for every Landfall                                                             | 
-| cplts               | Available for every Landfall                                                             | 
-| currencySetUuid     | [CPLT](http://cawl113430.local:4567/?python#find-exposures-by-providing-characteristics) | 
+| Parameter           | Description                                                  |
+|---------------------|--------------------------------------------------------------|
+| analysisUuid        | -                                                            | 
+| analysisName        | -                                                            | 
+| jobCreationDa te    | -                                                            |
+| jobStartDate        | Uuid of Parent Region                                        | 
+| jobEndDate          | Code of Parent Region                                        |
+| companyUuid         | -                                                            | 
+| userUuid            | -                                                            |
+| status              | LTR rate for WS                                              | 
+| analysisType        | MTR rate for WS                                              |
+| startDate           | Available for every Landfall                                 | 
+| endDate             | Available for every Landfall                                 | 
+| periodStart         | Available for every Landfall                                 | 
+| periodEnd           | Available for every Landfall                                 | 
+| stochasticYltUuids  | Available for every Landfall                                 | 
+| programUuid         | Available for every Landfall                                 | 
+| programRevisionUuid | Available for every Landfall                                 | 
+| cplts               | Available for every Landfall                                 | 
+| currencySetUuid     | [CPLT](https://jdaif.github.io/slate/#get-cplt-by-analysis ) | 
 
 
 
