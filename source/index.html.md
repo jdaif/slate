@@ -247,6 +247,9 @@ curl -X 'GET' \
 
 By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.
 
+
+> Parameters
+
 ```json
 {
     "eventId": 2847001,
@@ -281,7 +284,7 @@ By specifying Peril code, Region code, and Data version UUID, this call retrieve
   
 ```
 
-> Parameters
+
 
 | Parameter         | Description                  |
 |-------------------|------------------------------|
