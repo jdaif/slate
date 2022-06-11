@@ -823,67 +823,24 @@ The structure varies from one Contract to another depending on the contract calc
 ## Find Contracts
 To find Contracts by program revision, uuid, program status, isPublic status, ISIN or to filter by latest revision or exposure uuid, you can use this call.
 
-> Response
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
-```json
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
 
-{
-  "name": "A",
-  "verticalSeq": 0,
-  "status": "Written",
-  "termCurrencyCode": "USD",
-  "riskStartDate": "2022-01-01T00:00:00",
-  "riskEndDate": "2022-12-31T23:59:59.999",
-  "lossFlows": [
-    {
-      "lossType": "payout",
-      "fromContractUuid": "f2bce488-c2f9-4296-9cd0-315ea9d80fb2",
-      "fromContract": "Cat Bond 144a Flood",
-      "primitiveBody": "Scale by 1.05"
-    },
-    {
-      "lossType": "payout",
-      "fromContractUuid": "9d5bd5fb-fa61-4cf2-8deb-249bdadab91b",
-      "fromContract": "Cat Bond 144a WS"
-    }
-  ],
-    "exposures": [
-    {
-      "uuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
-      "exposureType": "ELT",
-      "scalingFactor": 1
-    }
-  ],
-  "templateUuid": "48fed8e6-141b-472e-8146-b0ce7452c79d",
-  "templateSubstitutions": {
-    "InitialPayout": "0.0",
-    "AggregateLimit": "100000000",
-    "AggregateAttachment": "0",
-    "Reinstatement": "0.0",
-    "AggregateErosion": "0.0",
-    "Principal": "100000000"
-  },
-  "uuid": "bfacd979-850f-4c78-9c4b-4fbcc929c980",
-  "totalAmount": 100000000,
-  "canParticipate": true,
-  "metadata": []
-}
+Credentials.program.get_contracts(contract_uuids=None,program_revision_uuids="4fec4be4-01fa-4284-b083-3b3f99931e3c",can_participate=True,program_status='Finalized',has_secondary_contract_id=None,exposure_uuids=None,is_public=False,latest_revision_only=False)
+
 ```
 
-Parameters:
 
-| Parameter              | Description                                                                                                                       |
-|------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| uuid                   | You can provide the uuid, same as call [Find a Contract](https://jdaif.github.io/slate/#find-a-contract)                          | 
-| programRevisionUuid    | Retrieves all Contracts available under a certain [program revision](https://jdaif.github.io/slate/#program-revision-object) Uuid | 
-| canParticipate         | Filter those where investor can participate                                                                                       |
-| programStatus          | -                                                                                                                                 | 
-| isPublic               | Filter contracts to those made public by RMS (144a bond public deal library)                                                      |
-| isin                   | provide a collection of isin numbers                                                                                              | 
-| hasSecondaryContractId | -                                                                                                                                 |
-| terminal               | Whether to return only terminal contracts (contracts that no other contract has dependency on)                                    | 
-| exposureUuid           | MTR rate for WS                                                                                                                   |
-| latestRevisionOnly     | Filter by latest [revision](https://jdaif.github.io/slate/#program-revision-object) of every program                              | 
+```shell
+# With shell, you can just pass the correct header with each request
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/contracts?programRevisionUuid=4fec4be4-01fa-4284-b083-3b3f99931e3c&canParticipate=true&programStatus=Finalized&isPublic=false&hasSecondaryContractId=false&terminal=true&latestRevisionOnly=true' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer gKsMWElli6R7qgJstIFcLGO1LS0gBaM8tKFb75yr'
+```
 
 > Response 
 
@@ -934,27 +891,25 @@ Parameters:
     "isLatestFinalizedRevision": true
   }
 ]
-
 ```
 
-```python
-from commons.utils.clients import *
-from apiclient.exposurelibrary.elt_client import *
+Parameters:
 
-Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+| Parameter              | Description                                                                                                                       |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| uuid                   | You can provide the uuid, same as call [Find a Contract](https://jdaif.github.io/slate/#find-a-contract)                          | 
+| programRevisionUuid    | Retrieves all Contracts available under a certain [program revision](https://jdaif.github.io/slate/#program-revision-object) Uuid | 
+| canParticipate         | Filter those where investor can participate                                                                                       |
+| programStatus          | -                                                                                                                                 | 
+| isPublic               | Filter contracts to those made public by RMS (144a bond public deal library)                                                      |
+| isin                   | provide a collection of isin numbers                                                                                              | 
+| hasSecondaryContractId | -                                                                                                                                 |
+| terminal               | Whether to return only terminal contracts (contracts that no other contract has dependency on)                                    | 
+| exposureUuid           | MTR rate for WS                                                                                                                   |
+| latestRevisionOnly     | Filter by latest [revision](https://jdaif.github.io/slate/#program-revision-object) of every program                              | 
 
-Credentials.program.get_contracts(contract_uuids=None,program_revision_uuids="4fec4be4-01fa-4284-b083-3b3f99931e3c",can_participate=True,program_status='Finalized',has_secondary_contract_id=None,exposure_uuids=None,is_public=False,latest_revision_only=False)
-
-```
 
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl -X 'GET' \
-  'https://contract.miuinsights.com/v2/contracts?programRevisionUuid=4fec4be4-01fa-4284-b083-3b3f99931e3c&canParticipate=true&programStatus=Finalized&isPublic=false&hasSecondaryContractId=false&terminal=true&latestRevisionOnly=true' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer gKsMWElli6R7qgJstIFcLGO1LS0gBaM8tKFb75yr'
-```
 
 ## Find a Contract
 
