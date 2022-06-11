@@ -11,5 +11,6 @@ gem 'redcarpet', '~> 3.5.0'
 gem 'nokogiri', '~> 1.12.1'
 gem 'sass'
 gem 'webrick'
-gem 'wdm', '>= 0.1.0'
+require 'rbconfig'
+gem 'wdm', '>= 0.1.0' if RbConfig::CONFIG['target_os'] =~ /mswin|mingw/i
 
