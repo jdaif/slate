@@ -1580,7 +1580,388 @@ changes to be made.</p>
 
 <p>All the programs modelled by RMS that are available on the public market—i.e. 144a 
 bonds.</p>
-<h2 id='program-object'>Program Object</h2><h2 id='program-revision-object'>Program Revision Object</h2><h3 id='inuring-columns-amp-loss-flow'>Inuring Columns &amp; Loss Flow</h3>
+<h2 id='program-object'>Program Object</h2>
+<p>When a program object is retrieved, it may contain one or many <a href="https://jdaif.github.io/slate/#program-revision-object">Program Revisions</a>
+The description contained in the program of each revision defer from the more detailed description obtained when calling the <a href="https://jdaif.github.io/slate/#program-revision-object">Program Revisions Object</a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba298bd4-96c6-42ad-af1b-36f58cf33f33"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6/10/2022, 5:32:13 PM"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T00:32:36.427851Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T00:32:56.539555Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"hasErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fec4be4-01fa-4284-b083-3b3f99931e3c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Revision 3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T21:40:10.793038Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T21:40:38.718464Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"hasErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6ec89120-79cb-4721-b175-4afda88e0fee"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Revision 4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28T05:36:13.222719Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28T05:36:42.800079Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"hasErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+
+</span></code></pre></div>
+<p>The table below contains the parameters returned when calling a program object -- per revision</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td>Program Uuid</td>
+</tr>
+<tr>
+<td>revisionUuid</td>
+<td>Program Revision Uuid</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Program name under that revision -could defer from one revision to another</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Contains gerneral description such as the source</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Draft/Finalized/Public specific to the entire program : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>revisionStatus</td>
+<td>Draft/Finalized/Public specific to the program revision : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>modifiedAt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td>Uuid of user that modified the program</td>
+</tr>
+<tr>
+<td>finalizedAt</td>
+<td>The date when the program revision was finalized</td>
+</tr>
+<tr>
+<td>finalizedBy</td>
+<td>Uuid of teh user that finalized the revision</td>
+</tr>
+<tr>
+<td>companyUuid</td>
+<td>Specific to each company</td>
+</tr>
+<tr>
+<td>isPublic</td>
+<td>True/False if the program in general is public or not</td>
+</tr>
+<tr>
+<td>isPublicRevision</td>
+<td>True/False if the program revision  is public or not</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Reflects the Dataversions of the exposure included in the program revision</td>
+</tr>
+</tbody></table>
+<h2 id='program-revision-object'>Program Revision Object</h2>
+<p>Every program revision object contains a more detailed description that defines the deal&#39;s structure. </p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba298bd4-96c6-42ad-af1b-36f58cf33f33"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6/10/2022, 5:32:13 PM"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T00:32:36.427851Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T00:32:56.539555Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"inuringColumns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"contracts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a WS"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"verticalSeq"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Written"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lossFlows"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"exposures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99c2a627-1cc0-4581-b1e0-3cb72e9d788d"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"exposureType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ELT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"scalingFactor"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"templateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aead0f2e-866a-4cc3-9a6b-72bed098bf01"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"templateSubstitutions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"InitialPayout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Attachment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Reinstatement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44c6043b-8877-47bb-9c38-509933c985e7"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a Flood"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"verticalSeq"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Written"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lossFlows"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"exposures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bb3a8d3e-04ff-4d4f-ba69-f7cd80e5e133"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"exposureType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLTHD"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"templateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aead0f2e-866a-4cc3-9a6b-72bed098bf01"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"templateSubstitutions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"InitialPayout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Attachment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"250000"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Reinstatement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69c63942-a586-4c49-b3e4-411f82ec6aba"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"contracts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"verticalSeq"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Written"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lossFlows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44c6043b-8877-47bb-9c38-509933c985e7"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a WS"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69c63942-a586-4c49-b3e4-411f82ec6aba"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a Flood"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"exposures"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"templateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48fed8e6-141b-472e-8146-b0ce7452c79d"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"templateSubstitutions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"InitialPayout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"AggregateLimit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"AggregateAttachment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Reinstatement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"AggregateErosion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9c3f1c9a-09b3-449f-825e-0a7807df85e3"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"verticalSeq"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Written"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lossFlows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44c6043b-8877-47bb-9c38-509933c985e7"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a WS"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69c63942-a586-4c49-b3e4-411f82ec6aba"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a Flood"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"exposures"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"templateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aead0f2e-866a-4cc3-9a6b-72bed098bf01"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"templateSubstitutions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"InitialPayout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Attachment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Reinstatement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6deec63-6b23-49e8-a61b-4c2d90c1f1f8"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td>Program Uuid</td>
+</tr>
+<tr>
+<td>revisionUuid</td>
+<td>Program Revision Uuid</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Program name under that revision -could defer from one revision to another</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Contains gerneral description such as the source</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Draft/Finalized/Public specific to the entire program : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>revisionStatus</td>
+<td>Draft/Finalized/Public specific to the program revision : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>isPublic</td>
+<td>True/False if the program in general is public or not</td>
+</tr>
+<tr>
+<td>isPublicRevision</td>
+<td>True/False if the program revision  is public or not</td>
+</tr>
+<tr>
+<td>modifiedAt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td>Uuid of user that modified the program</td>
+</tr>
+<tr>
+<td>finalizedAt</td>
+<td>The date when the program revision was finalized</td>
+</tr>
+<tr>
+<td>finalizedBy</td>
+<td>Uuid of teh user that finalized the revision</td>
+</tr>
+<tr>
+<td>companyUuid</td>
+<td>Specific to each company</td>
+</tr>
+<tr>
+<td>inuringColumns</td>
+<td>Starting from 0 upward, each column would include a list of Contracts</td>
+</tr>
+<tr>
+<td>contracts</td>
+<td>A list of <a href="https://jdaif.github.io/slate/#contract">Contracts</a> under each column</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Reflects the Dataversions of the exposure included in the program revision</td>
+</tr>
+</tbody></table>
+<h3 id='inuring-columns-amp-loss-flow'>Inuring Columns &amp; Loss Flow</h3>
 <p>Losses can inure from Contracts in one column to another. Losses flow from left to right. Losses can not inure from Contracts to others under the same column.</p>
 
 <p>What are Inuring Losses?</p>
