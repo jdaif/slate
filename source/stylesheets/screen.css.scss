@@ -650,7 +650,13 @@ html, body {
     margin-top: $main-padding;
   }
 }
+.highlight .s2 {
+    color: rgb(49, 132, 149);
+  }
 
+  .highlight .nl {
+    color: rgb(3, 106, 7);
+}
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
   color: #909090;
 }
