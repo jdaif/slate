@@ -1581,8 +1581,8 @@ changes to be made.</p>
 <p>All the programs modelled by RMS that are available on the public market—i.e. 144a 
 bonds.</p>
 <h2 id='program-object'>Program Object</h2>
-<p>When a program object is retrieved, it may contain one or many <a href="https://jdaif.github.io/slate/#program-revision-object">Program Revisions</a>
-The description contained in the program of each revision defer from the more detailed description obtained when calling the <a href="https://jdaif.github.io/slate/#program-revision-object">Program Revisions Object</a></p>
+<p>When a program object is retrieved, it may contain one or many <a href="https://jdaif.github.io/slate/#program-revision-object">Program Revisions Objects</a>
+The description for eac program revision  returned by this call is less detailed than description obtained when calling the <a href="https://jdaif.github.io/slate/#program-revision-object">Program Revisions Object</a> it does not include information about the Contracts or exposure.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
@@ -1685,7 +1685,7 @@ The description contained in the program of each revision defer from the more de
 </tr>
 <tr>
 <td>description</td>
-<td>Contains gerneral description such as the source</td>
+<td>Contains general description such as the source, year and cedant</td>
 </tr>
 <tr>
 <td>status</td>
@@ -1725,11 +1725,11 @@ The description contained in the program of each revision defer from the more de
 </tr>
 <tr>
 <td>dataVersionUuids</td>
-<td>Reflects the Dataversions of the exposure included in the program revision</td>
+<td>Reflects the Data-versions of the exposure included in the program revision</td>
 </tr>
 </tbody></table>
 <h2 id='program-revision-object'>Program Revision Object</h2>
-<p>Every program revision object contains a more detailed description that defines the deal&#39;s structure. </p>
+<p>Program revision object lists </p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2349,7 +2349,480 @@ in the form of a PLT.</p>
 <td>limit the number of items returned to a certain number</td>
 </tr>
 </tbody></table>
-<h2 id='get-all-program-revision-summary'>Get all program revision summary</h2><h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><h2 id='delete-specific-program-revision'>Delete specific program revision</h2><h2 id='delete-a-program'>Delete a program</h2><h2 id='update-program-revision-name'>Update program revision name</h2><h2 id='finalize-a-program'>Finalize a program</h2><h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2><h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><h2 id='find-portfolio'>Find portfolio</h2><h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><h2 id='find-portfolio-revision'>Find portfolio revision</h2><h2 id='create-portfolio'>Create portfolio</h2><h2 id='edit-portfolio'>Edit portfolio</h2><h2 id='update-portfolio-name'>Update portfolio name</h2><h2 id='get-exposure-contained-in-portfolio'>Get exposure contained in portfolio</h2><h1 id='analysis'>Analysis</h1>
+<h2 id='get-all-program-revision-summary'>Get all program revision summary</h2>
+<p>Returns all private/public draft and private/public finalized program revisions within user&#39;s organization and all public finalized program revisions outside user&#39;s organization</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Service1</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="n">get_revisions_by_program_uuid</span><span class="p">(</span><span class="s">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/programs/b857ae98-3dba-43e0-8627-fc365753727f/revisions'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X4EmSGV7m'</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba298bd4-96c6-42ad-af1b-36f58cf33f33"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6/10/2022, 5:32:13 PM"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T00:32:36.427851Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T00:32:56.539555Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"hasErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fec4be4-01fa-4284-b083-3b3f99931e3c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Revision 3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T21:40:10.793038Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-11T21:40:38.718464Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"hasErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6ec89120-79cb-4721-b175-4afda88e0fee"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Revision 4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28T05:36:13.222719Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28T05:36:42.800079Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"hasErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td>Program Uuid</td>
+</tr>
+<tr>
+<td>revisionUuid</td>
+<td>Program Revision Uuid</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Program name under that revision -could defer from one revision to another</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Contains gerneral description such as the source</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Draft/Finalized/Public specific to the entire program : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>revisionStatus</td>
+<td>Draft/Finalized/Public specific to the program revision : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>isPublic</td>
+<td>True/False if the program in general is public or not</td>
+</tr>
+<tr>
+<td>isPublicRevision</td>
+<td>True/False if the program revision  is public or not</td>
+</tr>
+<tr>
+<td>modifiedAt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td>Uuid of user that modified the program</td>
+</tr>
+<tr>
+<td>finalizedAt</td>
+<td>The date when the program revision was finalized</td>
+</tr>
+<tr>
+<td>finalizedBy</td>
+<td>Uuid of teh user that finalized the revision</td>
+</tr>
+<tr>
+<td>companyUuid</td>
+<td>Specific to each company</td>
+</tr>
+<tr>
+<td>inuringColumns</td>
+<td>Starting from 0 upward, each column would include a list of Contracts</td>
+</tr>
+<tr>
+<td>contracts</td>
+<td>A list of <a href="https://jdaif.github.io/slate/#contract">Contracts</a> under each column</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Reflects the Dataversions of the exposure included in the program revision</td>
+</tr>
+</tbody></table>
+<h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Service1</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="n">get_revisions_by_program_uuid</span><span class="p">(</span><span class="s">"b857ae98-3dba-43e0-8627-fc365753727f"</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/programs/b857ae98-3dba-43e0-8627-fc365753727f/revisions'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X4EmSGV7m'</span>
+</code></pre></div>
+<blockquote>
+<p>Response
+<code>json
+{
+  &quot;uuid&quot;: &quot;b857ae98-3dba-43e0-8627-fc365753727f&quot;,
+  &quot;revisionUuid&quot;: &quot;6ec89120-79cb-4721-b175-4afda88e0fee&quot;,
+  &quot;name&quot;: &quot;Cat Bond 144a&quot;,
+  &quot;revisionName&quot;: &quot;Revision 4&quot;,
+  &quot;description&quot;: {
+    &quot;source&quot;: &quot;Original&quot;
+  },
+  &quot;status&quot;: &quot;Finalized&quot;,
+  &quot;revisionStatus&quot;: &quot;Finalized&quot;,
+  &quot;isPublic&quot;: false,
+  &quot;isPublicRevision&quot;: false,
+  &quot;modifiedAt&quot;: &quot;2022-06-28T05:36:13.222719Z&quot;,
+  &quot;modifiedBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+  &quot;finalizedAt&quot;: &quot;2022-06-28T05:36:42.800079Z&quot;,
+  &quot;finalizedBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+  &quot;companyUuid&quot;: &quot;efa36b93-3200-40a7-afe6-709a2a565c1a&quot;,
+  &quot;inuringColumns&quot;: [
+    {
+      &quot;contracts&quot;: [
+        {
+          &quot;name&quot;: &quot;Cat Bond 144a WS&quot;,
+          &quot;verticalSeq&quot;: 0,
+          &quot;status&quot;: &quot;Written&quot;,
+          &quot;termCurrencyCode&quot;: &quot;USD&quot;,
+          &quot;riskStartDate&quot;: &quot;2022-01-01T00:00:00&quot;,
+          &quot;riskEndDate&quot;: &quot;2022-12-31T23:59:59.999&quot;,
+          &quot;lossFlows&quot;: [],
+          &quot;exposures&quot;: [
+            {
+              &quot;uuid&quot;: &quot;99c2a627-1cc0-4581-b1e0-3cb72e9d788d&quot;,
+              &quot;exposureType&quot;: &quot;ELT&quot;,
+              &quot;scalingFactor&quot;: 1
+            }
+          ],
+          &quot;templateUuid&quot;: &quot;aead0f2e-866a-4cc3-9a6b-72bed098bf01&quot;,
+          &quot;templateSubstitutions&quot;: {
+            &quot;InitialPayout&quot;: &quot;0.0&quot;,
+            &quot;Attachment&quot;: &quot;100000&quot;,
+            &quot;Limit&quot;: &quot;100000000&quot;,
+            &quot;Reinstatement&quot;: &quot;2&quot;,
+            &quot;Principal&quot;: &quot;100000000&quot;
+          },
+          &quot;uuid&quot;: &quot;c5e61008-6060-4058-979f-cdca5bcba5cb&quot;,
+          &quot;totalAmount&quot;: 100000000,
+          &quot;canParticipate&quot;: true,
+          &quot;metadata&quot;: []
+        },
+        {
+          &quot;name&quot;: &quot;Cat Bond 144a Flood&quot;,
+          &quot;verticalSeq&quot;: 1,
+          &quot;status&quot;: &quot;Written&quot;,
+          &quot;termCurrencyCode&quot;: &quot;USD&quot;,
+          &quot;riskStartDate&quot;: &quot;2022-01-01T00:00:00&quot;,
+          &quot;riskEndDate&quot;: &quot;2022-12-31T23:59:59.999&quot;,
+          &quot;lossFlows&quot;: [],
+          &quot;exposures&quot;: [
+            {
+              &quot;uuid&quot;: &quot;bb3a8d3e-04ff-4d4f-ba69-f7cd80e5e133&quot;,
+              &quot;exposureType&quot;: &quot;PLT&quot;
+            }
+          ],
+          &quot;templateUuid&quot;: &quot;aead0f2e-866a-4cc3-9a6b-72bed098bf01&quot;,
+          &quot;templateSubstitutions&quot;: {
+            &quot;InitialPayout&quot;: &quot;0.0&quot;,
+            &quot;Attachment&quot;: &quot;250000&quot;,
+            &quot;Limit&quot;: &quot;100000000&quot;,
+            &quot;Reinstatement&quot;: &quot;0.0&quot;,
+            &quot;Principal&quot;: &quot;50000000&quot;
+          },
+          &quot;uuid&quot;: &quot;3b802f32-bf78-4df1-96d6-2bb72d3f1c58&quot;,
+          &quot;totalAmount&quot;: 50000000,
+          &quot;canParticipate&quot;: true,
+          &quot;metadata&quot;: []
+        }
+      ]
+    },
+    {
+      &quot;contracts&quot;: [
+        {
+          &quot;name&quot;: &quot;A&quot;,
+          &quot;verticalSeq&quot;: 0,
+          &quot;status&quot;: &quot;Written&quot;,
+          &quot;termCurrencyCode&quot;: &quot;USD&quot;,
+          &quot;riskStartDate&quot;: &quot;2022-01-01T00:00:00&quot;,
+          &quot;riskEndDate&quot;: &quot;2022-12-31T23:59:59.999&quot;,
+          &quot;lossFlows&quot;: [
+            {
+              &quot;lossType&quot;: &quot;payout&quot;,
+              &quot;fromContractUuid&quot;: &quot;3b802f32-bf78-4df1-96d6-2bb72d3f1c58&quot;,
+              &quot;fromContract&quot;: &quot;Cat Bond 144a Flood&quot;,
+              &quot;primitiveBody&quot;: &quot;Scale by 1.05&quot;
+            },
+            {
+              &quot;lossType&quot;: &quot;payout&quot;,
+              &quot;fromContractUuid&quot;: &quot;c5e61008-6060-4058-979f-cdca5bcba5cb&quot;,
+              &quot;fromContract&quot;: &quot;Cat Bond 144a WS&quot;
+            }
+          ],
+          &quot;exposures&quot;: [],
+          &quot;templateUuid&quot;: &quot;48fed8e6-141b-472e-8146-b0ce7452c79d&quot;,
+          &quot;templateSubstitutions&quot;: {
+            &quot;InitialPayout&quot;: &quot;0.0&quot;,
+            &quot;AggregateLimit&quot;: &quot;100000000&quot;,
+            &quot;AggregateAttachment&quot;: &quot;0&quot;,
+            &quot;Reinstatement&quot;: &quot;0.0&quot;,
+            &quot;AggregateErosion&quot;: &quot;0.0&quot;,
+            &quot;Principal&quot;: &quot;100000000&quot;
+          },
+          &quot;uuid&quot;: &quot;05ea549f-1b90-4c30-b7af-338e549cbce7&quot;,
+          &quot;totalAmount&quot;: 100000000,
+          &quot;canParticipate&quot;: true,
+          &quot;metadata&quot;: []
+        },
+        {
+          &quot;name&quot;: &quot;C&quot;,
+          &quot;verticalSeq&quot;: 1,
+          &quot;status&quot;: &quot;Written&quot;,
+          &quot;termCurrencyCode&quot;: &quot;USD&quot;,
+          &quot;riskStartDate&quot;: &quot;2022-01-01T00:00:00&quot;,
+          &quot;riskEndDate&quot;: &quot;2022-12-31T23:59:59.999&quot;,
+          &quot;lossFlows&quot;: [
+            {
+              &quot;lossType&quot;: &quot;payout&quot;,
+              &quot;fromContractUuid&quot;: &quot;c5e61008-6060-4058-979f-cdca5bcba5cb&quot;,
+              &quot;fromContract&quot;: &quot;Cat Bond 144a WS&quot;
+            },
+            {
+              &quot;lossType&quot;: &quot;payout&quot;,
+              &quot;fromContractUuid&quot;: &quot;3b802f32-bf78-4df1-96d6-2bb72d3f1c58&quot;,
+              &quot;fromContract&quot;: &quot;Cat Bond 144a Flood&quot;
+            }
+          ],
+          &quot;exposures&quot;: [],
+          &quot;templateUuid&quot;: &quot;aead0f2e-866a-4cc3-9a6b-72bed098bf01&quot;,
+          &quot;templateSubstitutions&quot;: {
+            &quot;InitialPayout&quot;: &quot;0.0&quot;,
+            &quot;Attachment&quot;: &quot;0&quot;,
+            &quot;Limit&quot;: &quot;100000000&quot;,
+            &quot;Reinstatement&quot;: &quot;0.0&quot;,
+            &quot;Principal&quot;: &quot;100000000&quot;
+          },
+          &quot;uuid&quot;: &quot;7e5a759a-603d-4ae0-991c-da1747335781&quot;,
+          &quot;totalAmount&quot;: 100000000,
+          &quot;canParticipate&quot;: true,
+          &quot;metadata&quot;: []
+        },
+        {
+          &quot;name&quot;: &quot;B&quot;,
+          &quot;verticalSeq&quot;: 2,
+          &quot;status&quot;: &quot;Written&quot;,
+          &quot;termCurrencyCode&quot;: &quot;USD&quot;,
+          &quot;riskStartDate&quot;: &quot;2022-01-01T00:00:00&quot;,
+          &quot;riskEndDate&quot;: &quot;2022-12-31T23:59:59.999&quot;,
+          &quot;lossFlows&quot;: [
+            {
+              &quot;lossType&quot;: &quot;payout&quot;,
+              &quot;fromContractUuid&quot;: &quot;c5e61008-6060-4058-979f-cdca5bcba5cb&quot;,
+              &quot;fromContract&quot;: &quot;Cat Bond 144a WS&quot;
+            },
+            {
+              &quot;lossType&quot;: &quot;payout&quot;,
+              &quot;fromContractUuid&quot;: &quot;3b802f32-bf78-4df1-96d6-2bb72d3f1c58&quot;,
+              &quot;fromContract&quot;: &quot;Cat Bond 144a Flood&quot;
+            }
+          ],
+          &quot;exposures&quot;: [],
+          &quot;templateUuid&quot;: &quot;aead0f2e-866a-4cc3-9a6b-72bed098bf01&quot;,
+          &quot;templateSubstitutions&quot;: {
+            &quot;InitialPayout&quot;: &quot;0.0&quot;,
+            &quot;Attachment&quot;: &quot;0&quot;,
+            &quot;Limit&quot;: &quot;100000000&quot;,
+            &quot;Reinstatement&quot;: &quot;0.0&quot;,
+            &quot;Principal&quot;: &quot;100000000&quot;
+          },
+          &quot;uuid&quot;: &quot;a5201441-a5bf-42dc-ab85-2a6595e05f05&quot;,
+          &quot;totalAmount&quot;: 100000000,
+          &quot;canParticipate&quot;: true,
+          &quot;metadata&quot;: []
+        }
+      ]
+    }
+  ],
+  &quot;dataVersionUuids&quot;: [
+    &quot;04446b5e-d16a-4023-b7e2-a9b519d801f3&quot;,
+    &quot;4b292524-d70c-4edb-9137-e9bc4bb41016&quot;
+  ],
+  &quot;isShared&quot;: false,
+  &quot;metadata&quot;: [],
+  &quot;isPltOnly&quot;: false
+}
+</code></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td>Program Uuid</td>
+</tr>
+<tr>
+<td>revisionUuid</td>
+<td>Program Revision Uuid</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Program name under that revision -could defer from one revision to another</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Contains gerneral description such as the source</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Draft/Finalized/Public specific to the entire program : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>revisionStatus</td>
+<td>Draft/Finalized/Public specific to the program revision : <a href="https://jdaif.github.io/slate/#program">Program Status</a></td>
+</tr>
+<tr>
+<td>isPublic</td>
+<td>True/False if the program in general is public or not</td>
+</tr>
+<tr>
+<td>isPublicRevision</td>
+<td>True/False if the program revision  is public or not</td>
+</tr>
+<tr>
+<td>modifiedAt</td>
+<td>-</td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td>Uuid of user that modified the program</td>
+</tr>
+<tr>
+<td>finalizedAt</td>
+<td>The date when the program revision was finalized</td>
+</tr>
+<tr>
+<td>finalizedBy</td>
+<td>Uuid of teh user that finalized the revision</td>
+</tr>
+<tr>
+<td>companyUuid</td>
+<td>Specific to each company</td>
+</tr>
+<tr>
+<td>inuringColumns</td>
+<td>Starting from 0 upward, each column would include a list of Contracts</td>
+</tr>
+<tr>
+<td>contracts</td>
+<td>A list of <a href="https://jdaif.github.io/slate/#contract">Contracts</a> under each column</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Reflects the Dataversions of the exposure included in the program revision</td>
+</tr>
+</tbody></table>
+<h2 id='delete-specific-program-revision'>Delete specific program revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="n">delete_revision</span><span class="p">(</span><span class="s">"2b7912db-1274-46a7-8fa2-2fbcd65a55a8"</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'DELETE'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/programs/revisions/2b7912db-1274-46a7-8fa2-2fbcd65a55a8'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X4EmSGV7m'</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<h2 id='delete-a-program'>Delete a program</h2>
+<p>Deletes regardless of public status</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"07deb9d1-b4c3-4402-9cba-24b568484f0a"</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'DELETE'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/programs/07deb9d1-b4c3-4402-9cba-24b568484f0a'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X`4EmSGV7m'</span>
+</code></pre></div><h2 id='update-program-revision-name'>Update program revision name</h2><h2 id='finalize-a-program'>Finalize a program</h2><div class="highlight"><pre class="highlight python tab-python"><code>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/programs/revisions/d25fcc79-8457-486d-b2ef-924d2af1a66d/finalize'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X4EmSGV7m'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">''</span>
+</code></pre></div><h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2><h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><h2 id='find-portfolio'>Find portfolio</h2><h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><h2 id='find-portfolio-revision'>Find portfolio revision</h2><h2 id='create-portfolio'>Create portfolio</h2><h2 id='edit-portfolio'>Edit portfolio</h2><h2 id='update-portfolio-name'>Update portfolio name</h2><h2 id='get-exposure-contained-in-portfolio'>Get exposure contained in portfolio</h2><h1 id='analysis'>Analysis</h1>
 <p>Miu uses a simulation methodology that produces a sequence of event losses during a simulated investment period and supports the modelling of complex financial structures.</p>
 
 <p>With Miu Contracts, you can import also pre-simulated losses and run them along.</p>
