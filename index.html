@@ -1978,7 +1978,146 @@ applied. Net Loss data is in the form of a PLT.</p>
 
 <p>Payout is the loss absorbed by the terms and conditions of a contract. Payout data is 
 in the form of a PLT.</p>
-<h2 id='list-all-programs'>List all programs</h2><h2 id='create-a-program'>Create a program</h2><h2 id='get-all-program-revision-summary'>Get all program revision summary</h2><h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><h2 id='delete-specific-program-revision'>Delete specific program revision</h2><h2 id='delete-a-program'>Delete a program</h2><h2 id='update-program-revision-name'>Update program revision name</h2><h2 id='finalize-a-program'>Finalize a program</h2><h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2><h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><h2 id='find-portfolio'>Find portfolio</h2><h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><h2 id='find-portfolio-revision'>Find portfolio revision</h2><h2 id='create-portfolio'>Create portfolio</h2><h2 id='edit-portfolio'>Edit portfolio</h2><h2 id='update-portfolio-name'>Update portfolio name</h2><h2 id='get-exposure-contained-in-portfolio'>Get exposure contained in portfolio</h2><h1 id='analysis'>Analysis</h1>
+<h2 id='list-all-programs'>List all programs</h2>
+<p>This call retrieves all available programs in the deal library, user can filter by specifying the parameters below:</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">all_programs_v21</span> <span class="o">=</span><span class="n">Credentials</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">public</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">data_version_uuid</span><span class="o">=</span><span class="s">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="p">)</span> 
+<span class="c1">#Code below takes the text Json response and transforms it to a dataframe
+</span><span class="n">all_programs_v21</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">all_programs_v21</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+<span class="n">all_programs_v21</span> <span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_programs_v21</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/programs?status=finalized&amp;public=true&amp;limit=3&amp;sortBy=NAME&amp;sortOrder=asc'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 5gcaX7DNAXpRgOX50X8ZSO8jZJKGR11nozDYpirt'</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2f2a1a79-ca42-4558-8103-354308ae6f89"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44e85985-71a3-4b31-8734-9ad0f3b8710d"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2001 Cat Re Ltd. 2020-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Post-Close v21 Updated"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cedant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allied World Assurance Company Holdings"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-14T23:13:01.436742Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ed9bf0c-4b1c-413a-a126-9155f4d0b48e"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-14T23:13:35.086569Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ed9bf0c-4b1c-413a-a126-9155f4d0b48e"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ae91a5e2-bee5-4994-9e35-8073a373edc0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10512c2e-f48b-4d77-a484-394b13ee40be"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2001 Cat Re Ltd. 2020-1 Pre Close"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cedant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allied World Assurance Company Holdings"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-04T16:22:20.663769Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ccb19eab-42c8-4719-b4a3-7462367188fa"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-05T10:09:56.151694Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d69361fd-d4bc-48bf-986b-ba4d18c04a8c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ca9d8219-776e-4024-b6be-1247f4e28150"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e24d1c2-82d5-460c-9011-d7dd5c85fbf0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ac28d83-9098-4268-b3ed-010edaf63e9f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3264 Re Ltd. 2020-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reset 2021 v21"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reset"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cedant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hannover Ruck SE"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revisionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finalized"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-11T23:27:52.880965Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ed9bf0c-4b1c-413a-a126-9155f4d0b48e"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-11T23:27:53.143731Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"finalizedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ed9bf0c-4b1c-413a-a126-9155f4d0b48e"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isPublicRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>finalized/draft</td>
+</tr>
+<tr>
+<td>public</td>
+<td>True/False</td>
+</tr>
+<tr>
+<td>dataVersionUuid</td>
+<td>Filter by Uuid</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>Program uuid</td>
+</tr>
+<tr>
+<td>revisionUuid</td>
+<td>Program revision uuid</td>
+</tr>
+<tr>
+<td>cedenceType</td>
+<td>Programs with the given cedence type : Inward/outward</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Offset the items returned</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>limit the number of items returned to a certain number</td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td>Name, date modified ....</td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>asc/desc</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-program'>Create a program</h2><h2 id='get-all-program-revision-summary'>Get all program revision summary</h2><h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><h2 id='delete-specific-program-revision'>Delete specific program revision</h2><h2 id='delete-a-program'>Delete a program</h2><h2 id='update-program-revision-name'>Update program revision name</h2><h2 id='finalize-a-program'>Finalize a program</h2><h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2><h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><h2 id='find-portfolio'>Find portfolio</h2><h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><h2 id='find-portfolio-revision'>Find portfolio revision</h2><h2 id='create-portfolio'>Create portfolio</h2><h2 id='edit-portfolio'>Edit portfolio</h2><h2 id='update-portfolio-name'>Update portfolio name</h2><h2 id='get-exposure-contained-in-portfolio'>Get exposure contained in portfolio</h2><h1 id='analysis'>Analysis</h1>
 <p>Miu uses a simulation methodology that produces a sequence of event losses during a simulated investment period and supports the modelling of complex financial structures.</p>
 
 <p>With Miu Contracts, you can import also pre-simulated losses and run them along.</p>
