@@ -1327,7 +1327,119 @@ in the form of a PLT.
 
 ## List all programs
 
+This call retrieves all available programs in the deal library, user can filter by specifying the parameters below:
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+all_programs_v21 =Credentials.program.all(public=True,data_version_uuid="4b292524-d70c-4edb-9137-e9bc4bb41016") 
+#Code below takes the text Json response and transforms it to a dataframe
+all_programs_v21 = json.loads(all_programs_v21.text)
+all_programs_v21 =pd.DataFrame(all_programs_v21)
+```
+
+```shell
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/programs?status=finalized&public=true&limit=3&sortBy=NAME&sortOrder=asc' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 5gcaX7DNAXpRgOX50X8ZSO8jZJKGR11nozDYpirt'
+```
+
+```json
+[
+  {
+    "uuid": "2f2a1a79-ca42-4558-8103-354308ae6f89",
+    "revisionUuid": "44e85985-71a3-4b31-8734-9ad0f3b8710d",
+    "name": "2001 Cat Re Ltd. 2020-1",
+    "revisionName": "Post-Close v21 Updated",
+    "description": {
+      "source": "Original",
+      "year": 2020,
+      "cedant": "Allied World Assurance Company Holdings"
+    },
+    "status": "Finalized",
+    "revisionStatus": "Finalized",
+    "modifiedAt": "2022-02-14T23:13:01.436742Z",
+    "modifiedBy": "8ed9bf0c-4b1c-413a-a126-9155f4d0b48e",
+    "finalizedAt": "2022-02-14T23:13:35.086569Z",
+    "finalizedBy": "8ed9bf0c-4b1c-413a-a126-9155f4d0b48e",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "isPublic": true,
+    "isPublicRevision": true,
+    "dataVersionUuids": [
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "metadata": [],
+    "isPltOnly": false
+  },
+  {
+    "uuid": "ae91a5e2-bee5-4994-9e35-8073a373edc0",
+    "revisionUuid": "10512c2e-f48b-4d77-a484-394b13ee40be",
+    "name": "2001 Cat Re Ltd. 2020-1 Pre Close",
+    "description": {
+      "source": "Original",
+      "year": 2020,
+      "cedant": "Allied World Assurance Company Holdings"
+    },
+    "status": "Finalized",
+    "revisionStatus": "Finalized",
+    "modifiedAt": "2020-11-04T16:22:20.663769Z",
+    "modifiedBy": "ccb19eab-42c8-4719-b4a3-7462367188fa",
+    "finalizedAt": "2020-11-05T10:09:56.151694Z",
+    "finalizedBy": "d69361fd-d4bc-48bf-986b-ba4d18c04a8c",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "isPublic": true,
+    "isPublicRevision": true,
+    "dataVersionUuids": [
+      "ca9d8219-776e-4024-b6be-1247f4e28150"
+    ],
+    "metadata": [],
+    "isPltOnly": false
+  },
+  {
+    "uuid": "9e24d1c2-82d5-460c-9011-d7dd5c85fbf0",
+    "revisionUuid": "1ac28d83-9098-4268-b3ed-010edaf63e9f",
+    "name": "3264 Re Ltd. 2020-1",
+    "revisionName": "Reset 2021 v21",
+    "description": {
+      "source": "Reset",
+      "year": 2021,
+      "cedant": "Hannover Ruck SE"
+    },
+    "status": "Finalized",
+    "revisionStatus": "Finalized",
+    "modifiedAt": "2022-01-11T23:27:52.880965Z",
+    "modifiedBy": "8ed9bf0c-4b1c-413a-a126-9155f4d0b48e",
+    "finalizedAt": "2022-01-11T23:27:53.143731Z",
+    "finalizedBy": "8ed9bf0c-4b1c-413a-a126-9155f4d0b48e",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "isPublic": true,
+    "isPublicRevision": true,
+    "dataVersionUuids": [
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "metadata": [],
+    "isPltOnly": false
+  }
+]
+
+```
+| Parameter         | Description                                            |
+|-------------------|--------------------------------------------------------|
+| status            | finalized/draft                                        | 
+| public            | True/False                                             | 
+| dataVersionUuid   | Filter by Uuid                                         |
+| uuid              | Program uuid                                           | 
+| revisionUuid      | Program revision uuid                                  |
+| cedenceType       | Programs with the given cedence type : Inward/outward  | 
+| offset            | Offset the items returned                              |
+| limit             | limit the number of items returned to a certain number | 
+| sortBy            | Name, date modified ....                               |
+| sortOrder         | asc/desc                                               | 
 ## Create a program
+
 
 ## Get all program revision summary
 
