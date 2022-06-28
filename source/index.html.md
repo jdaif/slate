@@ -1019,7 +1019,292 @@ bonds.
 
 ## Program Object
 
+When a program object is retrieved, it may contain one or many [Program Revisions](https://jdaif.github.io/slate/#program-revision-object)
+The description contained in the program of each revision defer from the more detailed description obtained when calling the [Program Revisions Object](https://jdaif.github.io/slate/#program-revision-object)
+
+```json
+[
+  {
+    "uuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+    "revisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+    "name": "Cat Bond 144a",
+    "revisionName": "6/10/2022, 5:32:13 PM",
+    "description": {
+      "source": "Original"
+    },
+    "status": "Finalized",
+    "revisionStatus": "Finalized",
+    "modifiedAt": "2022-06-11T00:32:36.427851Z",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "finalizedAt": "2022-06-11T00:32:56.539555Z",
+    "finalizedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "isPublic": false,
+    "isPublicRevision": false,
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "metadata": [],
+    "hasErrors": false,
+    "isPltOnly": false
+  },
+  {
+    "uuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+    "revisionUuid": "4fec4be4-01fa-4284-b083-3b3f99931e3c",
+    "name": "Cat Bond 144a",
+    "revisionName": "Revision 3",
+    "description": {
+      "source": "Original"
+    },
+    "status": "Finalized",
+    "revisionStatus": "Finalized",
+    "modifiedAt": "2022-06-11T21:40:10.793038Z",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "finalizedAt": "2022-06-11T21:40:38.718464Z",
+    "finalizedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "isPublic": false,
+    "isPublicRevision": false,
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "metadata": [],
+    "hasErrors": false,
+    "isPltOnly": false
+  },
+  {
+    "uuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+    "revisionUuid": "6ec89120-79cb-4721-b175-4afda88e0fee",
+    "name": "Cat Bond 144a",
+    "revisionName": "Revision 4",
+    "description": {
+      "source": "Original"
+    },
+    "status": "Finalized",
+    "revisionStatus": "Finalized",
+    "modifiedAt": "2022-06-28T05:36:13.222719Z",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "finalizedAt": "2022-06-28T05:36:42.800079Z",
+    "finalizedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "isPublic": false,
+    "isPublicRevision": false,
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "metadata": [],
+    "hasErrors": false,
+    "isPltOnly": false
+  }
+]
+
+
+```
+The table below contains the parameters returned when calling a program object -- per revision
+
+| Parameter           | Description                                                                                                        |
+|---------------------|--------------------------------------------------------------------------------------------------------------------|
+| uuid                | Program Uuid                                                                                                       | 
+| revisionUuid        | Program Revision Uuid                                                                                              | 
+| name                | Program name under that revision -could defer from one revision to another                                         |
+| description         | Contains gerneral description such as the source                                                                   |
+| status              | Draft/Finalized/Public specific to the entire program : [Program Status](https://jdaif.github.io/slate/#program)   |
+| revisionStatus      | Draft/Finalized/Public specific to the program revision : [Program Status](https://jdaif.github.io/slate/#program) | 
+| modifiedAt          | -                                                                                                                  | 
+| modifiedBy          | Uuid of user that modified the program                                                                             |
+| finalizedAt         | The date when the program revision was finalized                                                                   |
+| finalizedBy         | Uuid of teh user that finalized the revision                                                                       |
+| companyUuid         | Specific to each company                                                                                           | 
+| isPublic            | True/False if the program in general is public or not                                                              | 
+| isPublicRevision    | True/False if the program revision  is public or not                                                               |
+| dataVersionUuids    | Reflects the Dataversions of the exposure included in the program revision                                         |
 ## Program Revision Object
+
+Every program revision object contains a more detailed description that defines the deal's structure. 
+
+
+```json
+{
+  "errors": [],
+  "program": {
+    "uuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+    "revisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+    "name": "Cat Bond 144a",
+    "revisionName": "6/10/2022, 5:32:13 PM",
+    "description": {
+      "source": "Original"
+    },
+    "status": "Finalized",
+    "revisionStatus": "Finalized",
+    "isPublic": false,
+    "isPublicRevision": false,
+    "modifiedAt": "2022-06-11T00:32:36.427851Z",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "finalizedAt": "2022-06-11T00:32:56.539555Z",
+    "finalizedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "inuringColumns": [
+      {
+        "contracts": [
+          {
+            "name": "Cat Bond 144a WS",
+            "verticalSeq": 0,
+            "status": "Written",
+            "termCurrencyCode": "USD",
+            "riskStartDate": "2022-01-01T00:00:00",
+            "riskEndDate": "2022-12-31T23:59:59.999",
+            "lossFlows": [],
+            "exposures": [
+              {
+                "uuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+                "exposureType": "ELT",
+                "scalingFactor": 1
+              }
+            ],
+            "templateUuid": "aead0f2e-866a-4cc3-9a6b-72bed098bf01",
+            "templateSubstitutions": {
+              "InitialPayout": "0.0",
+              "Attachment": "100000",
+              "Limit": "100000000",
+              "Reinstatement": "2",
+              "Principal": "100000000"
+            },
+            "uuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+            "totalAmount": 100000000,
+            "canParticipate": true,
+            "metadata": []
+          },
+          {
+            "name": "Cat Bond 144a Flood",
+            "verticalSeq": 1,
+            "status": "Written",
+            "termCurrencyCode": "USD",
+            "riskStartDate": "2022-01-01T00:00:00",
+            "riskEndDate": "2022-12-31T23:59:59.999",
+            "lossFlows": [],
+            "exposures": [
+              {
+                "uuid": "bb3a8d3e-04ff-4d4f-ba69-f7cd80e5e133",
+                "exposureType": "PLTHD"
+              }
+            ],
+            "templateUuid": "aead0f2e-866a-4cc3-9a6b-72bed098bf01",
+            "templateSubstitutions": {
+              "InitialPayout": "0.0",
+              "Attachment": "250000",
+              "Limit": "100000000",
+              "Reinstatement": "0.0",
+              "Principal": "50000000"
+            },
+            "uuid": "69c63942-a586-4c49-b3e4-411f82ec6aba",
+            "totalAmount": 50000000,
+            "canParticipate": true,
+            "metadata": []
+          }
+        ]
+      },
+      {
+        "contracts": [
+          {
+            "name": "A",
+            "verticalSeq": 0,
+            "status": "Written",
+            "termCurrencyCode": "USD",
+            "riskStartDate": "2022-01-01T00:00:00",
+            "riskEndDate": "2022-12-31T23:59:59.999",
+            "lossFlows": [
+              {
+                "lossType": "payout",
+                "fromContractUuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+                "fromContract": "Cat Bond 144a WS"
+              },
+              {
+                "lossType": "payout",
+                "fromContractUuid": "69c63942-a586-4c49-b3e4-411f82ec6aba",
+                "fromContract": "Cat Bond 144a Flood"
+              }
+            ],
+            "exposures": [],
+            "templateUuid": "48fed8e6-141b-472e-8146-b0ce7452c79d",
+            "templateSubstitutions": {
+              "InitialPayout": "0.0",
+              "AggregateLimit": "100000000",
+              "AggregateAttachment": "0",
+              "Reinstatement": "0.0",
+              "AggregateErosion": "0.0",
+              "Principal": "100000000"
+            },
+            "uuid": "9c3f1c9a-09b3-449f-825e-0a7807df85e3",
+            "totalAmount": 100000000,
+            "canParticipate": true,
+            "metadata": []
+          },
+          {
+            "name": "B",
+            "verticalSeq": 1,
+            "status": "Written",
+            "termCurrencyCode": "USD",
+            "riskStartDate": "2022-01-01T00:00:00",
+            "riskEndDate": "2022-12-31T23:59:59.999",
+            "lossFlows": [
+              {
+                "lossType": "payout",
+                "fromContractUuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+                "fromContract": "Cat Bond 144a WS"
+              },
+              {
+                "lossType": "payout",
+                "fromContractUuid": "69c63942-a586-4c49-b3e4-411f82ec6aba",
+                "fromContract": "Cat Bond 144a Flood"
+              }
+            ],
+            "exposures": [],
+            "templateUuid": "aead0f2e-866a-4cc3-9a6b-72bed098bf01",
+            "templateSubstitutions": {
+              "InitialPayout": "0.0",
+              "Attachment": "0",
+              "Limit": "100000000",
+              "Reinstatement": "0.0",
+              "Principal": "100000000"
+            },
+            "uuid": "c6deec63-6b23-49e8-a61b-4c2d90c1f1f8",
+            "totalAmount": 100000000,
+            "canParticipate": true,
+            "metadata": []
+          }
+        ]
+      }
+    ],
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+
+    "isPltOnly": false
+  }
+}
+```
+| Parameter             | Description                                                                                                        |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------|
+| uuid                  | Program Uuid                                                                                                       | 
+| revisionUuid          | Program Revision Uuid                                                                                              | 
+| name                  | Program name under that revision -could defer from one revision to another                                         |
+| description           | Contains gerneral description such as the source                                                                   |
+| status                | Draft/Finalized/Public specific to the entire program : [Program Status](https://jdaif.github.io/slate/#program)   |
+| revisionStatus        | Draft/Finalized/Public specific to the program revision : [Program Status](https://jdaif.github.io/slate/#program) | 
+| isPublic              | True/False if the program in general is public or not                                                              | 
+| isPublicRevision      | True/False if the program revision  is public or not                                                               |
+| modifiedAt            | -                                                                                                                  | 
+| modifiedBy            | Uuid of user that modified the program                                                                             |
+| finalizedAt           | The date when the program revision was finalized                                                                   |
+| finalizedBy           | Uuid of teh user that finalized the revision                                                                       |
+| companyUuid           | Specific to each company                                                                                           | 
+| inuringColumns        | Starting from 0 upward, each column would include a list of Contracts                                              | 
+| contracts             | A list of [Contracts](https://jdaif.github.io/slate/#contract) under each column                                   |
+| dataVersionUuids      | Reflects the Dataversions of the exposure included in the program revision                                         |
 
 ### Inuring Columns & Loss Flow
 Losses can inure from Contracts in one column to another. Losses flow from left to right. Losses can not inure from Contracts to others under the same column.
