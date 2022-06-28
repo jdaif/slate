@@ -1663,11 +1663,11 @@ The description contained in the program of each revision defer from the more de
 
 
 </span></code></pre></div>
-<p>The table below contains the parameters returned when calling a program object -- per revision</p>
+<p>The table below contains the attributes returned when calling a program object -- per revision</p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>attributes</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1892,7 +1892,7 @@ The description contained in the program of each revision defer from the more de
 </span></code></pre></div>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Attributes</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2072,7 +2072,7 @@ in the form of a PLT.</p>
 </span></code></pre></div>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Attributes</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -2117,7 +2117,239 @@ in the form of a PLT.</p>
 <td>asc/desc</td>
 </tr>
 </tbody></table>
-<h2 id='create-a-program'>Create a program</h2><h2 id='get-all-program-revision-summary'>Get all program revision summary</h2><h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><h2 id='delete-specific-program-revision'>Delete specific program revision</h2><h2 id='delete-a-program'>Delete a program</h2><h2 id='update-program-revision-name'>Update program revision name</h2><h2 id='finalize-a-program'>Finalize a program</h2><h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2><h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><h2 id='find-portfolio'>Find portfolio</h2><h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><h2 id='find-portfolio-revision'>Find portfolio revision</h2><h2 id='create-portfolio'>Create portfolio</h2><h2 id='edit-portfolio'>Edit portfolio</h2><h2 id='update-portfolio-name'>Update portfolio name</h2><h2 id='get-exposure-contained-in-portfolio'>Get exposure contained in portfolio</h2><h1 id='analysis'>Analysis</h1>
+<h2 id='create-a-program'>Create a program</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="n">Program_json</span><span class="o">=</span> <span class="p">{</span>
+
+        <span class="s">"name"</span><span class="p">:</span> <span class="s">"Cat Bond 144a2"</span><span class="p">,</span>
+        <span class="s">"revisionName"</span><span class="p">:</span> <span class="s">"6/10/2022, 5:32:13 PM"</span><span class="p">,</span>
+        <span class="s">"description"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"source"</span><span class="p">:</span> <span class="s">"Original"</span>
+        <span class="p">},</span>
+
+        <span class="s">"inuringColumns"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"contracts"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s">"name"</span><span class="p">:</span> <span class="s">"Cat Bond 144a WS"</span><span class="p">,</span>
+                        <span class="s">"verticalSeq"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                        <span class="s">"status"</span><span class="p">:</span> <span class="s">"Written"</span><span class="p">,</span>
+                        <span class="s">"termCurrencyCode"</span><span class="p">:</span> <span class="s">"USD"</span><span class="p">,</span>
+                        <span class="s">"riskStartDate"</span><span class="p">:</span> <span class="s">"2022-01-01T00:00:00"</span><span class="p">,</span>
+                        <span class="s">"riskEndDate"</span><span class="p">:</span> <span class="s">"2022-12-31T23:59:59.999"</span><span class="p">,</span>
+                        <span class="s">"lossFlows"</span><span class="p">:</span> <span class="p">[</span>
+
+                        <span class="p">],</span>
+                        <span class="s">"exposures"</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s">"uuid"</span><span class="p">:</span> <span class="s">"99c2a627-1cc0-4581-b1e0-3cb72e9d788d"</span><span class="p">,</span>
+                                <span class="s">"exposureType"</span><span class="p">:</span> <span class="s">"ELT"</span><span class="p">,</span>
+                                <span class="s">"scalingFactor"</span><span class="p">:</span> <span class="mi">1</span>
+                            <span class="p">}</span>
+                        <span class="p">],</span>
+                        <span class="s">"templateUuid"</span><span class="p">:</span> <span class="s">"aead0f2e-866a-4cc3-9a6b-72bed098bf01"</span><span class="p">,</span>
+                        <span class="s">"templateSubstitutions"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s">"InitialPayout"</span><span class="p">:</span> <span class="s">"0.0"</span><span class="p">,</span>
+                            <span class="s">"Attachment"</span><span class="p">:</span> <span class="s">"100000"</span><span class="p">,</span>
+                            <span class="s">"Limit"</span><span class="p">:</span> <span class="s">"100000000"</span><span class="p">,</span>
+                            <span class="s">"Reinstatement"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
+                            <span class="s">"Principal"</span><span class="p">:</span> <span class="s">"100000000"</span>
+                        <span class="p">},</span>
+                        <span class="s">"uuid"</span><span class="p">:</span> <span class="s">"44c6043b-8877-47bb-9c38-509933c985e7"</span><span class="p">,</span>
+                        <span class="s">"totalAmount"</span><span class="p">:</span> <span class="mi">100000000</span><span class="p">,</span>
+                        <span class="s">"canParticipate"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                        <span class="s">"metadata"</span><span class="p">:</span> <span class="p">[</span>
+
+                        <span class="p">]</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s">"contracts"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s">"name"</span><span class="p">:</span> <span class="s">"A"</span><span class="p">,</span>
+                        <span class="s">"verticalSeq"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                        <span class="s">"status"</span><span class="p">:</span> <span class="s">"Written"</span><span class="p">,</span>
+                        <span class="s">"termCurrencyCode"</span><span class="p">:</span> <span class="s">"USD"</span><span class="p">,</span>
+                        <span class="s">"riskStartDate"</span><span class="p">:</span> <span class="s">"2022-01-01T00:00:00"</span><span class="p">,</span>
+                        <span class="s">"riskEndDate"</span><span class="p">:</span> <span class="s">"2022-12-31T23:59:59.999"</span><span class="p">,</span>
+                        <span class="s">"lossFlows"</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s">"lossType"</span><span class="p">:</span> <span class="s">"payout"</span><span class="p">,</span>
+                                <span class="s">"fromContractUuid"</span><span class="p">:</span> <span class="s">"44c6043b-8877-47bb-9c38-509933c985e7"</span><span class="p">,</span>
+                                <span class="s">"fromContract"</span><span class="p">:</span> <span class="s">"Cat Bond 144a WS"</span>
+                            <span class="p">}</span>
+                        <span class="p">],</span>
+                        <span class="s">"exposures"</span><span class="p">:</span> <span class="p">[</span>
+
+                        <span class="p">],</span>
+                        <span class="s">"templateUuid"</span><span class="p">:</span> <span class="s">"48fed8e6-141b-472e-8146-b0ce7452c79d"</span><span class="p">,</span>
+                        <span class="s">"templateSubstitutions"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s">"InitialPayout"</span><span class="p">:</span> <span class="s">"0.0"</span><span class="p">,</span>
+                            <span class="s">"AggregateLimit"</span><span class="p">:</span> <span class="s">"100000000"</span><span class="p">,</span>
+                            <span class="s">"AggregateAttachment"</span><span class="p">:</span> <span class="s">"0"</span><span class="p">,</span>
+                            <span class="s">"Reinstatement"</span><span class="p">:</span> <span class="s">"0.0"</span><span class="p">,</span>
+                            <span class="s">"AggregateErosion"</span><span class="p">:</span> <span class="s">"0.0"</span><span class="p">,</span>
+                            <span class="s">"Principal"</span><span class="p">:</span> <span class="s">"100000000"</span>
+                        <span class="p">},</span>
+                        <span class="s">"uuid"</span><span class="p">:</span> <span class="s">"9c3f1c9a-09b3-449f-825e-0a7807df85e3"</span><span class="p">,</span>
+                        <span class="s">"totalAmount"</span><span class="p">:</span> <span class="mi">100000000</span><span class="p">,</span>
+                        <span class="s">"canParticipate"</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                        <span class="s">"metadata"</span><span class="p">:</span> <span class="p">[</span>
+
+                        <span class="p">]</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">"dataVersionUuids"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span>
+            <span class="s">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span>
+        <span class="p">],</span>
+        <span class="s">"isPltOnly"</span><span class="p">:</span> <span class="n">false</span>
+
+<span class="p">}</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Program</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">Program_json</span><span class="p">)</span>
+
+<span class="n">Credentials</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">Program</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/programs'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer KN8dy5b7OxuZR827EPKVp6SEepLHgQivy9Ec2JH8'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+
+        "name": "Cat Bond 144a2",
+        "revisionName": "6/10/2022, 5:32:13 PM",
+        "description": {
+            "source": "Original"
+        },
+
+        "inuringColumns": [
+            {
+                "contracts": [
+                    {
+                        "name": "Cat Bond 144a WS",
+                        "verticalSeq": 0,
+                        "status": "Written",
+                        "termCurrencyCode": "USD",
+                        "riskStartDate": "2022-01-01T00:00:00",
+                        "riskEndDate": "2022-12-31T23:59:59.999",
+                        "lossFlows": [
+
+                        ],
+                        "exposures": [
+                            {
+                                "uuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+                                "exposureType": "ELT",
+                                "scalingFactor": 1
+                            }
+                        ],
+                        "templateUuid": "aead0f2e-866a-4cc3-9a6b-72bed098bf01",
+                        "templateSubstitutions": {
+                            "InitialPayout": "0.0",
+                            "Attachment": "100000",
+                            "Limit": "100000000",
+                            "Reinstatement": "2",
+                            "Principal": "100000000"
+                        },
+                        "uuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+                        "totalAmount": 100000000,
+                        "canParticipate": true,
+                        "metadata": [
+
+                        ]
+                    }
+                ]
+            },
+            {
+                "contracts": [
+                    {
+                        "name": "A",
+                        "verticalSeq": 0,
+                        "status": "Written",
+                        "termCurrencyCode": "USD",
+                        "riskStartDate": "2022-01-01T00:00:00",
+                        "riskEndDate": "2022-12-31T23:59:59.999",
+                        "lossFlows": [
+                            {
+                                "lossType": "payout",
+                                "fromContractUuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+                                "fromContract": "Cat Bond 144a WS"
+                            }
+                        ],
+                        "exposures": [
+
+                        ],
+                        "templateUuid": "48fed8e6-141b-472e-8146-b0ce7452c79d",
+                        "templateSubstitutions": {
+                            "InitialPayout": "0.0",
+                            "AggregateLimit": "100000000",
+                            "AggregateAttachment": "0",
+                            "Reinstatement": "0.0",
+                            "AggregateErosion": "0.0",
+                            "Principal": "100000000"
+                        },
+                        "uuid": "9c3f1c9a-09b3-449f-825e-0a7807df85e3",
+                        "totalAmount": 100000000,
+                        "canParticipate": true,
+                        "metadata": [
+
+                        ]
+                    }
+                ]
+            }
+        ],
+        "dataVersionUuids": [
+            "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+            "4b292524-d70c-4edb-9137-e9bc4bb41016"
+        ],
+        "isPltOnly": false
+
+}'</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Program name: String</td>
+</tr>
+<tr>
+<td>public</td>
+<td>Program revision name: String</td>
+</tr>
+<tr>
+<td>dataVersionUuid</td>
+<td><a href="file:///C:/Users/jdaif/Documents/GitHub/slate/index.html?python#event">Dataversion UUID</a>: UUID</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Original/Reset</td>
+</tr>
+<tr>
+<td>inuringColumns</td>
+<td>Contracts are listed under Inuring columns</td>
+</tr>
+<tr>
+<td>contracts</td>
+<td><a href="file:///C:/Users/jdaif/Documents/GitHub/slate/index.html?python#find-contracts">Contracts</a> are listed under inuring columns</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Offset the items returned</td>
+</tr>
+<tr>
+<td>isPltOnly</td>
+<td>limit the number of items returned to a certain number</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-program-revision-summary'>Get all program revision summary</h2><h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><h2 id='delete-specific-program-revision'>Delete specific program revision</h2><h2 id='delete-a-program'>Delete a program</h2><h2 id='update-program-revision-name'>Update program revision name</h2><h2 id='finalize-a-program'>Finalize a program</h2><h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2><h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><h2 id='find-portfolio'>Find portfolio</h2><h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><h2 id='find-portfolio-revision'>Find portfolio revision</h2><h2 id='create-portfolio'>Create portfolio</h2><h2 id='edit-portfolio'>Edit portfolio</h2><h2 id='update-portfolio-name'>Update portfolio name</h2><h2 id='get-exposure-contained-in-portfolio'>Get exposure contained in portfolio</h2><h1 id='analysis'>Analysis</h1>
 <p>Miu uses a simulation methodology that produces a sequence of event losses during a simulated investment period and supports the modelling of complex financial structures.</p>
 
 <p>With Miu Contracts, you can import also pre-simulated losses and run them along.</p>
