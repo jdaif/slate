@@ -659,7 +659,6 @@ An Event Loss Table (ELT) is an important RMS modelling concept. This table cont
 
 ### Find ELTs
 
-You can provide the data version, ELT Uuids (one or more) and specify whether the ELT is public or if it is an ILC. The last piece is helpful if you want to retrieve ILC data.
 
 ```python
 from commons.utils.clients import *
@@ -1220,7 +1219,7 @@ bonds.
 ## Program Object
 
 When a program object is retrieved, it may contain one or many [Program Revisions Objects](https://jdaif.github.io/slate/#program-revision-object)
-The description for eac program revision  returned by this call is less detailed than description obtained when calling the [Program Revisions Object](https://jdaif.github.io/slate/#program-revision-object) it does not include information about the Contracts or exposure.
+The description for each program revision  returned by this call is less detailed than description obtained when calling the [Program Revisions Object](https://jdaif.github.io/slate/#program-revision-object) it does not include information about the Contracts or exposure.
 
 ```json
 [
@@ -1996,6 +1995,8 @@ curl -X 'GET' \
 ```
 
 > Response
+
+
 ```json
 {
   "uuid": "b857ae98-3dba-43e0-8627-fc365753727f",
@@ -3096,13 +3097,6 @@ Below are some useful Uuids for major Perils,Regions and Data-versions:
 # References
 
 Since API calls require the use of Uuid instead of codes, the functions below facilitate the transition between Uuid and code for the most commonly used Uuids:
-- Get_Peril_Uuid: Peril Uuid using Peril code
-- Get_Region_Uuid: Region Uuid using the Region code
-- Get_data_version_Uuid: Get the dataversion Uuid by providing the dataversion code example: 21, 18, etc.,
-- Get_sub_region_resolution_uuid: sometimes, we are required to provide the sub_region resolution when pulling out data. Example Country, state, etc., 
-- Get_Region_name: In the opposite direction, this function retrieves the region name of a specific Region Uuid.
-- Get_Peril_name: this function retrieves the Peril name for a given UUID.
-- Get_LOB_name: This function returns the Line of the business name given the Uuid.
 
 ## Get Peril Uuid
 
