@@ -7,8 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.miuinsights.com/docs/analysis'>Miu Contracts Swagger Documentation</a>
 
 includes:
   - errors
@@ -69,7 +68,7 @@ Quick guide on how to build a virtual environment in pycharm that is fully compa
  
 
 <aside class="notice">
-It is important to keep your password secure! Please place your password in a separate file that you can always reference when initiating your session; Do not expose your password in every script
+It is important to keep your password secure! Please place your password in a separate file that you can always reference when initiating your session; Do not expose your password in every script.
 </aside>
 
 # Authentication
@@ -99,33 +98,29 @@ curl -X 'POST' \
 
 Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
 
-MIU Contracts expects an API token to be included in with every API requests to the server in a header that looks like the following:
+MIU Contracts expects an API token with every API request to the server. 
 
 `Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp `
 
 <aside class="notice">
-Borrowed:Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization
+Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization
 </aside>
 
 # Exposure Library
 
 
-Now you can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors such as an ELT or an HD PLT tagged as SF_ELT and SF_PLT. All those Loss table types fall under the exposure category.
-When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. Below are the API calls included in this section.
+In Miu Contracts, users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors based on ELT or HD-PLT ILCs. Those objects get labeled as SF_ELT or SF_PLT.
+
+When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. 
+
+Users can import event loss tables (ELTs)  without associating them with RMS peril models. In conjunction with the ability to import YLTs, users can model contract losses upon event-based exposures that reflect custom or third-party views of risk. 
 
 
 
 
-[MIU Exposure](https://www.miuinsights.com/docs/exposurelibrary)
 
-- Event Catalogs: Returns all available Event info catalogs by Peril, Region, and data version 
-- Event Data: This call retrieves Event info data by Peril/Region/Data version combination or simply by an EventId  
-- Exposures: A series of Get and Post calls to retrieve, share or edit one or all available exposures by Peril, Region, or type.  
-- ELT Event Loss Table: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available ELTs by Peril, Region.
-- PLT Period Loss Tables: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available PLTs by Peril, Region.
-- HD-PLT RMs models HD: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available HD-PLTs by Peril, Region.
-- SF-ELT: A series of Get, Post, and Delete calls to create, retrieve, share or edit one or all available ELTs by Peril, Region.
-- SF-PLT: A series of Get, Post, and Delete calls to create, retrieve, share or edit one or all available HD-PLTs by Peril, Region.
+
+
 
 
 
@@ -133,16 +128,20 @@ When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs a
 Available Data versions for:  ELT: V17, V18 and V21  ||  HD-PLT: V1.0 and V2.0
 </aside>
 
+<aside class="notice">
+When importing a third-party view of risk, choose the UNMD data version.
+</aside>
+
 ## Event 
 
-Under this section:
-Calls to retrieve Event set Information from the central library. There is a unique Event-Info table for every Peril, Region, and Data-version. A catalog of all available Peril Region and Data-versions combinations is accessible through the Find event catalogs call in
- [MIU Exposure](https://www.miuinsights.com/docs/exposurelibrary)
+Under this section we find the calls to retrieve Event set Information from Miu Contracts EventInfo library. There is a unique Event-Info table for every Peril, Region, and Data-version combination. 
+
+
+### Event Catalogue Object
 
 > Event Object
 
 ```json
-
   {
     "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
     "perilCode": "CS",
@@ -150,52 +149,40 @@ Calls to retrieve Event set Information from the central library. There is a uni
     "regionCode": "NA",
     "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
   }
-
 ```
 
 Catalog Object includes:
 
-| Parameter    | Description |
-|--------------|-------------|
-| Peril Uuid   | -           | 
-| Peril Code   | -           | 
-| Region Uuid  | -           |
-| Region Code  | -           |
-| Data Version | -           |
-
-
-
-
-Key Code/Uuid:
-
-
-| Peril Code | Uuid                                 |
-|------------|--------------------------------------|
-| WS         | e1978b0b-8cde-4ada-8943-c82fae79a569 | 
-| EQ         | cae66c3b-8665-4366-ba33-dae34eec426b | 
-| WT         | 4e2c16bc-1cf4-45e2-b7e5-86591b9802a2 |
-| SC         | b5a2bd67-f6f2-433f-8a43-76d35b1da722 |
-
-| Region Code | Uuid                                 |
-|-------------|--------------------------------------|
-| US          | 5b07643e-2bd8-4014-a837-569ab1ba1404 | 
-| JP          | 4742837d-f60f-4a08-bbf0-94d79c9aae86 | 
-| MX          | 51b4d101-56c4-4ba3-b348-6db353d42e93 |
-| EU          | 65215ad1-9ab6-485f-b0f2-0d4ee3df8a11 |
-
-
-| Data Version | Uuid                                 |
-|--------------|--------------------------------------|
-| V21.0        | 4b292524-d70c-4edb-9137-e9bc4bb41016 | 
-| V18.0        | ca9d8219-776e-4024-b6be-1247f4e28150 | 
-| V 1.0        | 04446b5e-d16a-4023-b7e2-a9b519d801f3 |
-| UNMD         | c59980b8-1e1f-4280-ae5f-d277d428ac6a | 
+| Attributes   | Description                                                          |
+|--------------|----------------------------------------------------------------------|
+| Peril Uuid   | Universal Unique identifier  provided for every Peril across regions | 
+| Peril Code   | Code identifier provided for every Peril across regions              | 
+| Region Uuid  | Universal Unique identifier provided for every Region across perils  |
+| Region Code  | Code identifier provided for every Region across perils              |
+| Data Version | Data version associated with this catalogue                          |
 
 
 
 ### Get Event Catalogs  
 
-This command lists the Event info databases for all modeled Peril/Region; the response includes perilUuid, perilCode, regionUuid, regionCode, and dataVersionUuid for every Event dataset in RMS Catalogue
+This call lists all available Event catalogues.
+
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.event_catalog.all()
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/eventCatalogs' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer aM6JruRuSiCARpMFZtbXjS2N2q9tGK0oyWIBf9ja'
+```
 > Response
 
 ```json
@@ -217,14 +204,72 @@ This command lists the Event info databases for all modeled Peril/Region; the re
 
   
 ```
+| Parameter | Description |
+|-----------|-------------|
+| -         | -           | 
 
-| Parameter    | Description |
-|--------------|-------------|
-| Peril Uuid   | -           | 
-| Peril Code   | -           | 
-| Region Uuid  | -           |
-| Region Code  | -           |
-| Data Version | -           |
+
+### Event Object
+
+> Event Object
+
+```json
+{
+    "eventId": 2847001,
+    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
+    "perilCode": "WS",
+    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "primaryRegionCode": "NA",
+    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150",
+    "typeCode": "STOC",
+    "name": "NOTNAMED, 06/25/1851",
+    "description": "NOTNAMED, 06/25/1851: TX-C1 GM1",
+    "rate": 1e-10,
+    "alternativeRate": 1e-10,
+    "landFallInfo": {
+      "first": {
+        "category": "1",
+        "gateRegionCode": "Texas",
+        "state": "TX",
+        "latitude": "28.13",
+        "longitude": "-96.67",
+        "oneMinuteWindSpeed": "92",
+        "byPassing": "L",
+        "direction": "282",
+        "forwardVelocity": "6",
+        "rMaxRight": "-96.67"
+      }
+    },
+    "magnitude": "0",
+    "segment": "1"
+  }
+
+  
+```
+
+| Attributes        | Description                                         |
+|-------------------|-----------------------------------------------------|
+| eventId           | Id provided by RMS for every event                  | 
+| perilUuid         | Unique Peril identifier across all Regions          | 
+| perilCode         | Unique Peril code across all Regions                |
+| primaryRegionUuid | Unique Parent Region identifier across all Perils   | 
+| primaryRegionCode | Unique Parent Region code across all Perils         |
+| dataVersionUuid   | Unique data version Identifier                      | 
+| description       | Event description provided by RMS.                  |
+| rate              | Default RMS rate for an event. Example LTR for NAHU | 
+| alternativeRate   | Alternative rate for an event. Example MTR for NAHU |
+| landFallInfo      | Available for every Landfall                        | 
+
+<aside class="notice">
+Events are inherited from parent regions. For example: the US and Mexico have the same Event info since they share the same Parent Region, North America.
+
+Peril and Region codes are made of 2 digits for RMS Perils and 3 digits for custom Perils  
+</aside>
+
+
+### Get Event data.
+
+By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.
 
 ```python
 from commons.utils.clients import *
@@ -232,25 +277,17 @@ from apiclient.exposurelibrary.elt_client import *
 
 Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
 
-Credentials.event_catalog.all()
+Credentials.event_info.get('WS','US','4b292524-d70c-4edb-9137-e9bc4bb41016')
 ```
 
 ```shell
 curl -X 'GET' \
-  'https://exposurelibrary.miuinsights.com/v1/eventCatalogs' \
+  'https://exposurelibrary.miuinsights.com/v1/events?perilCode=WS&regionCode=US&dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&limit=100' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer aM6JruRuSiCARpMFZtbXjS2N2q9tGK0oyWIBf9ja'
+  -H 'Authorization: Bearer trihPlWCssXdQvMn73vPJ46YN8ROVpt8w7mBPJ3G'
 ```
-> Response
 
-
-
-### Get Event data.
-
-By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.
-
-
-> Parameters
+> response
 
 ```json
 {
@@ -288,44 +325,25 @@ By specifying Peril code, Region code, and Data version UUID, this call retrieve
 
 
 
-| Parameter         | Description                  |
-|-------------------|------------------------------|
-| eventId           | -                            | 
-| perilUuid         | -                            | 
-| perilCode         | -                            |
-| primaryRegionUuid | Uuid of Parent Region        | 
-| primaryRegionCode | Code of Parent Region        |
-| dataVersionUuid   | -                            | 
-| description       | -                            |
-| rate              | LTR rate for WS              | 
-| alternativeRate   | MTR rate for WS              |
-| landFallInfo      | Available for every Landfall | 
+| Parameter         | Description                                         |
+|-------------------|-----------------------------------------------------|
+| perilCode         | Unique Peril code across all Regions                | 
+| regioncode        | Unique Region code across all Perils                | 
+| dataVersionUuid   | Event Info varies from one data version to another. | 
+
 
 <aside class="notice">
-Primary regions are parent regions within the region hierarchy. North America is a parent region to the US which is a parent region to all 50 states.
+Event info is inherited from parent regions example: North America is the parent region of the US, Canada, Mexico, and the Caribbean.
 </aside>
 
-```python
-from commons.utils.clients import *
-from apiclient.exposurelibrary.elt_client import *
 
-Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
 
-Credentials.event_info.get('WS','US','4b292524-d70c-4edb-9137-e9bc4bb41016')
-```
-
-```shell
-curl -X 'GET' \
-  'https://exposurelibrary.miuinsights.com/v1/events?perilCode=WS&regionCode=US&dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&limit=100' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer trihPlWCssXdQvMn73vPJ46YN8ROVpt8w7mBPJ3G'
-```
-> RESPONSE
 
 
 ### Get Event data by EventId:
+This command returns a JSON with a detailed description of the stated EventId in all data versions.
 
-The above command returns a JSON with a detailed description of the specified EventId under every RMS data version.
+
 
 ```python
 from commons.utils.clients import *
@@ -378,34 +396,17 @@ curl -X 'GET' \
   
 ```
 
+| Parameter | Description                                  |
+|-----------|----------------------------------------------|
+| eventId   | Id provided by RMS for every event           | 
 
 
 ## Exposure
 
-### Find Exposures by providing characteristics	 
-#### : Peril Uuid, Region Uuid, subRegionResolutionUuid,subRegionUuid,lobUuid
+### Exposure Object
 
 
-
-```python
-from commons.utils.clients import *
-from apiclient.exposurelibrary.elt_client import *
-
-Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
-Credentials.exposure.all(uuids=None,data_version_uuid='4b292524-d70c-4edb-9137-e9bc4bb41016',peril_uuid='4e2c16bc-1cf4-45e2-b7e5-86591b9802a2',
-                         region_uuid='5b07643e-2bd8-4014-a837-569ab1ba1404',sub_region_resolution_uuid='7581d3ae-600b-44b4-85d9-27e821867792',
-                        sub_peril_uuids=None,sub_region_uuids=None,lob_uuids=None,is_underlying_ilc=False,is_share_factor=False)
-```
-
-```shell
-curl -X 'GET' \
-  'https://exposurelibrary.miuinsights.com/v1/exposures?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&perilUuid=4e2c16bc-1cf4-45e2-b7e5-86591b9802a2&regionUuid=5b07643e-2bd8-4014-a837-569ab1ba1404&subRegionResolutionUuid=7581d3ae-600b-44b4-85d9-27e821867792&isUnderlyingIlc=false&isShareFactor=false&emptySubPerils=true' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer 8YvIkh61xaRL2T3oAtAShzqMeHfSPVkSAKiPHGog'
-```
-
-
-> The above command returns JSON structured like this:
+> Exposure Object
 
 ```json
 [
@@ -445,14 +446,116 @@ curl -X 'GET' \
 ]
 ```
 
-This Call retrieves all Exposures available in the data library; Event loss tables, Period Loss Tables and Share factors. 
 
-##### HTTP Request
+| Attributes              | Description                                                                                                           |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| exposureUuid            | Universal Unique identifier for the exposure. Also called ELT-Uuid or PLT-Uuid depending on exposure type             | 
+| companyUuid             | Universal Unique identifier of Company that was used to create the exposure, all public deals have an RMS companyUuid | 
+| isPublic                | True if the exposure is public and shared by RMS as an ILC or part of 144A deals exposure                             |
+| createdBy               | Universal Unique identifier of the user that created the exposure                                                     | 
+| createdAt               | Date of creation                                                                                                      |
+| exposureType            | Type of exposure, could be an ELT, PLT, HD_PL, SF_PLT or SF_ELT                                                       | 
+| description             | Exposure's Description                                                                                                |
+| dataVersionUuids        | Data-version with which the exposure was created, some exposures could have more than one data version                | 
+| unitCode                | Currency code                                                                                                         |
+| modelUuid               | Universal Unique identifier of Model used to create the exposure (Model is a combination of Peril/Region)             | 
+| perilUuid               | Unique Peril identifier across all Regions                                                                            |
+| regionUuid              | Unique Region identifier across all Perils                                                                            | 
+| subRegionResolutionUuid | Universal Unique identifier of the subregion associated with this exposure.                                           |
+| subPerilUuids           | Universal Unique identifier for sub perils assigned to this exposure.                                                 | 
+| subRegionUuids          | Universal Unique identifiers of sub regions assigned to this exposure.                                                |
+| lobUuids                | Universal Unique identifier for lines of businesses assigned to this exposure                                         | 
+| isIlc                   | True if the exposure is an Industry Loss Curve shared by RMS                                                          |
+| isShareFactor           | True if the exposure was created using the share factor tool                                                          | 
+| startDate               | Start date of the exposure, only valid for PLTs and SF_PLTs                                                           |
+| endDate                 | End date of the exposure, only valid for PLTs and SF_PLTs                                                             | 
+| periodMin               | Starting Period number for a PLT or SF_PLT(usually set at 0)                                                          |
+| periodMax               | Maximum Period Number for a PLT or SF_PLT.                                                                            | 
 
-`GET http://example.com/api/kittens`
 
-##### Query Parameters
-Executing a call without providing any parameters returns a list of all the available exposure in the risk library.
+### Find Exposure 
+
+This Call retrieves all Exposures available in the data library. Event loss tables, Period Loss Tables and Share factors. 
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.exposure.all(uuids=None,data_version_uuid='4b292524-d70c-4edb-9137-e9bc4bb41016',peril_uuid='4e2c16bc-1cf4-45e2-b7e5-86591b9802a2',
+                         region_uuid='5b07643e-2bd8-4014-a837-569ab1ba1404',sub_region_resolution_uuid='7581d3ae-600b-44b4-85d9-27e821867792',
+                        sub_peril_uuids=None,sub_region_uuids=None,lob_uuids=None,is_underlying_ilc=False,is_share_factor=False)
+```
+| Parameter                  | Description                                                                    |
+|----------------------------|--------------------------------------------------------------------------------|
+| uuids                      | When exposure Uuids are provided, call returns Exposure Object for all of them | 
+| data_version_uuid          | Filters exposures by data version                                              | 
+| peril_uuid                 | Filters exposures by data version                                              | 
+| region_uuid                | Filters exposures by peril_Uuid                                                | 
+| sub_region_resolution_uuid | Filters exposures by sub_region_resolution_uuid                                | 
+| sub_peril_uuids            | Filters exposures by sub_peril_uuids                                           | 
+| sub_region_uuids           | Filters exposures by sub_region_uuids                                          | 
+| is_underlying_ilc          | is_underlying_ilc                                                              | 
+| is_share_factor            | Filters exposures by exposures created as a share factor                       | 
+
+<aside class="notice">
+This call accepts one or a list of items for all the parameters mentioned above.
+</aside>
+
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/exposures?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&perilUuid=4e2c16bc-1cf4-45e2-b7e5-86591b9802a2&regionUuid=5b07643e-2bd8-4014-a837-569ab1ba1404&subRegionResolutionUuid=7581d3ae-600b-44b4-85d9-27e821867792&isUnderlyingIlc=false&isShareFactor=false&emptySubPerils=true' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8YvIkh61xaRL2T3oAtAShzqMeHfSPVkSAKiPHGog'
+```
+
+
+> Response
+
+```json
+[
+  {
+    "exposureUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "companyUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "isPublic": true,
+    "createdBy": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "createdAt": "2022-04-18T06:24:44.216Z",
+    "exposureType": {},
+    "description": "string",
+    "dataVersionUuids": [
+      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    ],
+    "unitCode": "string",
+    "modelUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "perilUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "regionUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "subRegionResolutionUuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "subPerilUuids": [
+      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    ],
+    "subRegionUuids": [
+      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    ],
+    "lobUuids": [
+      "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    ],
+    "isIlc": true,
+    "totalExposure": 0,
+    "isShareFactor": true,
+    "startDate": "2022-04-18T06:24:44.216Z",
+    "endDate": "2022-04-18T06:24:44.216Z",
+    "periodMin": {},
+    "periodMax": {}
+  }
+]
+```
+
+
+
+| Parameter | Description                                  |
+|-----------|----------------------------------------------|
+| eventId   | Id provided by RMS for every event           | 
 
 
 
@@ -460,102 +563,28 @@ Executing a call without providing any parameters returns a list of all the avai
 Remember 
 </aside>
 
-### Add data versions to exposures:
-```python
-from commons.utils.clients import *
-from apiclient.exposurelibrary.elt_client import *
 
-Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
-
-AddExposureDataVersionJson = {
-    "exposureUuids": [
-        "0802a08f-d521-42ec-95d0-684a65f89479"
-    ],
-    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
-}
-Credentials.exposure.add_data_version(AddExposureDataVersionJson)
-```
-
-```shell
-curl -X 'POST' \
-  'https://exposurelibrary.miuinsights.com/v1/exposures/addDataVersion' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer sPfhI60JZCgeMMvSwYAqf2WQEa5nMHN90zFmiUrk' \
-  -d '{
-    "exposureUuids": [
-        "0802a08f-d521-42ec-95d0-684a65f89479"
-    ],
-    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
-}'
-```
-> The above command returns this JSON with a description of the specified EventId and it's rate per dataversion
-
-```json
-[
- {
-    "eventId": 2847001,
-    "perilUuid": "e1978b0b-8cde-4ada-8943-c82fae79a569",
-    "perilCode": "WS",
-    "primaryRegionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
-    "primaryRegionCode": "NA",
-    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150",
-    "typeCode": "STOC",
-    "name": "NOTNAMED, 06/25/1851",
-    "description": "NOTNAMED, 06/25/1851: TX-C1 GM1",
-    "rate": 1e-10,
-    "alternativeRate": 1e-10,
-    "landFallInfo": {
-      "first": {
-        "category": "1",
-        "gateRegionCode": "Texas",
-        "state": "TX",
-        "latitude": "28.13",
-        "longitude": "-96.67",
-        "oneMinuteWindSpeed": "92",
-        "byPassing": "L",
-        "direction": "282",
-        "forwardVelocity": "6",
-        "rMaxRight": "-96.67"
-      }
-    },
-    "magnitude": "0",
-    "segment": "1"
-  }]
-  
-```
-
-Executing this call assigns a new data version to the exposures mentioned in the list.
 ### Find exposure's Peril & Region
+
+This call returns the Peril/Region for an exposure Uuid.
+
 ```python
+import UserInfo
 from commons.utils.clients import *
-from apiclient.exposurelibrary.elt_client import *
 
-Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+pd.set_option('expand_frame_repr', False)
 
-AddExposureDataVersionJson = {
-    "exposureUuids": [
-        "0802a08f-d521-42ec-95d0-684a65f89479"
-    ],
-    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
-}
-Credentials.exposure.add_data_version(AddExposureDataVersionJson)
+Credentials  = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Peri_Region = Credentials.exposure.peril_regions('fb1601a0-328c-4e8a-864d-1c157555559d')
 ```
 
 ```shell
-curl -X 'POST' \
-  'https://exposurelibrary.miuinsights.com/v1/exposures/addDataVersion' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer sPfhI60JZCgeMMvSwYAqf2WQEa5nMHN90zFmiUrk' \
-  -d '{
-    "exposureUuids": [
-        "0802a08f-d521-42ec-95d0-684a65f89479"
-    ],
-    "dataVersionUuid": "ca9d8219-776e-4024-b6be-1247f4e28150"
-}'
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/exposures/perilsRegions?uuid=fb1601a0-328c-4e8a-864d-1c157555559d' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8fz8TyfbI0KI6y1BCjkMNs9LFHxZyBduTOMQsgFK'
 ```
-> The above command returns this JSON with a description of the specified EventId and it's rate per dataversion
+> Response
 
 ```json
 {
@@ -570,36 +599,15 @@ curl -X 'POST' \
 }
   
 ```
+
+
+
 ## ELT event Loss tables
 
-The series of calls below are specific to Event loss tables or ELTs. 
+An Event Loss Table (ELT) is an important RMS modelling concept. This table contains all simulated events (windstorms, earthquakes, etc.) present in RMS models and includes the corresponding losses that those events cause to a given security or client portfolio. The event identifiers are a constant set of IDs per peril region so that correlation between events can be captured and users can compare losses caused by the same events to different securities/portfolios.
 
-1. Find ELTs: This call retrieves information about all available ELTs
-2. Delete ELT UUID: This call deletes an existing ELT using its UUID
-3. Find ELT by UUID: This call retrieves information about a specific ELT using the UUID
-4. Find ELT data: This call returns the Event loss table(Data)for a ceratin Uuid UUID
 
-### Find ELTs
-
-You can provide the data version, ELT uuids- one or more and specify whether the ELT is public or an ILC. The last piece is helpful if you want to retrieve ILC data.
-
-```python
-from commons.utils.clients import *
-from apiclient.exposurelibrary.elt_client import *
-
-Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
-
-Credentials.elt.all(data_version_uuid='4b292524-d70c-4edb-9137-e9bc4bb41016',is_public=False,is_ilc=False)
-```
-
-```shell
-curl -X 'GET' \
-  'https://exposurelibrary.miuinsights.com/v1/elts?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&isPublic=false&isIlc=false' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'
-}'
-```
-> The above command returns this JSON with a description of the specified ELT :
+### ELT Object
 
 ```json
 [
@@ -627,7 +635,83 @@ curl -X 'GET' \
   }]
 ```
 
-### Delete ELT with specific
+| Attributes              | Description                                                                                                      |
+|-------------------------|------------------------------------------------------------------------------------------------------------------|
+| uuid                    | Universal Unique identifier for the ELT.                                                                         | 
+| companyUuid             | Universal Unique identifier of Company that was used to create the ELT, all public deals have an RMS companyUuid | 
+| isPublic                | True if the ELT is public and shared by RMS as an ILC or part of 144A deals exposure                             |
+| createdBy               | Universal Unique identifier of user that created the ELT                                                         | 
+| createdAt               | Date of creation                                                                                                 |
+| description             | ELT's Description                                                                                                |
+| dataVersionUuids        | Data-version with which the ELT was created, some ELTs could have more than one data version                     | 
+| unitCode                | Currency code                                                                                                    |
+| perilUuid               | Unique Peril identifier across all Regions                                                                       |
+| regionUuid              | Unique Region identifier across all Regions                                                                      | 
+| subRegionResolutionUuid | Universal Unique identifier of the subregion associated with this ELT.                                           |
+| subPerilUuids           | Universal Unique identifier for sub perils assigned to this ELT.                                                 | 
+| subRegionUuids          | Universal Unique identifiers of sub regions assigned to this ELT.                                                |
+| lobUuids                | Universal Unique identifier for lines of businesses assigned to this ELT                                         | 
+| rowcount                | Number of rows; Number of events in the ELT                                                                      | 
+| isIlc                   | True if the ELT is an Industry Loss curves shared by RMS                                                         |
+
+
+
+
+### Find ELTs
+
+You can provide the data version, ELT Uuids (one or more) and specify whether the ELT is public or if it is an ILC. The last piece is helpful if you want to retrieve ILC data.
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.elt.all(data_version_uuid='4b292524-d70c-4edb-9137-e9bc4bb41016',is_public=False,is_ilc=False)
+```
+
+```shell
+curl -X 'GET' \
+  'https://exposurelibrary.miuinsights.com/v1/elts?dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016&isPublic=false&isIlc=false' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN'
+}'
+```
+> Response
+
+```json
+[
+  {
+    "uuid": "03807e71-9e03-459a-bb00-d7b15dff4bb3",
+    "companyUuid": "c6c70ba8-1405-48f1-9c65-00b5a2d5cdb9",
+    "isPublic": false,
+    "createdBy": "61ca4afb-8792-4fe8-a385-d232264b56c3",
+    "createdAt": "2022-04-28T22:51:40.837929Z",
+    "modifiedBy": "61ca4afb-8792-4fe8-a385-d232264b56c3",
+    "modifiedAt": "2022-04-28T22:51:40.837929Z",
+    "description": "Test ELT",
+    "dataVersionUuids": [
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
+    "regionUuid": "5b07643e-2bd8-4014-a837-569ab1ba1404",
+    "subRegionResolutionUuid": "7581d3ae-600b-44b4-85d9-27e821867792",
+    "subPerilUuids": [],
+    "subRegionUuids": [],
+    "lobUuids": [],
+    "unitCode": "USD",
+    "rowCount": 25152,
+    "isIlc": false
+  }]
+```
+| Parameter                 | Description                                                                        |
+|---------------------------|------------------------------------------------------------------------------------|
+| data_version_uuid         | Filters ELT library by data version                                                | 
+| is_public                 | If true returns public ELTs shared by RMS as part of 144A deals or ILC if licensed | 
+| is_ilc                    | If true returns ELTs built using ILc or ELT-ILC shared by RMS if licensed          | 
+
+
+### Delete ELT 
 
 Delete ELT UUID: This call deletes an existing ELT using its UUID.
 
@@ -646,15 +730,19 @@ curl -X 'DELETE' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer 8kx6RC2dk0TjSByLZX5mUCC0EAkTDH077fmiufmN''
 ```
-> The above command returns this JSON with a description of the specified ELT :
+> Response
 
 ```json
 
 ```
+| Parameter | Description                       |
+|-----------|-----------------------------------|
+| ELT Uuid  | Universal Unique identifier for the ELT.    | 
+
 
 ### Find ELT by providing specific ELT UUID
 
-This call provides detailed description and information on a certain ELT.
+This call provides detailed description and information for an ELT.
 
 ```python
 from commons.utils.clients import *
@@ -697,6 +785,31 @@ curl -X 'GET' \
   "isIlc": false
 }
 ```
+### ELT Data Object
+
+> ELT Data Object
+
+```json
+[
+  {
+    "eventId": "1510001",
+    "rate": 0.26696619,
+    "stdDevCorrelated": 401.13,
+    "stdDevIndependent": 12968.51,
+    "totalExposure": 22785298,
+    "mean": 573.59
+  }
+]
+```
+
+The ELT stores the following information for each event that generates a non-zero loss: 
+- Event ID – the unique event identifier consistent across peril region
+- Mean Loss – the amount of loss  Standard Deviation – measure of uncertainty 
+- Standard Deviation: measure of uncertainty
+- Exposure Value – this value represents the maximum possible loss
+- Annual Rate – the probability of a given event occurring 
+
+
 
 ### Find ELT Data by providing specific ELT UUID
 
@@ -747,7 +860,26 @@ curl -X 'GET' \
   }]
 
 ```
-### URL Parameters
+
+
+| Parameter | Description                              |
+|-----------|------------------------------------------|
+| ELT Uuid  | Universal Unique identifier for the ELT. | 
+| Limit     | Limit number of rows returned            | 
+
+
+## HD-PLT
+
+An HD Period Loss Table (PLT) is a set of data consisting of:
+Loss results generated by an HD model are stored in a period loss table (PLT). The PLT is a more generalized version of the year loss table (YLT), but unlike the YLT, it is not constrained to a one-year period. Each period within a PLT can span up to six consecutive years if the underlying exposure contains policies with dates ranging up to six years. For most portfolios, policies span only one year, and in these cases, a PLT is treated the same as a YLT.
+In a PLT, the instances of an event ID in conjunction with the period weight informs primary uncertainty. The weight represents the likelihood that one period occurs rather than the other periods in the PLT. For non-earthquake HD models, all periods are equally weighted and are calculated as one (1) divided by the number of simulation periods used for the analysis. For earthquake models, the weight can vary by period and is derived during the development of the period event table (PET). The PET is the master list that includes which events happen in what period and on what day.
+Every row in the PLT represents an event that causes damage, and therefore loss, to the exposure being analyzed. Secondary uncertainty, or the range of potential damage caused by the event, is not represented in the PLT using a specific field but is captured through the process of sampling the damage ratio from the underlying damage distribution. For more information about this process, see Ground Up Simulation.
+The event is stamped with the date of the first day of the event and with the loss date that the policy pays out. The policy payout date is considered to be the day that the first location under the policy takes damage. For most perils the event and the loss date are the same, but for flood and wildfire models, these can differ.
+The financial model takes the ground up PLT for each location coverage as an input.
+
+
+
+
 # Contract
 A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can one or many contracts in a program.
 
@@ -905,15 +1037,83 @@ Parameters:
 | isin                   | provide a collection of isin numbers                                                                                              | 
 | hasSecondaryContractId | -                                                                                                                                 |
 | terminal               | Whether to return only terminal contracts (contracts that no other contract has dependency on)                                    | 
-| exposureUuid           | MTR rate for WS                                                                                                                   |
+| exposureUuid           | [Universal Unique identifier for the expusre](https://jdaif.github.io/slate/#exposure)                                             |
 | latestRevisionOnly     | Filter by latest [revision](https://jdaif.github.io/slate/#program-revision-object) of every program                              | 
-
-
 
 
 ## Find a Contract
 
-## Create a contract
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+Credentials.program.get_contract("4cbb2c8b-82d9-437a-9cfa-515a9dd91e77")
+
+```
+
+```shell
+
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/contracts/4cbb2c8b-82d9-437a-9cfa-515a9dd91e77' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer 8fz8TyfbI0KI6y1BCjkMNs9LFHxZyBduTOMQsgFK'
+```
+
+> Response 
+
+```json
+{
+  "name": "A",
+  "verticalSeq": 0,
+  "status": "OnRisk",
+  "termCurrencyCode": "USD",
+  "riskStartDate": "2021-07-01T00:00:00",
+  "riskEndDate": "2025-06-30T23:59:59.999",
+  "lossFlows": [
+    {
+      "lossType": "payout",
+      "fromContractUuid": "b70eb13a-3c55-4f46-9d98-e87dc6847de5",
+      "fromContract": "Class A-RP1"
+    },
+    {
+      "lossType": "payout",
+      "fromContractUuid": "1fa9e8dc-1d9d-49a0-9406-42f1b4dd9844",
+      "fromContract": "Class A-RP4"
+    },
+    {
+      "lossType": "payout",
+      "fromContractUuid": "03f6913c-7ca2-48c0-8db8-4364ac914a7d",
+      "fromContract": "Class A-RP2"
+    },
+    {
+      "lossType": "payout",
+      "fromContractUuid": "38f6bf53-69fe-475e-a1ca-49c0b6190e50",
+      "fromContract": "Class A-RP3"
+    }
+  ],
+  "exposures": [],
+  "templateUuid": "aead0f2e-866a-4cc3-9a6b-72bed098bf01",
+  "templateSubstitutions": {
+    "InitialPayout": "0.0",
+    "Attachment": "0",
+    "Limit": "150000000",
+    "Reinstatement": "0.0",
+    "Principal": "150000000"
+  },
+  "uuid": "4cbb2c8b-82d9-437a-9cfa-515a9dd91e77",
+  "isin": "US05826BAA44",
+  "totalAmount": 150000000,
+  "canParticipate": true,
+  "metadata": []
+}
+```
+| Parameter     | Description                       |
+|---------------|-----------------------------------|
+| Contract Uuid | Universal Unique identifier for a Contract. |
+
+
 
 ## Contract Templates
 Contract Templates represent the most common types of bonds and treaties in the market. Terms and conditions vary depending on the template. 
@@ -1120,7 +1320,7 @@ The table below contains the attributes returned when calling a program object -
 | companyUuid      | Specific to each company                                                                                           | 
 | isPublic         | True/False if the program in general is public or not                                                              | 
 | isPublicRevision | True/False if the program revision  is public or not                                                               |
-| dataVersionUuids | Reflects the Data-versions of the exposure included in the program revision                                         |
+| dataVersionUuids | Reflects the Data-versions of the exposure included in the program revision                                        |
 ## Program Revision Object
 
 Program revision object lists 
@@ -1307,22 +1507,31 @@ Program revision object lists
 | dataVersionUuids | Reflects the Dataversions of the exposure included in the program revision                                         |
 
 ### Inuring Columns & Loss Flow
-Losses can inure from Contracts in one column to another. Losses flow from left to right. Losses can not inure from Contracts to others under the same column.
-
+Losses flow from left to right. Losses can inure from Contracts in one column to another but not within the same column.
 What are Inuring Losses?
+Inuring Losses consist of the Net Loss and Payout of a contract. They can be defined as Inputs to a subsequent contract
+#### What is Net Loss?
+Net Loss is the Loss remaining after the terms and conditions of a contract are applied. Net Loss data is in the form of a PLT.
+#### What is Payout?
+Payout is the Loss absorbed by the terms and conditions of a contract. Payout data is in the form of a PLT.
 
-Inuring Losses consist of the Net Loss and Payout of a contract. They can be defined 
-as Inputs to a subsequent contract
+### Program Revisions Status
 
-What is Net Loss?
+#### What are “Draft Programs”?
 
-Net Loss is the loss remaining after the terms and conditions of a contract are 
-applied. Net Loss data is in the form of a PLT.
+Programs with terms and conditions that are not confirmed should be left as “draft”. Draft programs can continue to be modified and edited. Each time you edit a program and save it, you will create a new version.
 
-What is Payout?
 
-Payout is the loss absorbed by the terms and conditions of a contract. Payout data is 
-in the form of a PLT.
+#### What are “Finalized Programs”?
+
+Programs with terms and conditions that have been confirmed and signed should be “finalized”. Finalized programs can no longer be modified and will prevent further changes to be made.
+
+
+#### What are “Public Programs”?
+
+All the programs modelled by RMS that are available on the public market—i.e. 144a bonds.
+
+
 
 
 ## List all programs
@@ -2019,7 +2228,9 @@ curl -X 'DELETE' \
 
 > Response
 
-
+| Parameter             | Description                                      |
+|-----------------------|--------------------------------------------------|
+| Program Revision Uuid | Universal Unique identifier per program revision |
 
 ## Delete a program
 Deletes regardless of public status
@@ -2039,43 +2250,464 @@ curl -X 'DELETE' \
   -H 'accept: */*' \
   -H 'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X`4EmSGV7m'
 ```
-## Update program revision name
 
-## Finalize a program
+```JSON
+
+
+```
+
+
+
+| Parameter     | Description                             |
+|---------------|-----------------------------------------|
+| Program  Uuid | Universal Unique identifier per program |
+
+
+# Portfolio
+
+## Portfolio Object
+Similar to programs, portfolios have one or more portfolio revisions. The portfolio Object returns a list of different Portfolio revisions.
+
+> Portfolio Object 
+
+```json
+[
+  {
+    "uuid": "531dfe38-455a-4807-ad8e-c1e20d470b03",
+    "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "createdAt": "2022-07-19T02:30:44.590104Z",
+    "modifiedAt": "2022-07-19T02:30:44.590104Z",
+    "metadata": []
+  },
+  {
+    "uuid": "03520503-5926-46d1-ad57-54df22cabfcd",
+    "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "createdAt": "2022-07-19T02:33:47.577860Z",
+    "modifiedAt": "2022-07-19T02:33:47.577860Z",
+    "metadata": []
+  },
+  {
+    "uuid": "712377ea-9f08-466e-8207-c1c21ea1d42a",
+    "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "createdAt": "2022-07-19T02:34:04.061515Z",
+    "modifiedAt": "2022-07-19T02:34:04.061515Z",
+    "metadata": []
+  },
+  {
+    "uuid": "008fa0da-780b-4c72-943b-ea60a4f84b90",
+    "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "createdAt": "2022-07-19T02:34:03.633399Z",
+    "modifiedAt": "2022-07-19T02:34:03.633399Z",
+    "metadata": []
+  }
+]
+```
+| Attributes       | Description                                                         |
+|------------------|---------------------------------------------------------------------|
+| uuid             | Portfolio Revision Uuid                                             | 
+| portfolioUuid    | Portfolio Uuid                                                      | 
+| dataVersionUuids | Data versions of Contracts assigned to the Portfolio                |
+| createdBy        | Uuid of Portfolio creator                                           |
+| modifiedBy       | Uuid of Portfolio Portfolio modifier or Revision creator            |
+| createdAt        | Date of creation of Portfolio                                       | 
+| modifiedAt       | Date of modification of Portfolio or creation of Portfolio revision | 
+
+
+## Portfolio Revision Object
+
+
+> Portfolio Revision Object 
+
+```json
+{
+  "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+  "name": "Cat Bond 144a",
+  "modifiedAt": "2022-07-19T02:34:04.054860Z",
+  "revisionModifiedAt": "2022-07-19T02:30:44.590104Z",
+  "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "revisionModifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "createdAt": "2022-07-19T02:30:44.590104Z",
+  "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+  "dataVersionUuids": [
+    "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+    "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  ],
+  "contractsByProgram": [
+    {
+      "programRevisionUuid": "d25fcc79-8457-486d-b2ef-924d2af1a66d",
+      "programName": "Cat Bond 144a",
+      "programRevisionName": "6/27/2022, 10:36:13 PM",
+      "programRevisionSource": "Original",
+      "dataVersionUuids": [
+        "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+        "4b292524-d70c-4edb-9137-e9bc4bb41016"
+      ],
+      "isPublic": false,
+      "contracts": [
+        {
+          "uuid": "9eebd83c-7a62-44ca-8440-4dcf17b699ce",
+          "name": "A",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        },
+        {
+          "uuid": "776d7916-8f1a-48d8-bc92-63f5356f9a1a",
+          "name": "B",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        }
+      ]
+    }
+  ],
+  "metadata": [],
+  "isPltOnly": false
+}
+```
+| Attributes         | Description                                                                                                                                                                |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| portfolioUuid      | Universal Unique identifier of a Portfolio                                                                                                                                 | 
+| name               | Portfolio name                                                                                                                                                             | 
+| modifiedAt         | Date of modification of Portfolio                                                                                                                                          |
+| revisionModifiedAt | Date of modification of Portfolio Revision                                                                                                                                 |
+| modifiedBy         | Uuid of Portfolio revision creator/ Portfolio modifier                                                                                                                     |
+| createdAt          | Date of creation of Portfolio                                                                                                                                              | 
+| createdBy          | Uuid of user that created the portfolio                                                                                                                                    | 
+| dataVersionUuids   | Uuids for data versions of Contracts included in the Portfolio Revision                                                                                                    |
+| contractsByProgram | List of [Contracts](https://jdaif.github.io/slate/?python#contract) included in the Portfolio grouped by [program revision](https://jdaif.github.io/slate/?python#program) |
+| metadata           | -                                                                                                                                                                          | 
+| isPltOnly          | True if Portfolio revision contains PLT exposure only                                                                                                                      | 
+#### contractsByProgram
+
+
+> contractsByProgram Object 
+
+```json
+ [
+    {
+      "programRevisionUuid": "d25fcc79-8457-486d-b2ef-924d2af1a66d",
+      "programName": "Cat Bond 144a",
+      "programRevisionName": "6/27/2022, 10:36:13 PM",
+      "programRevisionSource": "Original",
+      "dataVersionUuids": [
+        "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+        "4b292524-d70c-4edb-9137-e9bc4bb41016"
+      ],
+      "isPublic": false,
+      "contracts": [
+        {
+          "uuid": "9eebd83c-7a62-44ca-8440-4dcf17b699ce",
+          "name": "A",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        },
+        {
+          "uuid": "776d7916-8f1a-48d8-bc92-63f5356f9a1a",
+          "name": "B",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        }
+      ]
+    }
+]
+
+```
+| Attributes            | Description                                                                                             |
+|-----------------------|---------------------------------------------------------------------------------------------------------|
+| programRevisionUuid   | [Program Revision UUid](https://jdaif.github.io/slate/?python#program-revision-object)                  | 
+| programName           | [Program Name](https://jdaif.github.io/slate/?python#program-object)                                    | 
+| programRevisionName   | [Program Revision Name](https://jdaif.github.io/slate/?python#program-revision-object)                  |
+| programRevisionSource | Original/Reset [Program Revision source](https://jdaif.github.io/slate/?python#program-revision-object) |
+| dataVersionUuids      | Uuids for data versions of Contracts included in the Program Revision                                   |
+| isPublic              | True if Program is public                                                                               | 
+| contracts             | List of available [Contracts](https://jdaif.github.io/slate/?python#contract)                           | 
+
+## Find portfolio
 
 ```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.portfolio.all(program_revision_uuid="d25fcc79-8457-486d-b2ef-924d2af1a66d",portfolio_uuids="601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac")
 
 ```
 
 ```shell
-curl -X 'POST' \
-  'https://contract.miuinsights.com/v2/programs/revisions/d25fcc79-8457-486d-b2ef-924d2af1a66d/finalize' \
-  -H 'accept: */*' \
-  -H 'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X4EmSGV7m' \
-  -d ''
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/portfolios?programRevisionUuid=d25fcc79-8457-486d-b2ef-924d2af1a66d&uuid=601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac&dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'
 ```
-# Portfolio
 
-## Portfolio Object
+> Response 
 
-## Portfolio Revision Object
 
-## Find portfolio
+```JSON
+[
+  {
+    "uuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+    "revisionUuid": "712377ea-9f08-466e-8207-c1c21ea1d42a",
+    "name": "Cat Bond 144a",
+    "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+    "dataVersionUuids": [
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "metadata": [],
+    "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "createdAt": "2022-07-19T02:30:44.590104Z",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "modifiedAt": "2022-07-19T02:34:04.054860Z",
+    "isPltOnly": false
+  }
+]
+
+```
+
+
+| Parameter             | Description                                                              |
+|-----------------------|--------------------------------------------------------------------------|
+| Program Revision Uuid | Filters down Portfolio Library to Portfolios containing Program Revision |
+| Portfolio  Uuid       | Filter Portfolio Library by Portfolio Uuids                              |
+| Data version  Uuid    | Filter Portfolio Library by data versions                                |
 
 ## Find latest portfolio revision
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
-## Find portfolio revision
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.portfolio.get_latest_revision("601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac")
+
+```
+
+```shell
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/portfolios/601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac/revisions/latest' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'
+```
+
+
+> Response 
+
+
+```JSON
+{
+  "uuid": "712377ea-9f08-466e-8207-c1c21ea1d42a",
+  "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+  "dataVersionUuids": [
+    "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+    "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  ],
+  "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "createdAt": "2022-07-19T02:34:04.061515Z",
+  "modifiedAt": "2022-07-19T02:34:04.061515Z",
+  "metadata": []
+}
+
+```
+
+
+
+| Parameter       | Description                                 |
+|-----------------|---------------------------------------------|
+| Portfolio  Uuid | Universal Unique identifier per portfolio   |
+
+
+## Find portfolio revisions
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.portfolio.get_revisions("601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac")
+
+```
+
+```shell
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/portfolios/601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac/revisions' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'
+```
+
+> Response 
+
+
+```JSON
+[
+  {
+    "uuid": "531dfe38-455a-4807-ad8e-c1e20d470b03",
+    "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "createdAt": "2022-07-19T02:30:44.590104Z",
+    "modifiedAt": "2022-07-19T02:30:44.590104Z",
+    "metadata": []
+  },
+  {
+    "uuid": "008fa0da-780b-4c72-943b-ea60a4f84b90",
+    "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+    "dataVersionUuids": [
+      "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+      "4b292524-d70c-4edb-9137-e9bc4bb41016"
+    ],
+    "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+    "createdAt": "2022-07-19T02:34:03.633399Z",
+    "modifiedAt": "2022-07-19T02:34:03.633399Z",
+    "metadata": []
+  }
+]
+
+```
+
+
+
+| Parameter       | Description                                |
+|-----------------|--------------------------------------------|
+| Portfolio  Uuid | Universal Unique identifier per portfolio  |
+
+## Find Portfolio Revision
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.portfolio.get_by_revision_uuid("531dfe38-455a-4807-ad8e-c1e20d470b03")
+
+```
+
+```shell
+curl -X 'GET' \
+  'https://contract.miuinsights.com/v2/portfolios/revisions/531dfe38-455a-4807-ad8e-c1e20d470b03' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'
+```
+
+> Response 
+
+
+
+```JSON
+{
+  "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+  "name": "Cat Bond 144a",
+  "modifiedAt": "2022-07-19T02:34:04.054860Z",
+  "revisionModifiedAt": "2022-07-19T02:30:44.590104Z",
+  "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "revisionModifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "createdAt": "2022-07-19T02:30:44.590104Z",
+  "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+  "dataVersionUuids": [
+    "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+    "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  ],
+  "contractsByProgram": [
+    {
+      "programRevisionUuid": "d25fcc79-8457-486d-b2ef-924d2af1a66d",
+      "programName": "Cat Bond 144a",
+      "programRevisionName": "6/27/2022, 10:36:13 PM",
+      "programRevisionSource": "Original",
+      "dataVersionUuids": [
+        "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+        "4b292524-d70c-4edb-9137-e9bc4bb41016"
+      ],
+      "isPublic": false,
+      "contracts": [
+        {
+          "uuid": "9eebd83c-7a62-44ca-8440-4dcf17b699ce",
+          "name": "A",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        },
+        {
+          "uuid": "776d7916-8f1a-48d8-bc92-63f5356f9a1a",
+          "name": "B",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        }
+      ]
+    }
+  ],
+  "metadata": [],
+  "isPltOnly": false
+}
+
+```
+
+
+
+| Parameter               | Description                                          |
+|-------------------------|------------------------------------------------------|
+| Portfolio Revision Uuid | Universal Unique identifier per portfolio revision   |
 
 ## Create portfolio
 
-## Edit portfolio
 
-## Update portfolio name
-
-## Get exposure contained in portfolio
-
-## 
 
 # Analysis 
 
@@ -2159,43 +2791,611 @@ Object structure varies between program and portfolio analysis
 }
 
 ```
-| Parameter           | Description                                                  |
-|---------------------|--------------------------------------------------------------|
-| analysisUuid        | -                                                            | 
-| analysisName        | -                                                            | 
-| jobCreationDa te    | -                                                            |
-| jobStartDate        | Uuid of Parent Region                                        | 
-| jobEndDate          | Code of Parent Region                                        |
-| companyUuid         | -                                                            | 
-| userUuid            | -                                                            |
-| status              | LTR rate for WS                                              | 
-| analysisType        | MTR rate for WS                                              |
-| startDate           | Available for every Landfall                                 | 
-| endDate             | Available for every Landfall                                 | 
-| periodStart         | Available for every Landfall                                 | 
-| periodEnd           | Available for every Landfall                                 | 
-| stochasticYltUuids  | Available for every Landfall                                 | 
-| programUuid         | Available for every Landfall                                 | 
-| programRevisionUuid | Available for every Landfall                                 | 
-| cplts               | Available for every Landfall                                 | 
-| currencySetUuid     | [CPLT](https://jdaif.github.io/slate/#get-cplt-by-analysis ) | 
+| Attributes            | Description                                                           |
+|-----------------------|-----------------------------------------------------------------------|
+| analysisUuid          | Universal Unique identifier for analysis                              | 
+| analysisName          | Analysis Name                                                         | 
+| jobCreationDate       | Date of submission of analysis                                        |
+| jobStartDate          | Start Date-time of analysis                                           | 
+| jobEndDate            | Start Date-time of analysis                                           |
+| companyUuid           | Universal Unique identifier of the company that created the analysis  | 
+| userUuid              | Universal Unique identifier of the user that created the analysis     |
+| status                | FINISHED/Waiting/Canceled                                             | 
+| analysisType          | simulated vs Deterministic                                            |
+| startDate             | Simulation date-time start                                            | 
+| endDate               | Simulation date-time end                                              | 
+| periodStart           | Usually set at 0                                                      | 
+| periodEnd             | Number of simulated Periods                                           | 
+| stochasticYltUuids    | Universal Unique identifiers of YLTs used in the simulation           | 
+| programUuid           | [Program Uuid]() if the analysis was run on a program                 | 
+| programRevisionUuid   | [Program Revision Uuid]() if the analysis was run on a program        | 
+| portfolioUuid         | [Portfolio Uuid]() if the analysis was run on a Portfolio             | 
+| portfolioRevisionUuid | [Portfolio Revision Uuid]() if the analysis was run on a Portfolio    | 
+| cplts                 | A list of the CPLTs genearted by the analysis                         | 
+| currencySetUuid       | Currency set selected for currency exchange when running the analysis | 
+| complexityScore       | Score generated by the Financial Engine to allocate cluster size      | 
+| totalContracts        | Total number of Contracts in the analysis                             | 
+| outputs               | A list of the CPLTs genearted by the analysis                         | 
+| currencyCode          | Output Currency selected when running the analysis                    | 
 
 
-
-## Run analysis
-
-## Resubmit analysis
 
 ## Find analysis
+When we run an analysis, a JSON that contains all the descriptions for that analysis gets created. This JSON contains information such as analysis name, start date, analysis end date, profiles used, the Uuid of the CPLTs generated for that analysis, and others.
+Below are some codes that return organized structured pieces of that JSON.
 
-## Delete Analysis
 
-## Get persisted metrics
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
 
-## Get EP curves
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.analysis.get_analysis_by_uuid('31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b')
+
+```
+
+```shell
+curl -X 'GET' \
+  'https://analysis.miuinsights.com/v3/analyses/31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'
+```
+
+> Response 
+
+
+```JSON
+{
+  "analysisUuid": "31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b",
+  "analysisName": "Cat Bond 144a",
+  "jobCreationDate": "2022-06-11T00:33:13.736628Z",
+  "jobStartDate": "2022-06-11T00:33:13.736636Z",
+  "jobEndDate": "2022-06-11T00:39:21.233987Z",
+  "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+  "userUuid": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "status": "FINISHED",
+  "analysisType": "SIMULATED",
+  "startDate": "2022-01-01T00:00:00",
+  "endDate": "2022-12-31T23:59:59.999",
+  "periodStart": 1,
+  "periodEnd": 10000,
+  "stochasticYltUuids": [
+    "d95d92d3-f7aa-4918-adf1-e15beea0d3cf"
+  ],
+  "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016",
+  "programUuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+  "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+  "cplts": [
+    {
+      "uuid": "c65d8ed0-7834-4f28-a8ff-01b4043b113f",
+      "ipltUuid": "34ecbcea-dd8b-46f3-a3c9-0123fbf21de6",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    },
+    {
+      "uuid": "628367f0-5bf7-44a1-9bbf-2cf31ae51e42",
+      "ipltUuid": "2a46626f-90f7-41c4-b6e8-4ccab3ac9501",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "69c63942-a586-4c49-b3e4-411f82ec6aba",
+      "termCurrencyCode": "USD",
+      "totalAmount": 50000000
+    },
+    {
+      "uuid": "343000f2-3a3a-4c1b-a16f-d365a64e6619",
+      "ipltUuid": "e3f226db-e26e-4ec1-8239-6ca64972e3d1",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "9c3f1c9a-09b3-449f-825e-0a7807df85e3",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    },
+    {
+      "uuid": "1d5b3c13-21c9-47c6-a907-09f05f7bbd44",
+      "ipltUuid": "13002faf-c70e-4ae5-a06b-1c8947bee02f",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "c6deec63-6b23-49e8-a61b-4c2d90c1f1f8",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    }
+  ],
+  "complexityScore": 60,
+  "totalContracts": 4,
+  "currencySetUuid": "10dde323-735b-457f-a64b-1fe8a45d31f0",
+  "inputs": [],
+  "outputs": [
+    "EPCURVES",
+    "ANALYSIS_METRICS",
+    "PERIL_REGION_METRICS"
+  ],
+  "currencyCode": "USD"
+}
+
+```
+
+
+
+| Parameter      | Description                               |
+|----------------|-------------------------------------------|
+| analysis  Uuid | Universal Unique identifier by analysis   |
+
 
 ## Get CPLT
+In Miu Contracts, the analysis runs on a Portfolio or a Program; each is a combination of one or many Contracts(Could be thousands). The result table(CPLT) lists the events in each simulated analysis period, the occurrence date, and the corresponding gross loss. Those losses get broken down to the underlying exposure level for each event. And so every row produced would have the following:
+
+### CPLT Data Object
+
+> Response 
+
+
+
+```JSON
+{
+    "cpltUuid": "c65d8ed0-7834-4f28-a8ff-01b4043b113f",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  }
+
+```
+| Attributes   | Description                                                                                              |
+|--------------|----------------------------------------------------------------------------------------------------------|
+| cpltUuid     | Universal Unique identifier for a CPLT                                                                   |
+| date         | Date-time of the loss occurrence                                                                         |
+| eventId      | -                                                                                                        |
+| exposureUuid | Uuid of the [Exposure](https://jdaif.github.io/slate/?python#exposure) that contained the event          |
+| periodNumber | Simulation Period that produced that Loss                                                                |
+| payout       | Value amount of the loss                                                                                 |
+| lossQuantile | Loss Quantile from the YLT                                                                               |
+
 
 ### Get CPLT by Analysis 
 
-### Get CPLT by Contract
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.analysis.get_cplt_data('31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b')
+
+```
+
+```shell
+curl -X 'GET' \
+  'https://analysis.miuinsights.com/v3/analyses/31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'
+```
+
+> Response 
+
+
+```JSON
+[
+  {
+    "cpltUuid": "c65d8ed0-7834-4f28-a8ff-01b4043b113f",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  },
+  {
+    "cpltUuid": "343000f2-3a3a-4c1b-a16f-d365a64e6619",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  },
+  {
+    "cpltUuid": "1d5b3c13-21c9-47c6-a907-09f05f7bbd44",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  }
+]
+
+```
+
+
+
+| Parameter      | Description                               |
+|----------------|-------------------------------------------|
+| analysis  Uuid | Universal Unique identifier by analysis   |
+
+
+<aside class="success">
+In this json, the CPLT data output was limited to 1 period
+</aside>
+
+### Get CPLT by CPLT Uuid
+
+Instead of retrieving the CPLT for the entire analysis, we can limit it to a specific contract by providing its CPLT Uuid
+
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.analysis.get_cplt_data_via_uuid('31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b')
+
+```
+
+```shell
+curl -X 'GET' \
+  'https://analysis.miuinsights.com/v3/cplts/343000f2-3a3a-4c1b-a16f-d365a64e6619/data?periodStart=1&periodEnd=1&includeExposureMetadata=false' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'
+```
+
+> Response 
+
+
+```JSON
+[
+  {
+    "cpltUuid": "343000f2-3a3a-4c1b-a16f-d365a64e6619",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  }
+]
+
+```
+
+
+
+| Parameter  | Description                              |
+|------------|------------------------------------------|
+| CPLT  Uuid | Universal Unique identifier by analysis  |
+
+
+<aside class="success">
+In this json, the CPLT data output was limited to 1 period
+</aside>
+
+# Key Uuids
+Below are some useful Uuids for major Perils,Regions and Data-versions:
+
+
+| Peril Code | Uuid                                 |
+|------------|--------------------------------------|
+| WS         | e1978b0b-8cde-4ada-8943-c82fae79a569 | 
+| EQ         | cae66c3b-8665-4366-ba33-dae34eec426b | 
+| WT         | 4e2c16bc-1cf4-45e2-b7e5-86591b9802a2 |
+| SC         | b5a2bd67-f6f2-433f-8a43-76d35b1da722 |
+
+| Region Code | Uuid                                 |
+|-------------|--------------------------------------|
+| US          | 5b07643e-2bd8-4014-a837-569ab1ba1404 | 
+| JP          | 4742837d-f60f-4a08-bbf0-94d79c9aae86 | 
+| MX          | 51b4d101-56c4-4ba3-b348-6db353d42e93 |
+| EU          | 65215ad1-9ab6-485f-b0f2-0d4ee3df8a11 |
+
+
+| Data Version | Uuid                                 |
+|--------------|--------------------------------------|
+| V21.0        | 4b292524-d70c-4edb-9137-e9bc4bb41016 | 
+| V18.0        | ca9d8219-776e-4024-b6be-1247f4e28150 | 
+| V 1.0        | 04446b5e-d16a-4023-b7e2-a9b519d801f3 |
+| UNMD         | c59980b8-1e1f-4280-ae5f-d277d428ac6a | 
+
+# References
+
+Since API calls require the use of Uuid instead of codes, the functions below facilitate the transition between Uuid and code for the most commonly used Uuids:
+- Get_Peril_Uuid: Peril Uuid using Peril code
+- Get_Region_Uuid: Region Uuid using the Region code
+- Get_data_version_Uuid: Get the dataversion Uuid by providing the dataversion code example: 21, 18, etc.,
+- Get_sub_region_resolution_uuid: sometimes, we are required to provide the sub_region resolution when pulling out data. Example Country, state, etc., 
+- Get_Region_name: In the opposite direction, this function retrieves the region name of a specific Region Uuid.
+- Get_Peril_name: this function retrieves the Peril name for a given UUID.
+- Get_LOB_name: This function returns the Line of the business name given the Uuid.
+
+## Get Peril Uuid
+
+Get Peril Uuid from Peril code.
+
+```python
+
+def Get_Peril_Uuid(Peril):
+    Peril_Uuid = Credentials.peril.all()
+    Peril_Uuid = pd.DataFrame(json.loads(Peril_Uuid.text))
+    Peril_Uuid = Peril_Uuid[Peril_Uuid['code']==Peril]
+    return Peril_Uuid['uuid']
+```
+## Get Region Uuid
+
+Get Region Uuid from Region code.
+
+```python
+def Get_Region_Uuid(Region):
+    Region_Uuid1 = Credentials.region.all(is_sub_region=True,include_deleted=False,exclude_bottom_regions=True)
+    Region_Uuid2 = Credentials.region.all(is_sub_region=False, include_deleted=False, exclude_bottom_regions=True)
+    Region_Uuid1 = pd.DataFrame(json.loads(Region_Uuid1.text))
+    Region_Uuid1 = Region_Uuid1[['uuid','description','code']]
+    Region_Uuid2 = pd.DataFrame(json.loads(Region_Uuid2.text))
+    Region_Uuid2 = Region_Uuid2[['uuid', 'description','code']]
+    Region_Uuid = pd.concat([Region_Uuid1,Region_Uuid2])
+    Region_Uuid = Region_Uuid[Region_Uuid['code']==Region]
+    return Region_Uuid['uuid']
+```
+## Get Data Version Uuid
+
+Get Data Version Uuid from Data Version code.
+
+```python
+def Get_data_version_Uuid(version):
+    version_Uuid = Credentials.data_version.all(include_deleted=False)
+    version_Uuid = pd.DataFrame(json.loads(version_Uuid.text))
+    version_Uuid = version_Uuid[version_Uuid['description']==version]
+    return version_Uuid['uuid']
+```
+
+## Get sub Region Resolution Uuid
+
+Get sub Region Resolution Uuid using sub Region Resolution, ex: State, country, etc.
+
+
+```python
+def Get_sub_region_resolution_uuid(SBR):
+    SBR_Uuid = Credentials.resolution.all()
+    SBR_Uuid = pd.DataFrame(json.loads(SBR_Uuid.text))
+    SBR_Uuid = SBR_Uuid[SBR_Uuid['description']==SBR]
+    return SBR_Uuid['uuid']
+```
+## Get Region Name
+
+Get region name using Region Uuid
+
+```python
+def Get_Region_name(Region_Uuid):
+    Region_name = Credentials.region.get_via_uuid(Region_Uuid)
+    Region_name = json.loads(Region_name.text)
+    Region_name =Region_name['description']
+    return Region_name
+```
+## Get Peril Name
+
+Get Peril name using Peril Uuid
+
+```python
+def Get_Peril_name(Peril_Uuid):
+    Peril_name = Credentials.peril.get_via_uuid(Peril_Uuid)
+    Peril_name = json.loads(Peril_name.text)
+    Peril_name =Peril_name['description']
+    return Peril_name
+```
+
+## Get LOB name
+
+Get LOB name using LOB Uuid
+
+```python
+def Get_LOB_name(LOB_Uuid):
+    LOB_name = Credentials.lob.get_via_uuid(LOB_Uuid)
+    LOB_name = json.loads(LOB_name.text)
+    return LOB_name['description']
+```
+
+# Common Workflows
+
+Now that we covered all Objects and basic calls, below we have some common workflows that utilize a sequence of calls or an iteration of the same call to achieve some of the most common workflows.
+
+## Get Portfolio table and create new Portfolio
+
+When we create a portfolio manually in the UI or through the API, we can retrieve the metadata for this Portfolio and create a report or create a new portfolio using the Contract UUIDs and participation shares.
+
+```python
+import UserInfo
+from commons.utils.clients import *
+import pandas as pd
+import json
+pd.set_option('expand_frame_repr', False)
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+def Get_contract_dic(Contract_dic):
+    uuid= Contract_dic.get('uuid')
+    name = Contract_dic.get('name')
+    participation = Contract_dic.get('participation')
+    isin = Contract_dic.get('isin')
+    return uuid, name, participation, isin
+
+def Get_spread(program_revision):
+    Program = Credentials.program.get_by_revision_uuid(program_revision)
+    Program = json.loads(Program.text)
+    notes= Program['program']['notes']
+    return notes
+
+def Get_Portfolio_table(Portfolio_revision_Uuid):
+    Portfolio = Credentials.portfolio.get_by_revision_uuid(Portfolio_revision_Uuid)
+    Portfolio = json.loads(Portfolio.text)
+    Portfolio = pd.DataFrame(Portfolio['contractsByProgram'])
+    Portfolio = Portfolio.explode('contracts')
+    Portfolio = Portfolio[['programRevisionUuid','programName','programRevisionResetYear','contracts','dataVersionUuids']]
+    Portfolio['contracts'] = pd.DataFrame(Portfolio['contracts'].map(lambda x:Get_contract_dic(x)))
+    Portfolio[['uuid', 'name', 'participation', 'isin']] =Portfolio['contracts'].apply(lambda x:pd.Series(x))
+    Portfolio =Portfolio[['programRevisionUuid','programName','programRevisionResetYear','uuid','name','isin','participation']]
+    Portfolio['notes'] = pd.DataFrame(Portfolio['programRevisionUuid'].map(lambda x:Get_spread(x)))
+    return Portfolio
+
+
+# The function below takes the Contract Uuid and the participation from a dataframe and creates a new Portfolio:
+# Parameters are
+# Portfolio name
+# Revision name
+# Table with Contract Uuids and participation
+
+def Create_Portfolio(Portfolio,Portfolio_name,Revision_name):
+    Portfolio = Portfolio[['uuid', 'participation']]
+    Portfolio = Portfolio.to_json(orient="records")
+    Portfolio = json.loads(Portfolio)
+    Portfolio_Json ={
+        "name": Portfolio_name,
+        "portfolioRevisionName": Revision_name,
+        "contracts": Portfolio
+    }
+    Portfolio_Json =json.dumps(Portfolio_Json)
+    Credentials.portfolio.create(Portfolio_Json)
+
+Portfolio = Get_Portfolio_table("b8d9a144-738e-4159-81f0-066968d10ef7")
+Portfolio_name= 'Portfolio Test'
+Revision_name = 'Revision Test 1'
+Create_Portfolio(Portfolio)
+
+
+```
+
+## Get Portfolio table and create new Portfolio
+
+When we create a portfolio manually in the UI or through the API, we can retrieve the metadata for this Portfolio and create a report or create a new portfolio using the Contract UUIDs and participation shares.
+
+
+### Get_Analysis_Info 
+By providing the analysis_Uuid, this call returns a data frame that contains information about the analysis, including portfolio UUID, portfolio revision UUID, risk start date, risk end date, analysis start and end time, and others.
+
+
+```python
+import UserInfo
+from commons.utils.clients import *
+import pandas as pd
+import json
+pd.set_option('expand_frame_repr', False)
+
+
+Credentials  = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+def Get_Analysis_Info(analysis_Uuid):
+    Analysis = Credentials.analysis.get_analysis_by_uuid(analysis_Uuid)
+    Analysis = json.loads(Analysis.text)
+    Analysis_Info_1 =pd.DataFrame(list(Analysis.items())[:14])
+    Analysis_Info_2 =pd.DataFrame(list(Analysis.items())[15:18])
+    Analysis_Info = Analysis_Info_1.append(Analysis_Info_2)
+    Analysis_Info =Analysis_Info.rename(columns={0:'Object',1:'Description'})
+    return Analysis_Info
+analysis_Uuid = '31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'
+Analysis_Name=Get_analysis_name(analysis_Uuid)
+Analysis_Info =Get_Analysis_Info(analysis_Uuid)
+Analysis_Info.to_csv("Analysis_Info_"+Analysis_Name+".csv")
+
+```
+
+Response
+                 Object                                        Description
+0          analysisUuid               31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b
+1          analysisName                                      Cat Bond 144a
+2       jobCreationDate                        2022-06-11T00:33:13.736628Z
+3          jobStartDate                        2022-06-11T00:33:13.736636Z
+4            jobEndDate                        2022-06-11T00:39:21.233987Z
+5           companyUuid               efa36b93-3200-40a7-afe6-709a2a565c1a
+6              userUuid               323da914-7c9b-4a26-9110-8e0439df160f
+7                status                                           FINISHED
+8          analysisType                                          SIMULATED
+9             startDate                                2022-01-01T00:00:00
+10              endDate                            2022-12-31T23:59:59.999
+11          periodStart                                                  1
+12            periodEnd                                              10000
+13   stochasticYltUuids             [d95d92d3-f7aa-4918-adf1-e15beea0d3cf]
+0           programUuid               b857ae98-3dba-43e0-8627-fc365753727f
+1   programRevisionUuid               ba298bd4-96c6-42ad-af1b-36f58cf33f33
+2                 cplts  [{'uuid': 'c65d8ed0-7834-4f28-a8ff-01b4043b113...
+
+
+### Get_Analysis_CPLT_Info  
+Get_Analysis_CPLT_Info – F1.2: This function returns a table containing the CPLTUUID and description for each CPLT generated by the analysis
+
+
+```python
+import UserInfo
+from commons.utils.clients import *
+import pandas as pd
+import json
+pd.set_option('expand_frame_repr', False)
+
+
+Credentials  = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+def Get_Analysis_CPLT_INFO(analysis_Uuid):
+    Analysis = Credentials.analysis.get_analysis_by_uuid(analysis_Uuid)
+    Analysis = json.loads(Analysis.text)
+    Analysis_Name = Analysis.get('analysisName')
+    Analysis_CPLT =Analysis.get('cplts')
+    Analysis_CPLT =pd.DataFrame(Analysis_CPLT)
+    return Analysis_CPLT
+
+def Get_analysis_name(analysis_Uuid):
+    Analysis = Credentials.analysis.get_analysis_by_uuid(analysis_Uuid)
+    Analysis = json.loads(Analysis.text)
+    Analysis_Name = Analysis.get('analysisName')
+    return Analysis_Name
+
+analysis_Uuid = '31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'
+Analysis_Name=Get_analysis_name(analysis_Uuid)
+Analysis_CPLT_INFO = Get_Analysis_CPLT_INFO(analysis_Uuid)
+Analysis_CPLT_INFO.to_csv("Analysis_CPLT_Info_"+Analysis_Name+".csv")
+```
+
+Response
+
+                                   uuid                              ipltUuid                   programRevisionUuid                          contractUuid termCurrencyCode  totalAmount
+0  c65d8ed0-7834-4f28-a8ff-01b4043b113f  34ecbcea-dd8b-46f3-a3c9-0123fbf21de6  ba298bd4-96c6-42ad-af1b-36f58cf33f33  44c6043b-8877-47bb-9c38-509933c985e7              USD  100000000.0
+1  628367f0-5bf7-44a1-9bbf-2cf31ae51e42  2a46626f-90f7-41c4-b6e8-4ccab3ac9501  ba298bd4-96c6-42ad-af1b-36f58cf33f33  69c63942-a586-4c49-b3e4-411f82ec6aba              USD   50000000.0
+2  343000f2-3a3a-4c1b-a16f-d365a64e6619  e3f226db-e26e-4ec1-8239-6ca64972e3d1  ba298bd4-96c6-42ad-af1b-36f58cf33f33  9c3f1c9a-09b3-449f-825e-0a7807df85e3              USD  100000000.0
+3  1d5b3c13-21c9-47c6-a907-09f05f7bbd44  13002faf-c70e-4ae5-a06b-1c8947bee02f  ba298bd4-96c6-42ad-af1b-36f58cf33f33  c6deec63-6b23-49e8-a61b-4c2d90c1f1f8              USD  100000000.0
+
+
+### Get_Analysis_YLT 
+
+This call returns a list with the UUIDs of the stochastic/scenario/Real-time profiles used in the analysis. The function links these UUIDs to another call and returns the description and Peril/Region of every YLT
+
+
+```python
+import UserInfo
+from commons.utils.clients import *
+import pandas as pd
+import json
+pd.set_option('expand_frame_repr', False)
+
+
+Credentials  = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+
+def Get_Analysis_YLTS(analysis_Uuid):
+    Analysis = Credentials.analysis.get_analysis_by_uuid(analysis_Uuid)
+    Analysis = json.loads(Analysis.text)
+    Analysis_YLT = Analysis.get('stochasticYltUuids')
+    Analysis_YLT =pd.DataFrame(Analysis_YLT)
+    Analysis_YLT =Analysis_YLT.rename({0:'uuid'}, axis='columns')
+    YLTs= Credentials.yltlibrary.get_by_data_version(data_version=Analysis.get('dataVersionUuid'))
+    YLTs= pd.DataFrame(json.loads(YLTs.text))
+    Analysis_YLT= Analysis_YLT.merge(YLTs,on='uuid',how='left')
+    Analysis_YLT= Analysis_YLT[['uuid','perilCode','regionCode','description','typeCode']]
+    return Analysis_YLT
+
+def Get_analysis_name(analysis_Uuid):
+    Analysis = Credentials.analysis.get_analysis_by_uuid(analysis_Uuid)
+    Analysis = json.loads(Analysis.text)
+    Analysis_Name = Analysis.get('analysisName')
+    return Analysis_Name
+
+### Calling the functions above and saving them into CSVs
+analysis_Uuid = '31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'
+Analysis_Name=Get_analysis_name(analysis_Uuid)
+Analysis_YLTS = Get_Analysis_YLTS(analysis_Uuid)
+Analysis_YLTS.to_csv("CPLT_"+Analysis_Name+".csv")
+```
+
+Response
+                                   uuid perilCode regionCode           description typeCode
+0  d95d92d3-f7aa-4918-adf1-e15beea0d3cf        WS         US  RMS Historical Rates       ST
