@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for Miu contracts API"
+            content="Documentation for Miu Contracts API"
         >
     <title>MIU Contracts API</title>
 
@@ -531,7 +531,7 @@
             <a href="#key-uuids" class="toc-h1 toc-link" data-title="Key Uuids">Key Uuids</a>
           </li>
           <li>
-            <a href="#references" class="toc-h1 toc-link" data-title="References">References</a>
+            <a href="#quick-python-codes" class="toc-h1 toc-link" data-title="Quick Python Codes">Quick Python Codes</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-peril-uuid" class="toc-h2 toc-link" data-title="Get Peril Uuid">Get Peril Uuid</a>
@@ -853,8 +853,12 @@ Peril and Region codes are made of 2 digits for RMS Perils and 3 digits for cust
 </aside>
 <h3 id='get-event-data'>Get Event data.</h3>
 <p>By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
 
@@ -924,7 +928,8 @@ Event info is inherited from parent regions example: North America is the parent
 </aside>
 <h3 id='get-event-data-by-eventid'>Get Event data by EventId:</h3>
 <p>This command returns a JSON with a detailed description of the stated EventId in all data versions.</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -1118,7 +1123,8 @@ Event info is inherited from parent regions example: North America is the parent
 </tbody></table>
 <h3 id='find-exposure'>Find Exposure</h3>
 <p>This Call retrieves all Exposures available in the data library. Event loss tables, Period Loss Tables and Share factors. </p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -1357,7 +1363,8 @@ Remember
 <td>True if the ELT is an Industry Loss curves shared by RMS</td>
 </tr>
 </tbody></table>
-<h3 id='find-elts'>Find ELTs</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h3 id='find-elts'>Find ELTs</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -1417,7 +1424,8 @@ Remember
 </tbody></table>
 <h3 id='delete-elt'>Delete ELT</h3>
 <p>Delete ELT UUID: This call deletes an existing ELT using its UUID.</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -1446,7 +1454,8 @@ Remember
 </tbody></table>
 <h3 id='find-elt-by-providing-specific-elt-uuid'>Find ELT by providing specific ELT UUID</h3>
 <p>This call provides detailed description and information for an ELT.</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -1505,7 +1514,8 @@ Remember
 - Annual Rate – the probability of a given event occurring </p>
 <h3 id='find-elt-data-by-providing-specific-elt-uuid'>Find ELT Data by providing specific ELT UUID</h3>
 <p>This call provides the  Event Loss table/Data for the ELT UUID provided. You can limit the nymber of rows returned by providing a limit and an offset</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -1685,7 +1695,8 @@ The structure varies from one Contract to another depending on the contract calc
 </tbody></table>
 <h2 id='find-contracts'>Find Contracts</h2>
 <p>To find Contracts by program revision, uuid, program status, isPublic status, ISIN or to filter by latest revision or exposure uuid, you can use this call.</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -1797,7 +1808,8 @@ curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\
 <td>Filter by latest <a href="https://jdaif.github.io/slate/#program-revision-object">revision</a> of every program</td>
 </tr>
 </tbody></table>
-<h2 id='find-a-contract'>Find a Contract</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h2 id='find-a-contract'>Find a Contract</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -2354,7 +2366,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <p>All the programs modelled by RMS that are available on the public market—i.e. 144a bonds.</p>
 <h2 id='list-all-programs'>List all programs</h2>
 <p>This call retrieves all available programs in the deal library, user can filter by specifying the parameters below:</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -2581,6 +2594,7 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
         <span class="s">"isPltOnly"</span><span class="p">:</span> <span class="n">false</span>
 
 <span class="p">}</span>
+<span class="kn">import</span> <span class="nn">UserInfo</span>
 <span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -2725,7 +2739,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 </tbody></table>
 <h2 id='get-all-program-revision-summary'>Get all program revision summary</h2>
 <p>Returns all private/public draft and private/public finalized program revisions within user&#39;s organization and all public finalized program revisions outside user&#39;s organization</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -2884,7 +2899,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <td>Reflects the Dataversions of the exposure included in the program revision</td>
 </tr>
 </tbody></table>
-<h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h2 id='get-the-latest-revision-summary'>Get the latest revision summary</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -3161,7 +3177,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <td>Reflects the Dataversions of the exposure included in the program revision</td>
 </tr>
 </tbody></table>
-<h2 id='delete-specific-program-revision'>Delete specific program revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h2 id='delete-specific-program-revision'>Delete specific program revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -3189,7 +3206,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 </tbody></table>
 <h2 id='delete-a-program'>Delete a program</h2>
 <p>Deletes regardless of public status</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -3497,7 +3515,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <td>List of available <a href="https://jdaif.github.io/slate/?python#contract">Contracts</a></td>
 </tr>
 </tbody></table>
-<h2 id='find-portfolio'>Find portfolio</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h2 id='find-portfolio'>Find portfolio</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -3549,7 +3568,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <td>Filter Portfolio Library by data versions</td>
 </tr>
 </tbody></table>
-<h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -3589,7 +3609,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <td>Universal Unique identifier per portfolio</td>
 </tr>
 </tbody></table>
-<h2 id='find-portfolio-revisions'>Find portfolio revisions</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h2 id='find-portfolio-revisions'>Find portfolio revisions</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -3644,7 +3665,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <td>Universal Unique identifier per portfolio</td>
 </tr>
 </tbody></table>
-<h2 id='find-portfolio-revision'>Find Portfolio Revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h2 id='find-portfolio-revision'>Find Portfolio Revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -3910,7 +3932,8 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <h2 id='find-analysis'>Find analysis</h2>
 <p>When we run an analysis, a JSON that contains all the descriptions for that analysis gets created. This JSON contains information such as analysis name, start date, analysis end date, profiles used, the Uuid of the CPLTs generated for that analysis, and others.
 Below are some codes that return organized structured pieces of that JSON.</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -4054,7 +4077,8 @@ Below are some codes that return organized structured pieces of that JSON.</p>
 <td>Loss Quantile from the YLT</td>
 </tr>
 </tbody></table>
-<h3 id='get-cplt-by-analysis'>Get CPLT by Analysis</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<h3 id='get-cplt-by-analysis'>Get CPLT by Analysis</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -4116,7 +4140,8 @@ In this json, the CPLT data output was limited to 1 period
 </aside>
 <h3 id='get-cplt-by-cplt-uuid'>Get CPLT by CPLT Uuid</h3>
 <p>Instead of retrieving the CPLT for the entire analysis, we can limit it to a specific contract by providing its CPLT Uuid</p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -4232,7 +4257,7 @@ In this json, the CPLT data output was limited to 1 period
 <td>c59980b8-1e1f-4280-ae5f-d277d428ac6a</td>
 </tr>
 </tbody></table>
-<h1 id='references'>References</h1>
+<h1 id='quick-python-codes'>Quick Python Codes</h1>
 <p>Since API calls require the use of Uuid instead of codes, the functions below facilitate the transition between Uuid and code for the most commonly used Uuids:</p>
 <h2 id='get-peril-uuid'>Get Peril Uuid</h2>
 <p>Get Peril Uuid from Peril code.</p>
