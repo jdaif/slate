@@ -436,7 +436,7 @@
 							  </ul>
 						  </li>
 						  <li>
-							<a href="#program-revisions" class="toc-h3 toc-link" data-title="Program Revisions">Program Revisions</a>
+							<a href="#program-revisions-status" class="toc-h3 toc-link" data-title="Program Revisions Status">Program Revisions Status</a>
 							  <ul class="toc-list-h4">
 								  <li>
 									<a href="#what-are-draft-programs" class="toc-h4 toc-link" data-title="What are “Draft Programs”?">What are “Draft Programs”?</a>
@@ -510,11 +510,6 @@
                   </li>
                   <li>
                     <a href="#find-analysis" class="toc-h2 toc-link" data-title="Find analysis">Find analysis</a>
-					  <ul class="toc-list-h3">
-						  <li>
-							<a href="#find-analysis-2" class="toc-h3 toc-link" data-title="Find Analysis">Find Analysis</a>
-						  </li>
-					  </ul>
                   </li>
                   <li>
                     <a href="#get-cplt" class="toc-h2 toc-link" data-title="Get CPLT">Get CPLT</a>
@@ -2354,7 +2349,7 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 <p>Net Loss is the Loss remaining after the terms and conditions of a contract are applied. Net Loss data is in the form of a PLT.</p>
 <h4 id='what-is-payout'>What is Payout?</h4>
 <p>Payout is the Loss absorbed by the terms and conditions of a contract. Payout data is in the form of a PLT.</p>
-<h3 id='program-revisions'>Program Revisions</h3><h4 id='what-are-draft-programs'>What are “Draft Programs”?</h4>
+<h3 id='program-revisions-status'>Program Revisions Status</h3><h4 id='what-are-draft-programs'>What are “Draft Programs”?</h4>
 <p>Programs with terms and conditions that are not confirmed should be left as “draft”. Draft programs can continue to be modified and edited. Each time you edit a program and save it, you will create a new version.</p>
 <h4 id='what-are-finalized-programs'>What are “Finalized Programs”?</h4>
 <p>Programs with terms and conditions that have been confirmed and signed should be “finalized”. Finalized programs can no longer be modified and will prevent further changes to be made.</p>
@@ -3918,9 +3913,9 @@ Inuring Losses consist of the Net Loss and Payout of a contract. They can be def
 </tr>
 </tbody></table>
 <h2 id='find-analysis'>Find analysis</h2>
-<p>When we run an analysis, a JSON that contains all the descriptions for that analysis gets created. This JSON contains information such as analysis name, start date, analysis end date, profiles used, and the Uuid of the CPLTs generated for that analysis.
-Below are some codes that return organized structured pieces of that JSON. We could also write those data frames into CSVs as reports:</p>
-<h3 id='find-analysis-2'>Find Analysis</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<p>When we run an analysis, a JSON that contains all the descriptions for that analysis gets created. This JSON contains information such as analysis name, start date, analysis end date, profiles used, the Uuid of the CPLTs generated for that analysis, and others.
+Below are some codes that return organized structured pieces of that JSON.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
@@ -4013,7 +4008,7 @@ Below are some codes that return organized structured pieces of that JSON. We co
 </tr>
 </tbody></table>
 <h2 id='get-cplt'>Get CPLT</h2>
-<p>In Miu Contracts, the analysis runs on a Portfolio or a Program; each is a combination of one or many Contracts(Could be thousands). The downloaded table lists the events in each simulated analysis period, the occurrence date, and the corresponding gross loss. Those losses get broken down to the underlying exposure level for each event. And so every row produced would have the following:</p>
+<p>In Miu Contracts, the analysis runs on a Portfolio or a Program; each is a combination of one or many Contracts(Could be thousands). The result table(CPLT) lists the events in each simulated analysis period, the occurrence date, and the corresponding gross loss. Those losses get broken down to the underlying exposure level for each event. And so every row produced would have the following:</p>
 <h3 id='cplt-data-object'>CPLT Data Object</h3>
 <blockquote>
 <p>Response </p>
@@ -4251,47 +4246,71 @@ In this json, the CPLT data output was limited to 1 period
 - Get_Region_name: In the opposite direction, this function retrieves the region name of a specific Region Uuid.
 - Get_Peril_name: this function retrieves the Peril name for a given UUID.
 - Get_LOB_name: This function returns the Line of the business name given the Uuid.</p>
-<h2 id='get-peril-uuid'>Get Peril Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code>
+<h2 id='get-peril-uuid'>Get Peril Uuid</h2>
+<p>Get Peril Uuid from Peril code.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code>
 <span class="k">def</span> <span class="nf">Get_Peril_Uuid</span><span class="p">(</span><span class="n">Peril</span><span class="p">):</span>
     <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">peril</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
     <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
     <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">Peril_Uuid</span><span class="p">[</span><span class="n">Peril_Uuid</span><span class="p">[</span><span class="s">'code'</span><span class="p">]</span><span class="o">==</span><span class="n">Peril</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">Peril_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-</code></pre></div><h2 id='get-region-uuid'>Get Region Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_Region_Uuid</span><span class="p">(</span><span class="n">Region</span><span class="p">):</span>
-    <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">is_sub_region</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">exclude_bottom_regions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">Region_Uuid2</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">is_sub_region</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">exclude_bottom_regions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_Uuid1</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
-    <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">Region_Uuid1</span><span class="p">[[</span><span class="s">'uuid'</span><span class="p">,</span><span class="s">'description'</span><span class="p">,</span><span class="s">'code'</span><span class="p">]]</span>
-    <span class="n">Region_Uuid2</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_Uuid2</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
-    <span class="n">Region_Uuid2</span> <span class="o">=</span> <span class="n">Region_Uuid2</span><span class="p">[[</span><span class="s">'uuid'</span><span class="p">,</span> <span class="s">'description'</span><span class="p">,</span><span class="s">'code'</span><span class="p">]]</span>
-    <span class="n">Region_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">Region_Uuid1</span><span class="p">,</span><span class="n">Region_Uuid2</span><span class="p">])</span>
-    <span class="n">Region_Uuid</span> <span class="o">=</span> <span class="n">Region_Uuid</span><span class="p">[</span><span class="n">Region_Uuid</span><span class="p">[</span><span class="s">'code'</span><span class="p">]</span><span class="o">==</span><span class="n">Region</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">Region_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-</code></pre></div><h2 id='get-data-version-uuid'>Get Data Version Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_data_version_Uuid</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
-    <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">data_version</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">version_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
-    <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">version_Uuid</span><span class="p">[</span><span class="n">version_Uuid</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">==</span><span class="n">version</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">version_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-</code></pre></div><h2 id='get-sub-region-resolution-uuid'>Get sub Region Resolution Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_sub_region_resolution_uuid</span><span class="p">(</span><span class="n">SBR</span><span class="p">):</span>
+</code></pre></div><h2 id='get-region-uuid'>Get Region Uuid</h2>
+<p>Get Region Uuid from Region code.
+<code>python
+def Get_Region_Uuid(Region):
+    Region_Uuid1 = Credentials.region.all(is_sub_region=True,include_deleted=False,exclude_bottom_regions=True)
+    Region_Uuid2 = Credentials.region.all(is_sub_region=False, include_deleted=False, exclude_bottom_regions=True)
+    Region_Uuid1 = pd.DataFrame(json.loads(Region_Uuid1.text))
+    Region_Uuid1 = Region_Uuid1[[&#39;uuid&#39;,&#39;description&#39;,&#39;code&#39;]]
+    Region_Uuid2 = pd.DataFrame(json.loads(Region_Uuid2.text))
+    Region_Uuid2 = Region_Uuid2[[&#39;uuid&#39;, &#39;description&#39;,&#39;code&#39;]]
+    Region_Uuid = pd.concat([Region_Uuid1,Region_Uuid2])
+    Region_Uuid = Region_Uuid[Region_Uuid[&#39;code&#39;]==Region]
+    return Region_Uuid[&#39;uuid&#39;]
+</code></p>
+<h2 id='get-data-version-uuid'>Get Data Version Uuid</h2>
+<p>Get Data Version Uuid from Data Version code.
+<code>python
+def Get_data_version_Uuid(version):
+    version_Uuid = Credentials.data_version.all(include_deleted=False)
+    version_Uuid = pd.DataFrame(json.loads(version_Uuid.text))
+    version_Uuid = version_Uuid[version_Uuid[&#39;description&#39;]==version]
+    return version_Uuid[&#39;uuid&#39;]
+</code></p>
+<h2 id='get-sub-region-resolution-uuid'>Get sub Region Resolution Uuid</h2>
+<p>Get sub Region Resolution Uuid using sub Region Resolution, ex: State, country, etc.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_sub_region_resolution_uuid</span><span class="p">(</span><span class="n">SBR</span><span class="p">):</span>
     <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">resolution</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
     <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">SBR_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
     <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">SBR_Uuid</span><span class="p">[</span><span class="n">SBR_Uuid</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">==</span><span class="n">SBR</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">SBR_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-</code></pre></div><h2 id='get-region-name'>Get Region Name</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_Region_name</span><span class="p">(</span><span class="n">Region_Uuid</span><span class="p">):</span>
-    <span class="n">Region_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">Region_Uuid</span><span class="p">)</span>
-    <span class="n">Region_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">Region_name</span> <span class="o">=</span><span class="n">Region_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">Region_name</span>
-</code></pre></div><h2 id='get-peril-name'>Get Peril Name</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_Peril_name</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">):</span>
-    <span class="n">Peril_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">peril</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">)</span>
-    <span class="n">Peril_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Peril_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">Peril_name</span> <span class="o">=</span><span class="n">Peril_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">Peril_name</span>
-</code></pre></div><h2 id='get-lob-name'>Get LOB name</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_LOB_name</span><span class="p">(</span><span class="n">LOB_Uuid</span><span class="p">):</span>
-    <span class="n">LOB_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">lob</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">LOB_Uuid</span><span class="p">)</span>
-    <span class="n">LOB_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">LOB_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">LOB_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
-</code></pre></div><h1 id='common-workflows'>Common Workflows</h1>
+</code></pre></div><h2 id='get-region-name'>Get Region Name</h2>
+<p>Get region name using Region Uuid
+<code>python
+def Get_Region_name(Region_Uuid):
+    Region_name = Credentials.region.get_via_uuid(Region_Uuid)
+    Region_name = json.loads(Region_name.text)
+    Region_name =Region_name[&#39;description&#39;]
+    return Region_name
+</code></p>
+<h2 id='get-peril-name'>Get Peril Name</h2>
+<p>Get Peril name using Peril Uuid
+<code>python
+def Get_Peril_name(Peril_Uuid):
+    Peril_name = Credentials.peril.get_via_uuid(Peril_Uuid)
+    Peril_name = json.loads(Peril_name.text)
+    Peril_name =Peril_name[&#39;description&#39;]
+    return Peril_name
+</code></p>
+<h2 id='get-lob-name'>Get LOB name</h2>
+<p>Get LOB name using LOB Uuid
+<code>python
+def Get_LOB_name(LOB_Uuid):
+    LOB_name = Credentials.lob.get_via_uuid(LOB_Uuid)
+    LOB_name = json.loads(LOB_name.text)
+    return LOB_name[&#39;description&#39;]
+</code></p>
+<h1 id='common-workflows'>Common Workflows</h1>
 <p>Now that we covered all Objects and basic calls, below we have some common workflows that utilize a sequence of calls or an iteration of the same call to achieve some of the most common workflows.</p>
 <h2 id='get-portfolio-table-and-create-new-portfolio'>Get Portfolio table and create new Portfolio</h2>
 <p>When we create a portfolio manually in the UI or through the API, we can retrieve the metadata for this Portfolio and create a report or create a new portfolio using the Contract UUIDs and participation shares.</p>
