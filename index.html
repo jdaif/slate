@@ -3222,7 +3222,11 @@ in the form of a PLT.</p>
 </tr>
 </tbody></table>
 <h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2>
-<p>Similar to programs, portfolios have one or more portfolio revisions. the portfolio Object returns a list of different Portfolio revisions.</p>
+<p>Similar to programs, portfolios have one or more portfolio revisions. The portfolio Object returns a list of different Portfolio revisions.</p>
+
+<blockquote>
+<p>Portfolio Object </p>
+</blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"531dfe38-455a-4807-ad8e-c1e20d470b03"</span><span class="p">,</span><span class="w">
@@ -3302,7 +3306,7 @@ in the form of a PLT.</p>
 </tr>
 <tr>
 <td>modifiedBy</td>
-<td>Uuid of Portfolio revision creator/ Portfolio modifier</td>
+<td>Uuid of Portfolio Portfolio modifier or Revision creator</td>
 </tr>
 <tr>
 <td>createdAt</td>
@@ -3310,10 +3314,14 @@ in the form of a PLT.</p>
 </tr>
 <tr>
 <td>modifiedAt</td>
-<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+<td>Date of modification of Portfolio or creation of Portfolio revision</td>
 </tr>
 </tbody></table>
-<h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='portfolio-revision-object'>Portfolio Revision Object</h2>
+<blockquote>
+<p>Portfolio Revision Object </p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"portfolioUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:34:04.054860Z"</span><span class="p">,</span><span class="w">
@@ -3376,19 +3384,19 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>portfolioUuid</td>
-<td>Portfolio Uuid</td>
+<td>Unique Identifier of a Portfolio</td>
 </tr>
 <tr>
 <td>name</td>
-<td>Portfolio Uuid</td>
+<td>Portfolio name</td>
 </tr>
 <tr>
 <td>modifiedAt</td>
-<td>Data versions of Contracts assigned to the Portfolio</td>
+<td>Date of modification of Portfolio</td>
 </tr>
 <tr>
 <td>revisionModifiedAt</td>
-<td>Uuid of Portfolio creator</td>
+<td>Date of modification of Portfolio Revision</td>
 </tr>
 <tr>
 <td>modifiedBy</td>
@@ -3400,26 +3408,30 @@ in the form of a PLT.</p>
 </tr>
 <tr>
 <td>createdBy</td>
-<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+<td>Uuid of user that created the portfolio</td>
 </tr>
 <tr>
 <td>dataVersionUuids</td>
-<td>Uuid of Portfolio creator</td>
+<td>Uuids for data versions of Contracts included in the Portfolio Revision</td>
 </tr>
 <tr>
 <td>contractsByProgram</td>
-<td>Uuid of Portfolio revision creator/ Portfolio modifier</td>
+<td>List of <a href="https://jdaif.github.io/slate/?python#contract">Contracts</a> included in the Portfolio grouped by <a href="https://jdaif.github.io/slate/?python#program">program revision</a></td>
 </tr>
 <tr>
 <td>metadata</td>
-<td>Date of creation of Portfolio</td>
+<td>-</td>
 </tr>
 <tr>
 <td>isPltOnly</td>
-<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+<td>True if Portfolio revision contains PLT exposure only</td>
 </tr>
 </tbody></table>
-<h4 id='contractsbyprogram'>contractsByProgram</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+<h4 id='contractsbyprogram'>contractsByProgram</h4>
+<blockquote>
+<p>contractsByProgram Object </p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"programRevisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d25fcc79-8457-486d-b2ef-924d2af1a66d"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
@@ -3466,31 +3478,31 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>programRevisionUuid</td>
-<td>Portfolio Uuid</td>
+<td><a href="https://jdaif.github.io/slate/?python#program-revision-object">Program Revision UUid</a></td>
 </tr>
 <tr>
 <td>programName</td>
-<td>Portfolio Uuid</td>
+<td><a href="https://jdaif.github.io/slate/?python#program-object">Program Name</a></td>
 </tr>
 <tr>
 <td>programRevisionName</td>
-<td>Data versions of Contracts assigned to the Portfolio</td>
+<td><a href="https://jdaif.github.io/slate/?python#program-revision-object">Program Revision Name</a></td>
 </tr>
 <tr>
 <td>programRevisionSource</td>
-<td>Uuid of Portfolio creator</td>
+<td>Original/Reset <a href="https://jdaif.github.io/slate/?python#program-revision-object">Program Revision source</a></td>
 </tr>
 <tr>
 <td>dataVersionUuids</td>
-<td>Uuid of Portfolio revision creator/ Portfolio modifier</td>
+<td>Uuids for data versions of Contracts included in the Program Revision</td>
 </tr>
 <tr>
 <td>isPublic</td>
-<td>Date of creation of Portfolio</td>
+<td>True if Program is public</td>
 </tr>
 <tr>
 <td>contracts</td>
-<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+<td>List of available <a href="https://jdaif.github.io/slate/?python#contract">Contracts</a></td>
 </tr>
 </tbody></table>
 <h2 id='find-portfolio'>Find portfolio</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
@@ -3503,7 +3515,11 @@ in the form of a PLT.</p>
   <span class="s1">'https://contract.miuinsights.com/v2/portfolios?programRevisionUuid=d25fcc79-8457-486d-b2ef-924d2af1a66d&amp;uuid=601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac&amp;dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>[
+</code></pre></div>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>[
   {
     "uuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
     "revisionUuid": "712377ea-9f08-466e-8207-c1c21ea1d42a",
@@ -3530,7 +3546,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>Program Revision Uuid</td>
-<td>Filters down Portfolio Library to Portfolios containing this Program Revision</td>
+<td>Filters down Portfolio Library to Portfolios containing Program Revision</td>
 </tr>
 <tr>
 <td>Portfolio  Uuid</td>
@@ -3551,7 +3567,11 @@ in the form of a PLT.</p>
   <span class="s1">'https://contract.miuinsights.com/v2/portfolios/601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac/revisions/latest'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>{
+</code></pre></div>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
   "uuid": "712377ea-9f08-466e-8207-c1c21ea1d42a",
   "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
   "dataVersionUuids": [
@@ -3587,7 +3607,11 @@ in the form of a PLT.</p>
   <span class="s1">'https://contract.miuinsights.com/v2/portfolios/601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac/revisions'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
-</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>[
+</code></pre></div>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>[
   {
     "uuid": "531dfe38-455a-4807-ad8e-c1e20d470b03",
     "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
@@ -3640,7 +3664,7 @@ in the form of a PLT.</p>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
 </code></pre></div>
 <blockquote>
-<p>Response</p>
+<p>Response </p>
 </blockquote>
 <div class="highlight"><pre class="highlight plaintext"><code>{
   "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
