@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the Kittn API"
+            content="Documentation for Miu contracts API"
         >
     <title>MIU Contracts API</title>
 
@@ -1569,7 +1569,7 @@ Every row in the PLT represents an event that causes damage, and therefore loss,
 The event is stamped with the date of the first day of the event and with the loss date that the policy pays out. The policy payout date is considered to be the day that the first location under the policy takes damage. For most perils the event and the loss date are the same, but for flood and wildfire models, these can differ.
 The financial model takes the ground up PLT for each location coverage as an input.</p>
 <h1 id='contract'>Contract</h1>
-<p>A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can one or many contracts in a program.</p>
+<p>A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can be one or many contracts in a program.</p>
 <h2 id='contract-object'>Contract Object</h2>
 <p>This is an object representing the Contract details. You can retrieve it to see the properties of your Contract and its structure.
 The structure varies from one Contract to another depending on the contract calculation template, number of attached exposures, and the loss flow.</p>
