@@ -508,7 +508,33 @@
               </ul>
           </li>
           <li>
+            <a href="#key-uuids" class="toc-h1 toc-link" data-title="Key Uuids">Key Uuids</a>
+          </li>
+          <li>
             <a href="#references" class="toc-h1 toc-link" data-title="References">References</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-peril-uuid" class="toc-h2 toc-link" data-title="Get Peril Uuid">Get Peril Uuid</a>
+                  </li>
+                  <li>
+                    <a href="#get-region-uuid" class="toc-h2 toc-link" data-title="Get Region Uuid">Get Region Uuid</a>
+                  </li>
+                  <li>
+                    <a href="#get-data-version-uuid" class="toc-h2 toc-link" data-title="Get Data Version Uuid">Get Data Version Uuid</a>
+                  </li>
+                  <li>
+                    <a href="#get-sub-region-resolution-uuid" class="toc-h2 toc-link" data-title="Get sub Region Resolution Uuid">Get sub Region Resolution Uuid</a>
+                  </li>
+                  <li>
+                    <a href="#get-region-name" class="toc-h2 toc-link" data-title="Get Region Name">Get Region Name</a>
+                  </li>
+                  <li>
+                    <a href="#get-peril-name" class="toc-h2 toc-link" data-title="Get Peril Name">Get Peril Name</a>
+                  </li>
+                  <li>
+                    <a href="#get-lob-name" class="toc-h2 toc-link" data-title="Get LOB name">Get LOB name</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#common-workflows" class="toc-h1 toc-link" data-title="Common Workflows">Common Workflows</a>
@@ -653,7 +679,7 @@ When importing a third-party view of risk, choose the UNMD data version.
 </thead><tbody>
 <tr>
 <td>Peril Uuid</td>
-<td>Unique identifier identifier provided for every Peril across regions</td>
+<td>Universal Unique identifier  provided for every Peril across regions</td>
 </tr>
 <tr>
 <td>Peril Code</td>
@@ -661,7 +687,7 @@ When importing a third-party view of risk, choose the UNMD data version.
 </tr>
 <tr>
 <td>Region Uuid</td>
-<td>Unique identifier provided for every Region across perils</td>
+<td>Universal Unique identifier provided for every Region across perils</td>
 </tr>
 <tr>
 <td>Region Code</td>
@@ -670,80 +696,6 @@ When importing a third-party view of risk, choose the UNMD data version.
 <tr>
 <td>Data Version</td>
 <td>Data version associated with this catalogue</td>
-</tr>
-</tbody></table>
-
-<p>Key Code/Uuid:</p>
-
-<table><thead>
-<tr>
-<th>Peril Code</th>
-<th>Uuid</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>WS</td>
-<td>e1978b0b-8cde-4ada-8943-c82fae79a569</td>
-</tr>
-<tr>
-<td>EQ</td>
-<td>cae66c3b-8665-4366-ba33-dae34eec426b</td>
-</tr>
-<tr>
-<td>WT</td>
-<td>4e2c16bc-1cf4-45e2-b7e5-86591b9802a2</td>
-</tr>
-<tr>
-<td>SC</td>
-<td>b5a2bd67-f6f2-433f-8a43-76d35b1da722</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Region Code</th>
-<th>Uuid</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>US</td>
-<td>5b07643e-2bd8-4014-a837-569ab1ba1404</td>
-</tr>
-<tr>
-<td>JP</td>
-<td>4742837d-f60f-4a08-bbf0-94d79c9aae86</td>
-</tr>
-<tr>
-<td>MX</td>
-<td>51b4d101-56c4-4ba3-b348-6db353d42e93</td>
-</tr>
-<tr>
-<td>EU</td>
-<td>65215ad1-9ab6-485f-b0f2-0d4ee3df8a11</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Data Version</th>
-<th>Uuid</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>V21.0</td>
-<td>4b292524-d70c-4edb-9137-e9bc4bb41016</td>
-</tr>
-<tr>
-<td>V18.0</td>
-<td>ca9d8219-776e-4024-b6be-1247f4e28150</td>
-</tr>
-<tr>
-<td>V 1.0</td>
-<td>04446b5e-d16a-4023-b7e2-a9b519d801f3</td>
-</tr>
-<tr>
-<td>UNMD</td>
-<td>c59980b8-1e1f-4280-ae5f-d277d428ac6a</td>
 </tr>
 </tbody></table>
 <h3 id='get-event-catalogs'>Get Event Catalogs</h3>
@@ -876,7 +828,7 @@ When importing a third-party view of risk, choose the UNMD data version.
 </tbody></table>
 
 <aside class="notice">
-Event info is inherited from parent regions example: North America is the parent region of the US, Canada, Mexico, and the Caribbean.
+Event info is inherited from parent regions. For example: North America is the parent region of the US, Canada, Mexico, and the Caribbean; they all share the same Event Info.
 
 Peril and Region codes are made of 2 digits for RMS Perils and 3 digits for custom Perils  
 </aside>
@@ -1058,11 +1010,11 @@ Event info is inherited from parent regions example: North America is the parent
 </thead><tbody>
 <tr>
 <td>exposureUuid</td>
-<td>Unique identifier for the exposure. Also called ELT-Uuid or PLT-Uuid depending on exposure type</td>
+<td>Universal Unique identifier for the exposure. Also called ELT-Uuid or PLT-Uuid depending on exposure type</td>
 </tr>
 <tr>
 <td>companyUuid</td>
-<td>Unique identifier of Company that was used to create the exposure, all public deals have an RMS companyUuid</td>
+<td>Universal Unique identifier of Company that was used to create the exposure, all public deals have an RMS companyUuid</td>
 </tr>
 <tr>
 <td>isPublic</td>
@@ -1070,7 +1022,7 @@ Event info is inherited from parent regions example: North America is the parent
 </tr>
 <tr>
 <td>createdBy</td>
-<td>Unique identifier of user that created the exposure</td>
+<td>Universal Unique identifier of user that created the exposure</td>
 </tr>
 <tr>
 <td>createdAt</td>
@@ -1094,7 +1046,7 @@ Event info is inherited from parent regions example: North America is the parent
 </tr>
 <tr>
 <td>modelUuid</td>
-<td>Unique identifier of Model used to create the exposure (Model is a combination of Peril/Region)</td>
+<td>Universal Unique identifier of Model used to create the exposure (Model is a combination of Peril/Region)</td>
 </tr>
 <tr>
 <td>perilUuid</td>
@@ -1106,19 +1058,19 @@ Event info is inherited from parent regions example: North America is the parent
 </tr>
 <tr>
 <td>subRegionResolutionUuid</td>
-<td>Unique identifier of the subregion associated with this exposure.</td>
+<td>Universal Unique identifier of the subregion associated with this exposure.</td>
 </tr>
 <tr>
 <td>subPerilUuids</td>
-<td>Unique identifier for sub perils assigned to this exposure.</td>
+<td>Universal Unique identifier for sub perils assigned to this exposure.</td>
 </tr>
 <tr>
 <td>subRegionUuids</td>
-<td>Unique identifiers of sub regions assigned to this exposure.</td>
+<td>Universal Unique identifiers of sub regions assigned to this exposure.</td>
 </tr>
 <tr>
 <td>lobUuids</td>
-<td>Unique identifier for lines of businesses assigned to this exposure</td>
+<td>Universal Unique identifier for lines of businesses assigned to this exposure</td>
 </tr>
 <tr>
 <td>isIlc</td>
@@ -1331,11 +1283,11 @@ Remember
 </thead><tbody>
 <tr>
 <td>uuid</td>
-<td>Unique identifier for the ELT.</td>
+<td>Universal Unique identifier for the ELT.</td>
 </tr>
 <tr>
 <td>companyUuid</td>
-<td>Unique identifier of Company that was used to create the ELT, all public deals have an RMS companyUuid</td>
+<td>Universal Unique identifier of Company that was used to create the ELT, all public deals have an RMS companyUuid</td>
 </tr>
 <tr>
 <td>isPublic</td>
@@ -1343,7 +1295,7 @@ Remember
 </tr>
 <tr>
 <td>createdBy</td>
-<td>Unique identifier of user that created the ELT</td>
+<td>Universal Unique identifier of user that created the ELT</td>
 </tr>
 <tr>
 <td>createdAt</td>
@@ -1371,19 +1323,19 @@ Remember
 </tr>
 <tr>
 <td>subRegionResolutionUuid</td>
-<td>Unique identifier of the subregion associated with this ELT.</td>
+<td>Universal Unique identifier of the subregion associated with this ELT.</td>
 </tr>
 <tr>
 <td>subPerilUuids</td>
-<td>Unique identifier for sub perils assigned to this ELT.</td>
+<td>Universal Unique identifier for sub perils assigned to this ELT.</td>
 </tr>
 <tr>
 <td>subRegionUuids</td>
-<td>Unique identifiers of sub regions assigned to this ELT.</td>
+<td>Universal Unique identifiers of sub regions assigned to this ELT.</td>
 </tr>
 <tr>
 <td>lobUuids</td>
-<td>Unique identifier for lines of businesses assigned to this ELT</td>
+<td>Universal Unique identifier for lines of businesses assigned to this ELT</td>
 </tr>
 <tr>
 <td>rowcount</td>
@@ -1480,7 +1432,7 @@ Remember
 </thead><tbody>
 <tr>
 <td>ELT Uuid</td>
-<td>Unique identifier for the ELT.</td>
+<td>Universal Unique identifier for the ELT.</td>
 </tr>
 </tbody></table>
 <h3 id='find-elt-by-providing-specific-elt-uuid'>Find ELT by providing specific ELT UUID</h3>
@@ -1582,7 +1534,7 @@ Remember
 </thead><tbody>
 <tr>
 <td>ELT Uuid</td>
-<td>Unique identifier for the ELT.</td>
+<td>Universal Unique identifier for the ELT.</td>
 </tr>
 <tr>
 <td>Limit</td>
@@ -1811,7 +1763,7 @@ curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\
 </tr>
 <tr>
 <td>exposureUuid</td>
-<td><a href="https://jdaif.github.io/slate/#exposure">Unique Identifier ofr the expusre</a></td>
+<td><a href="https://jdaif.github.io/slate/#exposure">Universal Unique identifier ofr the expusre</a></td>
 </tr>
 <tr>
 <td>latestRevisionOnly</td>
@@ -1887,7 +1839,7 @@ curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\
 </thead><tbody>
 <tr>
 <td>Contract Uuid</td>
-<td>Unique identifier for a Contract.</td>
+<td>Universal Unique identifier for a Contract.</td>
 </tr>
 </tbody></table>
 <h2 id='contract-templates'>Contract Templates</h2>
@@ -3210,7 +3162,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>Program Revision Uuid</td>
-<td>Unique Identifier per program revision</td>
+<td>Universal Unique identifier per program revision</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-program'>Delete a program</h2>
@@ -3236,7 +3188,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>Program  Uuid</td>
-<td>Unique Identifier per program</td>
+<td>Universal Unique identifier per program</td>
 </tr>
 </tbody></table>
 <h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2>
@@ -3402,7 +3354,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>portfolioUuid</td>
-<td>Unique Identifier of a Portfolio</td>
+<td>Universal Unique identifier of a Portfolio</td>
 </tr>
 <tr>
 <td>name</td>
@@ -3612,7 +3564,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>Portfolio  Uuid</td>
-<td>Unique Identifier per portfolio</td>
+<td>Universal Unique identifier per portfolio</td>
 </tr>
 </tbody></table>
 <h2 id='find-portfolio-revisions'>Find portfolio revisions</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
@@ -3667,7 +3619,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>Portfolio  Uuid</td>
-<td>Unique Identifier per portfolio</td>
+<td>Universal Unique identifier per portfolio</td>
 </tr>
 </tbody></table>
 <h2 id='find-portfolio-revision'>Find Portfolio Revision</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
@@ -3748,7 +3700,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>Portfolio Revision Uuid</td>
-<td>Unique Identifier per portfolio revision</td>
+<td>Universal Unique identifier per portfolio revision</td>
 </tr>
 </tbody></table>
 <h2 id='create-portfolio'>Create portfolio</h2><h1 id='analysis'>Analysis</h1>
@@ -3838,7 +3790,7 @@ in the form of a PLT.</p>
 </thead><tbody>
 <tr>
 <td>analysisUuid</td>
-<td>Unique identifier for analysis</td>
+<td>Universal Unique identifier for analysis</td>
 </tr>
 <tr>
 <td>analysisName</td>
@@ -3858,11 +3810,11 @@ in the form of a PLT.</p>
 </tr>
 <tr>
 <td>companyUuid</td>
-<td>Unique identifier of the company that created the analysis</td>
+<td>Universal Unique identifier of the company that created the analysis</td>
 </tr>
 <tr>
 <td>userUuid</td>
-<td>Unique identifier of the user that created the analysis</td>
+<td>Universal Unique identifier of the user that created the analysis</td>
 </tr>
 <tr>
 <td>status</td>
@@ -3890,7 +3842,7 @@ in the form of a PLT.</p>
 </tr>
 <tr>
 <td>stochasticYltUuids</td>
-<td>Unique Identifiers of YLTs used in the simulation</td>
+<td>Universal Unique identifiers of YLTs used in the simulation</td>
 </tr>
 <tr>
 <td>programUuid</td>
@@ -4025,7 +3977,7 @@ Below are some codes that return organized structured pieces of that JSON. We co
 </thead><tbody>
 <tr>
 <td>analysis  Uuid</td>
-<td>Unique Identifier by analysis</td>
+<td>Universal Unique identifier by analysis</td>
 </tr>
 </tbody></table>
 <h2 id='get-cplt'>Get CPLT</h2>
@@ -4053,7 +4005,7 @@ Below are some codes that return organized structured pieces of that JSON. We co
 </thead><tbody>
 <tr>
 <td>cpltUuid</td>
-<td>Unique Identifier for a CPLT</td>
+<td>Universal Unique identifier for a CPLT</td>
 </tr>
 <tr>
 <td>date</td>
@@ -4133,7 +4085,7 @@ Below are some codes that return organized structured pieces of that JSON. We co
 </thead><tbody>
 <tr>
 <td>analysis  Uuid</td>
-<td>Unique Identifier by analysis</td>
+<td>Universal Unique identifier by analysis</td>
 </tr>
 </tbody></table>
 
@@ -4177,30 +4129,103 @@ In this json, the CPLT data output was limited to 1 period
 </thead><tbody>
 <tr>
 <td>CPLT  Uuid</td>
-<td>Unique Identifier by analysis</td>
+<td>Universal Unique identifier by analysis</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
 In this json, the CPLT data output was limited to 1 period
 </aside>
+<h1 id='key-uuids'>Key Uuids</h1>
+<p>Below are some useful Uuids for major Perils,Regions and Data-versions:</p>
+
+<table><thead>
+<tr>
+<th>Peril Code</th>
+<th>Uuid</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WS</td>
+<td>e1978b0b-8cde-4ada-8943-c82fae79a569</td>
+</tr>
+<tr>
+<td>EQ</td>
+<td>cae66c3b-8665-4366-ba33-dae34eec426b</td>
+</tr>
+<tr>
+<td>WT</td>
+<td>4e2c16bc-1cf4-45e2-b7e5-86591b9802a2</td>
+</tr>
+<tr>
+<td>SC</td>
+<td>b5a2bd67-f6f2-433f-8a43-76d35b1da722</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Region Code</th>
+<th>Uuid</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>US</td>
+<td>5b07643e-2bd8-4014-a837-569ab1ba1404</td>
+</tr>
+<tr>
+<td>JP</td>
+<td>4742837d-f60f-4a08-bbf0-94d79c9aae86</td>
+</tr>
+<tr>
+<td>MX</td>
+<td>51b4d101-56c4-4ba3-b348-6db353d42e93</td>
+</tr>
+<tr>
+<td>EU</td>
+<td>65215ad1-9ab6-485f-b0f2-0d4ee3df8a11</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Data Version</th>
+<th>Uuid</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>V21.0</td>
+<td>4b292524-d70c-4edb-9137-e9bc4bb41016</td>
+</tr>
+<tr>
+<td>V18.0</td>
+<td>ca9d8219-776e-4024-b6be-1247f4e28150</td>
+</tr>
+<tr>
+<td>V 1.0</td>
+<td>04446b5e-d16a-4023-b7e2-a9b519d801f3</td>
+</tr>
+<tr>
+<td>UNMD</td>
+<td>c59980b8-1e1f-4280-ae5f-d277d428ac6a</td>
+</tr>
+</tbody></table>
 <h1 id='references'>References</h1>
 <p>Since API calls require the use of Uuid instead of codes, the functions below facilitate the transition between Uuid and code for the most commonly used Uuids:
-a.  Get_Peril_Uuid: Peril Uuid using Peril code
-b.  Get_Region_Uuid: Region Uuid using the Region code
-c.  Get_data_version_Uuid: Get the dataversion Uuid by providing the dataversion code example: 21, 18, etc.,
-d.  Get_sub_region_resolution_uuid: sometimes, we are required to provide the sub_region resolution when pulling out data. Example Country, state, etc., 
-e.  Get_Region_name: In the opposite direction, this function retrieves the region name of a specific Region Uuid.
-f.  Get_Peril_name: this function retrieves the Peril name for a given UUID.
-g.  Get_LOB_name: This function returns the Line of the business name given the Uuid.</p>
-<div class="highlight"><pre class="highlight python tab-python"><code>
+- Get_Peril_Uuid: Peril Uuid using Peril code
+- Get_Region_Uuid: Region Uuid using the Region code
+- Get_data_version_Uuid: Get the dataversion Uuid by providing the dataversion code example: 21, 18, etc.,
+- Get_sub_region_resolution_uuid: sometimes, we are required to provide the sub_region resolution when pulling out data. Example Country, state, etc., 
+- Get_Region_name: In the opposite direction, this function retrieves the region name of a specific Region Uuid.
+- Get_Peril_name: this function retrieves the Peril name for a given UUID.
+- Get_LOB_name: This function returns the Line of the business name given the Uuid.</p>
+<h2 id='get-peril-uuid'>Get Peril Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code>
 <span class="k">def</span> <span class="nf">Get_Peril_Uuid</span><span class="p">(</span><span class="n">Peril</span><span class="p">):</span>
     <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">peril</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
     <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
     <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">Peril_Uuid</span><span class="p">[</span><span class="n">Peril_Uuid</span><span class="p">[</span><span class="s">'code'</span><span class="p">]</span><span class="o">==</span><span class="n">Peril</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">Peril_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">Get_Region_Uuid</span><span class="p">(</span><span class="n">Region</span><span class="p">):</span>
+</code></pre></div><h2 id='get-region-uuid'>Get Region Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_Region_Uuid</span><span class="p">(</span><span class="n">Region</span><span class="p">):</span>
     <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">is_sub_region</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">exclude_bottom_regions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">Region_Uuid2</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">is_sub_region</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">exclude_bottom_regions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_Uuid1</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
@@ -4210,32 +4235,27 @@ g.  Get_LOB_name: This function returns the Line of the business name given the 
     <span class="n">Region_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">Region_Uuid1</span><span class="p">,</span><span class="n">Region_Uuid2</span><span class="p">])</span>
     <span class="n">Region_Uuid</span> <span class="o">=</span> <span class="n">Region_Uuid</span><span class="p">[</span><span class="n">Region_Uuid</span><span class="p">[</span><span class="s">'code'</span><span class="p">]</span><span class="o">==</span><span class="n">Region</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">Region_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">Get_data_version_Uuid</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
+</code></pre></div><h2 id='get-data-version-uuid'>Get Data Version Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_data_version_Uuid</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
     <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">data_version</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">version_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
     <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">version_Uuid</span><span class="p">[</span><span class="n">version_Uuid</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">==</span><span class="n">version</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">version_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">Get_sub_region_resolution_uuid</span><span class="p">(</span><span class="n">SBR</span><span class="p">):</span>
+</code></pre></div><h2 id='get-sub-region-resolution-uuid'>Get sub Region Resolution Uuid</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_sub_region_resolution_uuid</span><span class="p">(</span><span class="n">SBR</span><span class="p">):</span>
     <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">resolution</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
     <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">SBR_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
     <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">SBR_Uuid</span><span class="p">[</span><span class="n">SBR_Uuid</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">==</span><span class="n">SBR</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">SBR_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">Get_Region_name</span><span class="p">(</span><span class="n">Region_Uuid</span><span class="p">):</span>
+</code></pre></div><h2 id='get-region-name'>Get Region Name</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_Region_name</span><span class="p">(</span><span class="n">Region_Uuid</span><span class="p">):</span>
     <span class="n">Region_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">Region_Uuid</span><span class="p">)</span>
     <span class="n">Region_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
     <span class="n">Region_name</span> <span class="o">=</span><span class="n">Region_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">Region_name</span>
-
-<span class="k">def</span> <span class="nf">Get_Peril_name</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">):</span>
+</code></pre></div><h2 id='get-peril-name'>Get Peril Name</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_Peril_name</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">):</span>
     <span class="n">Peril_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">peril</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">)</span>
     <span class="n">Peril_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Peril_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
     <span class="n">Peril_name</span> <span class="o">=</span><span class="n">Peril_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">Peril_name</span>
-
-<span class="k">def</span> <span class="nf">Get_LOB_name</span><span class="p">(</span><span class="n">LOB_Uuid</span><span class="p">):</span>
+</code></pre></div><h2 id='get-lob-name'>Get LOB name</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">Get_LOB_name</span><span class="p">(</span><span class="n">LOB_Uuid</span><span class="p">):</span>
     <span class="n">LOB_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">lob</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">LOB_Uuid</span><span class="p">)</span>
     <span class="n">LOB_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">LOB_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">LOB_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
