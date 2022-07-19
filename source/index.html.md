@@ -18,7 +18,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for Miu contracts API
 ---
 
 # Introduction
@@ -880,7 +880,7 @@ The financial model takes the ground up PLT for each location coverage as an inp
 
 
 # Contract
-A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can one or many contracts in a program.
+A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can be one or many contracts in a program.
 
 ## Contract Object
 This is an object representing the Contract details. You can retrieve it to see the properties of your Contract and its structure.
