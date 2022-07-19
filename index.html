@@ -329,7 +329,10 @@
                     <a href="#event" class="toc-h2 toc-link" data-title="Event">Event</a>
 					  <ul class="toc-list-h3">
 						  <li>
-							<a href="#get-event-catalogs" class="toc-h3 toc-link" data-title="Get Event Catalogs">Get Event Catalogs</a>
+							<a href="#event-catalogue-object" class="toc-h3 toc-link" data-title="Event Catalogue Object">Event Catalogue Object</a>
+						  </li>
+						  <li>
+							<a href="#event-object" class="toc-h3 toc-link" data-title="Event Object">Event Object</a>
 						  </li>
 						  <li>
 							<a href="#get-event-data" class="toc-h3 toc-link" data-title="Get Event data.">Get Event data.</a>
@@ -573,7 +576,7 @@
 </ol>
 
 <aside class="notice">
-It is important to keep your password secure! Please place your password in a separate file that you can always reference when initiating your session; Do not expose your password in every script
+It is important to keep your password secure! Please place your password in a separate file that you can always reference when initiating your session; Do not expose your password in every script.
 </aside>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
@@ -596,53 +599,108 @@ curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">
 
 <p>Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: <a href="https://www.miuinsights.com/login?returnUrl=contracts">MIU Insight</a>.</p>
 
-<p>MIU Contracts expects an API token to be included in with every API requests to the server in a header that looks like the following:</p>
+<p>MIU Contracts expects an API token with every API request to the server. </p>
 
 <p><code>Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp</code></p>
 
 <aside class="notice">
-Borrowed:Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization
+Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization
 </aside>
 <h1 id='exposure-library'>Exposure Library</h1>
-<p>Now you can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors such as an ELT or an HD PLT tagged as SF_ELT and SF_PLT. All those Loss table types fall under the exposure category.
-When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. Below are the API calls included in this section.</p>
+<p>In Miu Contracts, users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors based on ELT or HD-PLT ILCs. Those objects get labeled as SF_ELT or SF_PLT.</p>
 
-<p><a href="https://www.miuinsights.com/docs/exposurelibrary">MIU Exposure</a></p>
+<p>When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. </p>
 
-<ul>
-<li>Event Catalogs: Returns all available Event info catalogs by Peril, Region, and data version </li>
-<li>Event Data: This call retrieves Event info data by Peril/Region/Data version combination or simply by an EventId<br></li>
-<li>Exposures: A series of Get and Post calls to retrieve, share or edit one or all available exposures by Peril, Region, or type.<br></li>
-<li>ELT Event Loss Table: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available ELTs by Peril, Region.</li>
-<li>PLT Period Loss Tables: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available PLTs by Peril, Region.</li>
-<li>HD-PLT RMs models HD: A series of Get, Post, and Delete calls to retrieve, share or edit one or all available HD-PLTs by Peril, Region.</li>
-<li>SF-ELT: A series of Get, Post, and Delete calls to create, retrieve, share or edit one or all available ELTs by Peril, Region.</li>
-<li>SF-PLT: A series of Get, Post, and Delete calls to create, retrieve, share or edit one or all available HD-PLTs by Peril, Region.</li>
-</ul>
+<p>Users can import event loss tables (ELTs)  without associating them with RMS peril models. In conjunction with the ability to import YLTs, users can model contract losses upon event-based exposures that reflect custom or third-party views of risk. </p>
 
 <aside class="notice">
 Available Data versions for:  ELT: V17, V18 and V21  ||  HD-PLT: V1.0 and V2.0
 </aside>
+
+<aside class="notice">
+When importing a third-party view of risk, choose the UNMD data version.
+</aside>
 <h2 id='event'>Event</h2>
 <p>Under this section:
-Calls to retrieve Event set Information from the central library. There is a unique Event-Info table for every Peril, Region, and Data-version. A catalog of all available Peril Region and Data-versions combinations is accessible through the Find event catalogs call in
- <a href="https://www.miuinsights.com/docs/exposurelibrary">MIU Exposure</a></p>
-
+Calls to retrieve Event set Information from the library. There is a unique Event-Info table for every Peril, Region, and Data-version. A catalog of all available Peril Region and Data-versions combinations is accessible through the Find event catalogs call in</p>
+<h3 id='event-catalogue-object'>Event Catalogue Object</h3>
 <blockquote>
-<p>Event Object</p>
+<p>Event Object
+```json</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b5a2bd67-f6f2-433f-8a43-76d35b1da722"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"perilCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"regionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb19d52b-a19c-4e56-970f-568f7881be56"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"regionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"dataVersionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
 
-</span></code></pre></div>
-<p>Catalog Object includes:</p>
+<p>{
+    &quot;perilUuid&quot;: &quot;b5a2bd67-f6f2-433f-8a43-76d35b1da722&quot;,
+    &quot;perilCode&quot;: &quot;CS&quot;,
+    &quot;regionUuid&quot;: &quot;cb19d52b-a19c-4e56-970f-568f7881be56&quot;,
+    &quot;regionCode&quot;: &quot;NA&quot;,
+    &quot;dataVersionUuid&quot;: &quot;4b292524-d70c-4edb-9137-e9bc4bb41016&quot;
+  }</p>
+<div class="highlight"><pre class="highlight plaintext"><code>
+Catalog Object includes:
 
+| Attributes   | Description                                                          |
+|--------------|----------------------------------------------------------------------|
+| Peril Uuid   | Unique identifier identifier provided for every Peril across regions | 
+| Peril Code   | Code identifier provided for every Peril across regions              | 
+| Region Uuid  | Unique identifier provided for every Region across perils            |
+| Region Code  | Code identifier provided for every Region across perils              |
+| Data Version | Data version associated with this catalogue                          |
+
+
+
+
+Key Code/Uuid:
+
+
+| Peril Code | Uuid                                 |
+|------------|--------------------------------------|
+| WS         | e1978b0b-8cde-4ada-8943-c82fae79a569 | 
+| EQ         | cae66c3b-8665-4366-ba33-dae34eec426b | 
+| WT         | 4e2c16bc-1cf4-45e2-b7e5-86591b9802a2 |
+| SC         | b5a2bd67-f6f2-433f-8a43-76d35b1da722 |
+
+| Region Code | Uuid                                 |
+|-------------|--------------------------------------|
+| US          | 5b07643e-2bd8-4014-a837-569ab1ba1404 | 
+| JP          | 4742837d-f60f-4a08-bbf0-94d79c9aae86 | 
+| MX          | 51b4d101-56c4-4ba3-b348-6db353d42e93 |
+| EU          | 65215ad1-9ab6-485f-b0f2-0d4ee3df8a11 |
+
+
+| Data Version | Uuid                                 |
+|--------------|--------------------------------------|
+| V21.0        | 4b292524-d70c-4edb-9137-e9bc4bb41016 | 
+| V18.0        | ca9d8219-776e-4024-b6be-1247f4e28150 | 
+| V 1.0        | 04446b5e-d16a-4023-b7e2-a9b519d801f3 |
+| UNMD         | c59980b8-1e1f-4280-ae5f-d277d428ac6a | 
+
+
+
+### Get Event Catalogs  
+
+This command lists all available Event info databases for all modeled Peril/Region by data version.
+&gt; Response
+
+```json
+[
+  {
+    "perilUuid": "b5a2bd67-f6f2-433f-8a43-76d35b1da722",
+    "perilCode": "CS",
+    "regionUuid": "cb19d52b-a19c-4e56-970f-568f7881be56",
+    "regionCode": "NA",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  },
+  {
+    "perilUuid": "cae66c3b-8665-4366-ba33-dae34eec426b",
+    "perilCode": "EQ",
+    "regionUuid": "44d3cb7e-b70c-40a4-856e-03b739b86ab2",
+    "regionCode": "IL",
+    "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  }]
+
+
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -650,148 +708,7 @@ Calls to retrieve Event set Information from the central library. There is a uni
 </tr>
 </thead><tbody>
 <tr>
-<td>Peril Uuid</td>
 <td>-</td>
-</tr>
-<tr>
-<td>Peril Code</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Region Uuid</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Region Code</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Data Version</td>
-<td>-</td>
-</tr>
-</tbody></table>
-
-<p>Key Code/Uuid:</p>
-
-<table><thead>
-<tr>
-<th>Peril Code</th>
-<th>Uuid</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>WS</td>
-<td>e1978b0b-8cde-4ada-8943-c82fae79a569</td>
-</tr>
-<tr>
-<td>EQ</td>
-<td>cae66c3b-8665-4366-ba33-dae34eec426b</td>
-</tr>
-<tr>
-<td>WT</td>
-<td>4e2c16bc-1cf4-45e2-b7e5-86591b9802a2</td>
-</tr>
-<tr>
-<td>SC</td>
-<td>b5a2bd67-f6f2-433f-8a43-76d35b1da722</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Region Code</th>
-<th>Uuid</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>US</td>
-<td>5b07643e-2bd8-4014-a837-569ab1ba1404</td>
-</tr>
-<tr>
-<td>JP</td>
-<td>4742837d-f60f-4a08-bbf0-94d79c9aae86</td>
-</tr>
-<tr>
-<td>MX</td>
-<td>51b4d101-56c4-4ba3-b348-6db353d42e93</td>
-</tr>
-<tr>
-<td>EU</td>
-<td>65215ad1-9ab6-485f-b0f2-0d4ee3df8a11</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Data Version</th>
-<th>Uuid</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>V21.0</td>
-<td>4b292524-d70c-4edb-9137-e9bc4bb41016</td>
-</tr>
-<tr>
-<td>V18.0</td>
-<td>ca9d8219-776e-4024-b6be-1247f4e28150</td>
-</tr>
-<tr>
-<td>V 1.0</td>
-<td>04446b5e-d16a-4023-b7e2-a9b519d801f3</td>
-</tr>
-<tr>
-<td>UNMD</td>
-<td>c59980b8-1e1f-4280-ae5f-d277d428ac6a</td>
-</tr>
-</tbody></table>
-<h3 id='get-event-catalogs'>Get Event Catalogs</h3>
-<p>This command lists the Event info databases for all modeled Peril/Region; the response includes perilUuid, perilCode, regionUuid, regionCode, and dataVersionUuid for every Event dataset in RMS Catalogue</p>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b5a2bd67-f6f2-433f-8a43-76d35b1da722"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"perilCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"regionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb19d52b-a19c-4e56-970f-568f7881be56"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"regionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"dataVersionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cae66c3b-8665-4366-ba33-dae34eec426b"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"perilCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQ"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"regionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44d3cb7e-b70c-40a4-856e-03b739b86ab2"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"regionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"dataVersionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
-  </span><span class="p">}]</span><span class="w">
-
-
-</span></code></pre></div>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Peril Uuid</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Peril Code</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Region Uuid</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Region Code</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Data Version</td>
 <td>-</td>
 </tr>
 </tbody></table>
@@ -808,12 +725,99 @@ Calls to retrieve Event set Information from the central library. There is a uni
 </code></pre></div>
 <blockquote>
 <p>Response</p>
-</blockquote>
+<h3 id='event-object'>Event Object</h3></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2847001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e1978b0b-8cde-4ada-8943-c82fae79a569"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"perilCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"primaryRegionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb19d52b-a19c-4e56-970f-568f7881be56"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"primaryRegionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca9d8219-776e-4024-b6be-1247f4e28150"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOTNAMED, 06/25/1851"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOTNAMED, 06/25/1851: TX-C1 GM1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1e-10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"alternativeRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1e-10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"landFallInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"first"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gateRegionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Texas"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TX"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.13"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-96.67"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"oneMinuteWindSpeed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"byPassing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"282"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"forwardVelocity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rMaxRight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-96.67"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"magnitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"segment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventId</td>
+<td>Id provided by RMS for every event</td>
+</tr>
+<tr>
+<td>perilUuid</td>
+<td>Unique Peril identifier across all Regions</td>
+</tr>
+<tr>
+<td>perilCode</td>
+<td>Unique Peril code across all Regions</td>
+</tr>
+<tr>
+<td>primaryRegionUuid</td>
+<td>Unique Parent Region identifier across all Perils</td>
+</tr>
+<tr>
+<td>primaryRegionCode</td>
+<td>Unique Parent Region code across all Perils</td>
+</tr>
+<tr>
+<td>dataVersionUuid</td>
+<td>Unique data version Identifier</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Event description provided by RMS.</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>Default RMS rate for an event. Example LTR for NAHU</td>
+</tr>
+<tr>
+<td>alternativeRate</td>
+<td>Alternative rate for an event. Example MTR for NAHU</td>
+</tr>
+<tr>
+<td>landFallInfo</td>
+<td>Available for every Landfall</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Event info is inherited from parent regions example: North America is the parent region of the US, Canada, Mexico, and the Caribbean.
+</aside>
+
+<aside class="notice">
+Peril and Region codes are made of 2 digits for RMS Perils and 3 digits for custom Perils  
+</aside>
 <h3 id='get-event-data'>Get Event data.</h3>
 <p>By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.</p>
 
 <blockquote>
-<p>Parameters</p>
+<p>Event Object</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2847001</span><span class="p">,</span><span class="w">
@@ -854,49 +858,21 @@ Calls to retrieve Event set Information from the central library. There is a uni
 </tr>
 </thead><tbody>
 <tr>
-<td>eventId</td>
-<td>-</td>
-</tr>
-<tr>
-<td>perilUuid</td>
-<td>-</td>
-</tr>
-<tr>
 <td>perilCode</td>
-<td>-</td>
+<td>Unique Peril code across all Regions</td>
 </tr>
 <tr>
-<td>primaryRegionUuid</td>
-<td>Uuid of Parent Region</td>
-</tr>
-<tr>
-<td>primaryRegionCode</td>
-<td>Code of Parent Region</td>
+<td>regioncode</td>
+<td>Unique Region code across all Perils</td>
 </tr>
 <tr>
 <td>dataVersionUuid</td>
-<td>-</td>
-</tr>
-<tr>
-<td>description</td>
-<td>-</td>
-</tr>
-<tr>
-<td>rate</td>
-<td>LTR rate for WS</td>
-</tr>
-<tr>
-<td>alternativeRate</td>
-<td>MTR rate for WS</td>
-</tr>
-<tr>
-<td>landFallInfo</td>
-<td>Available for every Landfall</td>
+<td>Event Info varies from one data version to another.</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">
-Primary regions are parent regions within the region hierarchy. North America is a parent region to the US which is a parent region to all 50 states.
+Event info is inherited from parent regions example: North America is the parent region of the US, Canada, Mexico, and the Caribbean.
 </aside>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
@@ -913,7 +889,7 @@ Primary regions are parent regions within the region hierarchy. North America is
 <p>RESPONSE</p>
 </blockquote>
 <h3 id='get-event-data-by-eventid'>Get Event data by EventId:</h3>
-<p>The above command returns a JSON with a detailed description of the specified EventId under every RMS data version.</p>
+<p>This command returns a JSON with a detailed description of the specified EventId for all available data versions.</p>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
