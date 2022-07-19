@@ -18,7 +18,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for Miu contracts API
+    content: Documentation for Miu Contracts API
 ---
 
 # Introduction
@@ -272,8 +272,12 @@ Peril and Region codes are made of 2 digits for RMS Perils and 3 digits for cust
 By specifying Peril code, Region code, and Data version UUID, this call retrieves the Event Info table.
 
 ```python
+
+import UserInfo
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
+
 
 Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
 
@@ -346,6 +350,7 @@ This command returns a JSON with a detailed description of the stated EventId in
 
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -478,6 +483,7 @@ curl -X 'GET' \
 This Call retrieves all Exposures available in the data library. Event loss tables, Period Loss Tables and Share factors. 
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -661,6 +667,7 @@ An Event Loss Table (ELT) is an important RMS modelling concept. This table cont
 
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -715,6 +722,7 @@ curl -X 'GET' \
 Delete ELT UUID: This call deletes an existing ELT using its UUID.
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -744,6 +752,7 @@ curl -X 'DELETE' \
 This call provides detailed description and information for an ELT.
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -815,6 +824,7 @@ The ELT stores the following information for each event that generates a non-zer
 This call provides the  Event Loss table/Data for the ELT UUID provided. You can limit the nymber of rows returned by providing a limit and an offset
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -955,6 +965,7 @@ The structure varies from one Contract to another depending on the contract calc
 To find Contracts by program revision, uuid, program status, isPublic status, ISIN or to filter by latest revision or exposure uuid, you can use this call.
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -1043,6 +1054,7 @@ Parameters:
 ## Find a Contract
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -1538,6 +1550,7 @@ All the programs modelled by RMS that are available on the public market—i.e. 
 This call retrieves all available programs in the deal library, user can filter by specifying the parameters below:
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -1739,6 +1752,7 @@ Program_json= {
         "isPltOnly": false
 
 }
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -1863,6 +1877,7 @@ curl -X 'POST' \
 Returns all private/public draft and private/public finalized program revisions within user's organization and all public finalized program revisions outside user's organization
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -1979,6 +1994,7 @@ curl -X 'GET' \
 ## Get the latest revision summary
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2212,6 +2228,7 @@ curl -X 'GET' \
 
 ## Delete specific program revision
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2237,6 +2254,7 @@ curl -X 'DELETE' \
 Deletes regardless of public status
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2470,6 +2488,7 @@ Similar to programs, portfolios have one or more portfolio revisions. The portfo
 ## Find portfolio
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2518,6 +2537,7 @@ curl -X 'GET' \
 
 ## Find latest portfolio revision
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2564,6 +2584,7 @@ curl -X 'GET' \
 ## Find portfolio revisions
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2623,6 +2644,7 @@ curl -X 'GET' \
 ## Find Portfolio Revision
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2827,6 +2849,7 @@ Below are some codes that return organized structured pieces of that JSON.
 
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -2956,6 +2979,7 @@ In Miu Contracts, the analysis runs on a Portfolio or a Program; each is a combi
 ### Get CPLT by Analysis 
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -3024,6 +3048,7 @@ Instead of retrieving the CPLT for the entire analysis, we can limit it to a spe
 
 
 ```python
+import UserInfo
 from commons.utils.clients import *
 from apiclient.exposurelibrary.elt_client import *
 
@@ -3094,7 +3119,7 @@ Below are some useful Uuids for major Perils,Regions and Data-versions:
 | V 1.0        | 04446b5e-d16a-4023-b7e2-a9b519d801f3 |
 | UNMD         | c59980b8-1e1f-4280-ae5f-d277d428ac6a | 
 
-# References
+# Quick Python Codes
 
 Since API calls require the use of Uuid instead of codes, the functions below facilitate the transition between Uuid and code for the most commonly used Uuids:
 
