@@ -372,10 +372,13 @@
 							<a href="#find-elt-by-providing-specific-elt-uuid" class="toc-h3 toc-link" data-title="Find ELT by providing specific ELT UUID">Find ELT by providing specific ELT UUID</a>
 						  </li>
 						  <li>
+							<a href="#elt-data-object" class="toc-h3 toc-link" data-title="ELT Data Object">ELT Data Object</a>
+						  </li>
+						  <li>
 							<a href="#find-elt-data-by-providing-specific-elt-uuid" class="toc-h3 toc-link" data-title="Find ELT Data by providing specific ELT UUID">Find ELT Data by providing specific ELT UUID</a>
 						  </li>
 						  <li>
-							<a href="#url-parameters" class="toc-h3 toc-link" data-title="URL Parameters">URL Parameters</a>
+							<a href="#upload-elt" class="toc-h3 toc-link" data-title="Upload ELT">Upload ELT</a>
 						  </li>
 					  </ul>
                   </li>
@@ -392,9 +395,6 @@
                   </li>
                   <li>
                     <a href="#find-a-contract" class="toc-h2 toc-link" data-title="Find a Contract">Find a Contract</a>
-                  </li>
-                  <li>
-                    <a href="#create-a-contract" class="toc-h2 toc-link" data-title="Create a contract">Create a contract</a>
                   </li>
                   <li>
                     <a href="#contract-templates" class="toc-h2 toc-link" data-title="Contract Templates">Contract Templates</a>
@@ -444,12 +444,6 @@
                   <li>
                     <a href="#delete-a-program" class="toc-h2 toc-link" data-title="Delete a program">Delete a program</a>
                   </li>
-                  <li>
-                    <a href="#update-program-revision-name" class="toc-h2 toc-link" data-title="Update program revision name">Update program revision name</a>
-                  </li>
-                  <li>
-                    <a href="#finalize-a-program" class="toc-h2 toc-link" data-title="Finalize a program">Finalize a program</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -460,27 +454,17 @@
                   </li>
                   <li>
                     <a href="#portfolio-revision-object" class="toc-h2 toc-link" data-title="Portfolio Revision Object">Portfolio Revision Object</a>
+					  <ul class="toc-list-h3">
+						  <li>
+							<a href="#contractsbyprogram" class="toc-h3 toc-link" data-title="contractsByProgram">contractsByProgram</a>
+						  </li>
+					  </ul>
                   </li>
                   <li>
                     <a href="#find-portfolio" class="toc-h2 toc-link" data-title="Find portfolio">Find portfolio</a>
                   </li>
                   <li>
-                    <a href="#find-latest-portfolio-revision" class="toc-h2 toc-link" data-title="Find latest portfolio revision">Find latest portfolio revision</a>
-                  </li>
-                  <li>
-                    <a href="#find-portfolio-revision" class="toc-h2 toc-link" data-title="Find portfolio revision">Find portfolio revision</a>
-                  </li>
-                  <li>
                     <a href="#create-portfolio" class="toc-h2 toc-link" data-title="Create portfolio">Create portfolio</a>
-                  </li>
-                  <li>
-                    <a href="#edit-portfolio" class="toc-h2 toc-link" data-title="Edit portfolio">Edit portfolio</a>
-                  </li>
-                  <li>
-                    <a href="#update-portfolio-name" class="toc-h2 toc-link" data-title="Update portfolio name">Update portfolio name</a>
-                  </li>
-                  <li>
-                    <a href="#get-exposure-contained-in-portfolio" class="toc-h2 toc-link" data-title="Get exposure contained in portfolio">Get exposure contained in portfolio</a>
                   </li>
               </ul>
           </li>
@@ -1510,6 +1494,16 @@ Remember
   </span><span class="nl">"rowCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">35210</span><span class="p">,</span><span class="w">
   </span><span class="nl">"isIlc"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='elt-data-object'>ELT Data Object</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1510001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.26696619</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevCorrelated"</span><span class="p">:</span><span class="w"> </span><span class="mf">401.13</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stdDevIndependent"</span><span class="p">:</span><span class="w"> </span><span class="mf">12968.51</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalExposure"</span><span class="p">:</span><span class="w"> </span><span class="mi">22785298</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mf">573.59</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre></div><h3 id='find-elt-data-by-providing-specific-elt-uuid'>Find ELT Data by providing specific ELT UUID</h3>
 <p>This call provides the  Event Loss table/Data for the ELT UUID provided. You can limit the nymber of rows returned by providing a limit and an offset</p>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
@@ -1563,8 +1557,12 @@ Remember
 <td>ELT Uuid</td>
 <td>Unique identifier for the ELT.</td>
 </tr>
+<tr>
+<td>Limit</td>
+<td>Limit number of rows returned</td>
+</tr>
 </tbody></table>
-<h3 id='url-parameters'>URL Parameters</h3><h1 id='contract'>Contract</h1>
+<h3 id='upload-elt'>Upload ELT</h3><h1 id='contract'>Contract</h1>
 <p>A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can one or many contracts in a program.</p>
 <h2 id='contract-object'>Contract Object</h2>
 <p>This is an object representing the Contract details. You can retrieve it to see the properties of your Contract and its structure.
@@ -1786,14 +1784,86 @@ curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\
 </tr>
 <tr>
 <td>exposureUuid</td>
-<td>MTR rate for WS</td>
+<td><a href="https://jdaif.github.io/slate/#exposure">Unique Identifier ofr the expusre</a></td>
 </tr>
 <tr>
 <td>latestRevisionOnly</td>
 <td>Filter by latest <a href="https://jdaif.github.io/slate/#program-revision-object">revision</a> of every program</td>
 </tr>
 </tbody></table>
-<h2 id='find-a-contract'>Find a Contract</h2><h2 id='create-a-contract'>Create a contract</h2><h2 id='contract-templates'>Contract Templates</h2>
+<h2 id='find-a-contract'>Find a Contract</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+
+<span class="n">Credentials</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="n">get_contract</span><span class="p">(</span><span class="s">"4cbb2c8b-82d9-437a-9cfa-515a9dd91e77"</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>
+curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/contracts/4cbb2c8b-82d9-437a-9cfa-515a9dd91e77'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer 8fz8TyfbI0KI6y1BCjkMNs9LFHxZyBduTOMQsgFK'</span>
+</code></pre></div>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"verticalSeq"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OnRisk"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-01T00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-06-30T23:59:59.999"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"lossFlows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b70eb13a-3c55-4f46-9d98-e87dc6847de5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class A-RP1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1fa9e8dc-1d9d-49a0-9406-42f1b4dd9844"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class A-RP4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03f6913c-7ca2-48c0-8db8-4364ac914a7d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class A-RP2"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"lossType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payout"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContractUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38f6bf53-69fe-475e-a1ca-49c0b6190e50"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fromContract"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Class A-RP3"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"exposures"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"templateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aead0f2e-866a-4cc3-9a6b-72bed098bf01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"templateSubstitutions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"InitialPayout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Attachment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Reinstatement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4cbb2c8b-82d9-437a-9cfa-515a9dd91e77"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"isin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US05826BAA44"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Contract Uuid</td>
+<td>Unique identifier for a Contract.</td>
+</tr>
+</tbody></table>
+<h2 id='contract-templates'>Contract Templates</h2>
 <p>Contract Templates represent the most common types of bonds and treaties in the market. Terms and conditions vary depending on the template. </p>
 <h3 id='first-and-subsequent'>First and Subsequent</h3>
 <p>Uuid for FS template is aead0f2e-866a-4cc3-9a6b-72bed098bf01</p>
@@ -3104,6 +3174,18 @@ in the form of a PLT.</p>
 <blockquote>
 <p>Response</p>
 </blockquote>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Program Revision Uuid</td>
+<td>Unique Identifier per program revision</td>
+</tr>
+</tbody></table>
 <h2 id='delete-a-program'>Delete a program</h2>
 <p>Deletes regardless of public status</p>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
@@ -3116,14 +3198,508 @@ in the form of a PLT.</p>
   <span class="s1">'https://contract.miuinsights.com/v2/programs/07deb9d1-b4c3-4402-9cba-24b568484f0a'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X`4EmSGV7m'</span>
-</code></pre></div><h2 id='update-program-revision-name'>Update program revision name</h2><h2 id='finalize-a-program'>Finalize a program</h2><div class="highlight"><pre class="highlight python tab-python"><code>
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>
 
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">\</span>
-  <span class="s1">'https://contract.miuinsights.com/v2/programs/revisions/d25fcc79-8457-486d-b2ef-924d2af1a66d/finalize'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: */*'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer HfUR2SL10frixvmy5BqcSUBgble2xv0X4EmSGV7m'</span> <span class="se">\</span>
-  <span class="nt">-d</span> <span class="s1">''</span>
-</code></pre></div><h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2><h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><h2 id='find-portfolio'>Find portfolio</h2><h2 id='find-latest-portfolio-revision'>Find latest portfolio revision</h2><h2 id='find-portfolio-revision'>Find portfolio revision</h2><h2 id='create-portfolio'>Create portfolio</h2><h2 id='edit-portfolio'>Edit portfolio</h2><h2 id='update-portfolio-name'>Update portfolio name</h2><h2 id='get-exposure-contained-in-portfolio'>Get exposure contained in portfolio</h2><h1 id='analysis'>Analysis</h1>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Program  Uuid</td>
+<td>Unique Identifier per program</td>
+</tr>
+</tbody></table>
+<h1 id='portfolio'>Portfolio</h1><h2 id='portfolio-object'>Portfolio Object</h2>
+<p>Similar to programs, portfolios have one or more portfolio revisions. the portfolio Object returns a list of different Portfolio revisions.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"531dfe38-455a-4807-ad8e-c1e20d470b03"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"portfolioUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:30:44.590104Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:30:44.590104Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03520503-5926-46d1-ad57-54df22cabfcd"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"portfolioUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:33:47.577860Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:33:47.577860Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"712377ea-9f08-466e-8207-c1c21ea1d42a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"portfolioUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:34:04.061515Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:34:04.061515Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"008fa0da-780b-4c72-943b-ea60a4f84b90"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"portfolioUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:34:03.633399Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:34:03.633399Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td>Portfolio Revision Uuid</td>
+</tr>
+<tr>
+<td>portfolioUuid</td>
+<td>Portfolio Uuid</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Data versions of Contracts assigned to the Portfolio</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>Uuid of Portfolio creator</td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td>Uuid of Portfolio revision creator/ Portfolio modifier</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>Date of creation of Portfolio</td>
+</tr>
+<tr>
+<td>modifiedAt</td>
+<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+</tr>
+</tbody></table>
+<h2 id='portfolio-revision-object'>Portfolio Revision Object</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"portfolioUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:34:04.054860Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"revisionModifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:30:44.590104Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"revisionModifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-19T02:30:44.590104Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323da914-7c9b-4a26-9110-8e0439df160f"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"companyUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"efa36b93-3200-40a7-afe6-709a2a565c1a"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"contractsByProgram"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"programRevisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d25fcc79-8457-486d-b2ef-924d2af1a66d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"programRevisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6/27/2022, 10:36:13 PM"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"programRevisionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"contracts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9eebd83c-7a62-44ca-8440-4dcf17b699ce"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"participation"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"isLatestFinalizedRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"776d7916-8f1a-48d8-bc92-63f5356f9a1a"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"participation"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"isLatestFinalizedRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"isPltOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>portfolioUuid</td>
+<td>Portfolio Uuid</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Portfolio Uuid</td>
+</tr>
+<tr>
+<td>modifiedAt</td>
+<td>Data versions of Contracts assigned to the Portfolio</td>
+</tr>
+<tr>
+<td>revisionModifiedAt</td>
+<td>Uuid of Portfolio creator</td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td>Uuid of Portfolio revision creator/ Portfolio modifier</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>Date of creation of Portfolio</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Uuid of Portfolio creator</td>
+</tr>
+<tr>
+<td>contractsByProgram</td>
+<td>Uuid of Portfolio revision creator/ Portfolio modifier</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>Date of creation of Portfolio</td>
+</tr>
+<tr>
+<td>isPltOnly</td>
+<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+</tr>
+</tbody></table>
+<h4 id='contractsbyprogram'>contractsByProgram</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"programRevisionUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d25fcc79-8457-486d-b2ef-924d2af1a66d"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat Bond 144a"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"programRevisionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6/27/2022, 10:36:13 PM"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"programRevisionSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Original"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dataVersionUuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"04446b5e-d16a-4023-b7e2-a9b519d801f3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"4b292524-d70c-4edb-9137-e9bc4bb41016"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"isPublic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"contracts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9eebd83c-7a62-44ca-8440-4dcf17b699ce"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"participation"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"isLatestFinalizedRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"776d7916-8f1a-48d8-bc92-63f5356f9a1a"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"termCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"participation"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"canParticipate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-31T23:59:59.999"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"totalAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"isLatestFinalizedRevision"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programRevisionUuid</td>
+<td>Portfolio Uuid</td>
+</tr>
+<tr>
+<td>programName</td>
+<td>Portfolio Uuid</td>
+</tr>
+<tr>
+<td>programRevisionName</td>
+<td>Data versions of Contracts assigned to the Portfolio</td>
+</tr>
+<tr>
+<td>programRevisionSource</td>
+<td>Uuid of Portfolio creator</td>
+</tr>
+<tr>
+<td>dataVersionUuids</td>
+<td>Uuid of Portfolio revision creator/ Portfolio modifier</td>
+</tr>
+<tr>
+<td>isPublic</td>
+<td>Date of creation of Portfolio</td>
+</tr>
+<tr>
+<td>contracts</td>
+<td>Date of modification of Portfolio/creation of Portfolio revision</td>
+</tr>
+</tbody></table>
+<h2 id='find-portfolio'>Find portfolio</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">portfolio</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">program_revision_uuid</span><span class="o">=</span><span class="s">"d25fcc79-8457-486d-b2ef-924d2af1a66d"</span><span class="p">,</span><span class="n">portfolio_uuids</span><span class="o">=</span><span class="s">"601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac"</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/portfolios?programRevisionUuid=d25fcc79-8457-486d-b2ef-924d2af1a66d&amp;uuid=601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac&amp;dataVersionUuid=4b292524-d70c-4edb-9137-e9bc4bb41016'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
+</code></pre></div>
+<blockquote>
+<p>Response
+```JSON
+[
+  {
+    &quot;uuid&quot;: &quot;601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac&quot;,
+    &quot;revisionUuid&quot;: &quot;712377ea-9f08-466e-8207-c1c21ea1d42a&quot;,
+    &quot;name&quot;: &quot;Cat Bond 144a&quot;,
+    &quot;companyUuid&quot;: &quot;efa36b93-3200-40a7-afe6-709a2a565c1a&quot;,
+    &quot;dataVersionUuids&quot;: [
+      &quot;4b292524-d70c-4edb-9137-e9bc4bb41016&quot;
+    ],
+    &quot;metadata&quot;: [],
+    &quot;createdBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+    &quot;createdAt&quot;: &quot;2022-07-19T02:30:44.590104Z&quot;,
+    &quot;modifiedBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+    &quot;modifiedAt&quot;: &quot;2022-07-19T02:34:04.054860Z&quot;,
+    &quot;isPltOnly&quot;: false
+  }
+]</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+
+| Parameter             | Description                                                                   |
+|-----------------------|-------------------------------------------------------------------------------|
+| Program Revision Uuid | Filters down Portfolio Library to Portfolios containing this Program Revision |
+| Portfolio  Uuid       | Filter Portfolio Library by Portfolio Uuids                                   |
+| Data version  Uuid    | Filter Portfolio Library by data versions                                     |
+
+## Find latest portfolio revision
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.portfolio.get_latest_revision("601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac")
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/portfolios/601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac/revisions/latest'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
+</code></pre></div>
+<blockquote>
+<p>Response
+```JSON
+{
+  &quot;uuid&quot;: &quot;712377ea-9f08-466e-8207-c1c21ea1d42a&quot;,
+  &quot;portfolioUuid&quot;: &quot;601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac&quot;,
+  &quot;dataVersionUuids&quot;: [
+    &quot;04446b5e-d16a-4023-b7e2-a9b519d801f3&quot;,
+    &quot;4b292524-d70c-4edb-9137-e9bc4bb41016&quot;
+  ],
+  &quot;createdBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+  &quot;modifiedBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+  &quot;createdAt&quot;: &quot;2022-07-19T02:34:04.061515Z&quot;,
+  &quot;modifiedAt&quot;: &quot;2022-07-19T02:34:04.061515Z&quot;,
+  &quot;metadata&quot;: []
+}</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+
+
+| Parameter       | Description                     |
+|-----------------|---------------------------------|
+| Portfolio  Uuid | Unique Identifier per portfolio |
+
+
+## Find portfolio revisions
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.portfolio.get_revisions("601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac")
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/portfolios/601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac/revisions'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
+</code></pre></div>
+<blockquote>
+<p>Response
+```JSON
+[
+  {
+    &quot;uuid&quot;: &quot;531dfe38-455a-4807-ad8e-c1e20d470b03&quot;,
+    &quot;portfolioUuid&quot;: &quot;601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac&quot;,
+    &quot;dataVersionUuids&quot;: [
+      &quot;04446b5e-d16a-4023-b7e2-a9b519d801f3&quot;,
+      &quot;4b292524-d70c-4edb-9137-e9bc4bb41016&quot;
+    ],
+    &quot;createdBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+    &quot;modifiedBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+    &quot;createdAt&quot;: &quot;2022-07-19T02:30:44.590104Z&quot;,
+    &quot;modifiedAt&quot;: &quot;2022-07-19T02:30:44.590104Z&quot;,
+    &quot;metadata&quot;: []
+  },
+  {
+    &quot;uuid&quot;: &quot;008fa0da-780b-4c72-943b-ea60a4f84b90&quot;,
+    &quot;portfolioUuid&quot;: &quot;601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac&quot;,
+    &quot;dataVersionUuids&quot;: [
+      &quot;04446b5e-d16a-4023-b7e2-a9b519d801f3&quot;,
+      &quot;4b292524-d70c-4edb-9137-e9bc4bb41016&quot;
+    ],
+    &quot;createdBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+    &quot;modifiedBy&quot;: &quot;323da914-7c9b-4a26-9110-8e0439df160f&quot;,
+    &quot;createdAt&quot;: &quot;2022-07-19T02:34:03.633399Z&quot;,
+    &quot;modifiedAt&quot;: &quot;2022-07-19T02:34:03.633399Z&quot;,
+    &quot;metadata&quot;: []
+  }
+]</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+
+
+| Parameter       | Description                     |
+|-----------------|---------------------------------|
+| Portfolio  Uuid | Unique Identifier per portfolio |
+
+## Find Portfolio Revision
+
+```python
+from commons.utils.clients import *
+from apiclient.exposurelibrary.elt_client import *
+
+Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=UserInfo.password, env=Environment.PROD)
+Credentials.portfolio.get_by_revision_uuid("531dfe38-455a-4807-ad8e-c1e20d470b03")
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://contract.miuinsights.com/v2/portfolios/revisions/531dfe38-455a-4807-ad8e-c1e20d470b03'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "portfolioUuid": "601cf6db-8bc7-4bc7-bc0d-3c222a2a69ac",
+  "name": "Cat Bond 144a",
+  "modifiedAt": "2022-07-19T02:34:04.054860Z",
+  "revisionModifiedAt": "2022-07-19T02:30:44.590104Z",
+  "modifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "revisionModifiedBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "createdAt": "2022-07-19T02:30:44.590104Z",
+  "createdBy": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+  "dataVersionUuids": [
+    "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+    "4b292524-d70c-4edb-9137-e9bc4bb41016"
+  ],
+  "contractsByProgram": [
+    {
+      "programRevisionUuid": "d25fcc79-8457-486d-b2ef-924d2af1a66d",
+      "programName": "Cat Bond 144a",
+      "programRevisionName": "6/27/2022, 10:36:13 PM",
+      "programRevisionSource": "Original",
+      "dataVersionUuids": [
+        "04446b5e-d16a-4023-b7e2-a9b519d801f3",
+        "4b292524-d70c-4edb-9137-e9bc4bb41016"
+      ],
+      "isPublic": false,
+      "contracts": [
+        {
+          "uuid": "9eebd83c-7a62-44ca-8440-4dcf17b699ce",
+          "name": "A",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        },
+        {
+          "uuid": "776d7916-8f1a-48d8-bc92-63f5356f9a1a",
+          "name": "B",
+          "termCurrencyCode": "USD",
+          "participation": 100000000,
+          "canParticipate": true,
+          "riskStartDate": "2022-01-01T00:00:00",
+          "riskEndDate": "2022-12-31T23:59:59.999",
+          "totalAmount": 100000000,
+          "isLatestFinalizedRevision": true
+        }
+      ]
+    }
+  ],
+  "metadata": [],
+  "isPltOnly": false
+}
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Portfolio Revision Uuid</td>
+<td>Unique Identifier per portfolio revision</td>
+</tr>
+</tbody></table>
+<h2 id='create-portfolio'>Create portfolio</h2><h1 id='analysis'>Analysis</h1>
 <p>Miu uses a simulation methodology that produces a sequence of event losses during a simulated investment period and supports the modelling of complex financial structures.</p>
 
 <p>With Miu Contracts, you can import also pre-simulated losses and run them along.</p>
