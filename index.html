@@ -484,31 +484,49 @@
                     <a href="#analysis-object" class="toc-h2 toc-link" data-title="Analysis Object">Analysis Object</a>
                   </li>
                   <li>
-                    <a href="#run-analysis" class="toc-h2 toc-link" data-title="Run analysis">Run analysis</a>
-                  </li>
-                  <li>
-                    <a href="#resubmit-analysis" class="toc-h2 toc-link" data-title="Resubmit analysis">Resubmit analysis</a>
-                  </li>
-                  <li>
                     <a href="#find-analysis" class="toc-h2 toc-link" data-title="Find analysis">Find analysis</a>
-                  </li>
-                  <li>
-                    <a href="#delete-analysis" class="toc-h2 toc-link" data-title="Delete Analysis">Delete Analysis</a>
-                  </li>
-                  <li>
-                    <a href="#get-persisted-metrics" class="toc-h2 toc-link" data-title="Get persisted metrics">Get persisted metrics</a>
-                  </li>
-                  <li>
-                    <a href="#get-ep-curves" class="toc-h2 toc-link" data-title="Get EP curves">Get EP curves</a>
+					  <ul class="toc-list-h3">
+						  <li>
+							<a href="#find-analysis-2" class="toc-h3 toc-link" data-title="Find Analysis">Find Analysis</a>
+						  </li>
+					  </ul>
                   </li>
                   <li>
                     <a href="#get-cplt" class="toc-h2 toc-link" data-title="Get CPLT">Get CPLT</a>
 					  <ul class="toc-list-h3">
 						  <li>
+							<a href="#cplt-data-object" class="toc-h3 toc-link" data-title="CPLT Data Object">CPLT Data Object</a>
+						  </li>
+						  <li>
 							<a href="#get-cplt-by-analysis" class="toc-h3 toc-link" data-title="Get CPLT by Analysis">Get CPLT by Analysis</a>
 						  </li>
 						  <li>
-							<a href="#get-cplt-by-contract" class="toc-h3 toc-link" data-title="Get CPLT by Contract">Get CPLT by Contract</a>
+							<a href="#get-cplt-by-cplt-uuid" class="toc-h3 toc-link" data-title="Get CPLT by CPLT Uuid">Get CPLT by CPLT Uuid</a>
+						  </li>
+					  </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#references" class="toc-h1 toc-link" data-title="References">References</a>
+          </li>
+          <li>
+            <a href="#common-workflows" class="toc-h1 toc-link" data-title="Common Workflows">Common Workflows</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-portfolio-table-and-create-new-portfolio" class="toc-h2 toc-link" data-title="Get Portfolio table and create new Portfolio">Get Portfolio table and create new Portfolio</a>
+                  </li>
+                  <li>
+                    <a href="#get-portfolio-table-and-create-new-portfolio-2" class="toc-h2 toc-link" data-title="Get Portfolio table and create new Portfolio">Get Portfolio table and create new Portfolio</a>
+					  <ul class="toc-list-h3">
+						  <li>
+							<a href="#get_analysis_info" class="toc-h3 toc-link" data-title="Get_Analysis_Info">Get_Analysis_Info</a>
+						  </li>
+						  <li>
+							<a href="#get_analysis_cplt_info" class="toc-h3 toc-link" data-title="Get_Analysis_CPLT_Info">Get_Analysis_CPLT_Info</a>
+						  </li>
+						  <li>
+							<a href="#iv-get_analysis_ylt" class="toc-h3 toc-link" data-title="iv. Get_Analysis_YLT">iv. Get_Analysis_YLT</a>
 						  </li>
 					  </ul>
                   </li>
@@ -3814,84 +3832,575 @@ in the form of a PLT.</p>
 </span></code></pre></div>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Attributes</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>analysisUuid</td>
-<td>-</td>
+<td>Unique identifier for analysis</td>
 </tr>
 <tr>
 <td>analysisName</td>
-<td>-</td>
+<td>Analysis Name</td>
 </tr>
 <tr>
-<td>jobCreationDa te</td>
-<td>-</td>
+<td>jobCreationDate</td>
+<td>Date of submission of analysis</td>
 </tr>
 <tr>
 <td>jobStartDate</td>
-<td>Uuid of Parent Region</td>
+<td>Start Date-time of analysis</td>
 </tr>
 <tr>
 <td>jobEndDate</td>
-<td>Code of Parent Region</td>
+<td>Start Date-time of analysis</td>
 </tr>
 <tr>
 <td>companyUuid</td>
-<td>-</td>
+<td>Unique identifier of the company that created the analysis</td>
 </tr>
 <tr>
 <td>userUuid</td>
-<td>-</td>
+<td>Unique identifier of the user that created the analysis</td>
 </tr>
 <tr>
 <td>status</td>
-<td>LTR rate for WS</td>
+<td>FINISHED/Waiting/Canceled</td>
 </tr>
 <tr>
 <td>analysisType</td>
-<td>MTR rate for WS</td>
+<td>simulated vs Deterministic</td>
 </tr>
 <tr>
 <td>startDate</td>
-<td>Available for every Landfall</td>
+<td>Simulation date-time start</td>
 </tr>
 <tr>
 <td>endDate</td>
-<td>Available for every Landfall</td>
+<td>Simulation date-time end</td>
 </tr>
 <tr>
 <td>periodStart</td>
-<td>Available for every Landfall</td>
+<td>Usually set at 0</td>
 </tr>
 <tr>
 <td>periodEnd</td>
-<td>Available for every Landfall</td>
+<td>Number of simulated Periods</td>
 </tr>
 <tr>
 <td>stochasticYltUuids</td>
-<td>Available for every Landfall</td>
+<td>Unique Identifiers of YLTs used in the simulation</td>
 </tr>
 <tr>
 <td>programUuid</td>
-<td>Available for every Landfall</td>
+<td><a href="#">Program Uuid</a> if the analysis was run on a program</td>
 </tr>
 <tr>
 <td>programRevisionUuid</td>
-<td>Available for every Landfall</td>
+<td><a href="#">Program Revision Uuid</a> if the analysis was run on a program</td>
+</tr>
+<tr>
+<td>portfolioUuid</td>
+<td><a href="#">Portfolio Uuid</a> if the analysis was run on a Portfolio</td>
+</tr>
+<tr>
+<td>portfolioRevisionUuid</td>
+<td><a href="#">Portfolio Revision Uuid</a> if the analysis was run on a Portfolio</td>
 </tr>
 <tr>
 <td>cplts</td>
-<td>Available for every Landfall</td>
+<td>A list of the CPLTs genearted by the analysis</td>
 </tr>
 <tr>
 <td>currencySetUuid</td>
-<td><a href="https://jdaif.github.io/slate/#get-cplt-by-analysis">CPLT</a></td>
+<td>Currency set selected for currency exchange when running the analysis</td>
+</tr>
+<tr>
+<td>complexityScore</td>
+<td>Score generated by the Financial Engine to allocate cluster size</td>
+</tr>
+<tr>
+<td>totalContracts</td>
+<td>Total number of Contracts in the analysis</td>
+</tr>
+<tr>
+<td>outputs</td>
+<td>A list of the CPLTs genearted by the analysis</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>Output Currency selected when running the analysis</td>
 </tr>
 </tbody></table>
-<h2 id='run-analysis'>Run analysis</h2><h2 id='resubmit-analysis'>Resubmit analysis</h2><h2 id='find-analysis'>Find analysis</h2><h2 id='delete-analysis'>Delete Analysis</h2><h2 id='get-persisted-metrics'>Get persisted metrics</h2><h2 id='get-ep-curves'>Get EP curves</h2><h2 id='get-cplt'>Get CPLT</h2><h3 id='get-cplt-by-analysis'>Get CPLT by Analysis</h3><h3 id='get-cplt-by-contract'>Get CPLT by Contract</h3><h1 id='errors'>Errors</h1>
+<h2 id='find-analysis'>Find analysis</h2>
+<p>When we run an analysis, a JSON that contains all the descriptions for that analysis gets created. This JSON contains information such as analysis name, start date, analysis end date, profiles used, and the Uuid of the CPLTs generated for that analysis.
+Below are some codes that return organized structured pieces of that JSON. We could also write those data frames into CSVs as reports:</p>
+<h3 id='find-analysis-2'>Find Analysis</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_analysis_by_uuid</span><span class="p">(</span><span class="s">'31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://analysis.miuinsights.com/v3/analyses/31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
+</code></pre></div>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "analysisUuid": "31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b",
+  "analysisName": "Cat Bond 144a",
+  "jobCreationDate": "2022-06-11T00:33:13.736628Z",
+  "jobStartDate": "2022-06-11T00:33:13.736636Z",
+  "jobEndDate": "2022-06-11T00:39:21.233987Z",
+  "companyUuid": "efa36b93-3200-40a7-afe6-709a2a565c1a",
+  "userUuid": "323da914-7c9b-4a26-9110-8e0439df160f",
+  "status": "FINISHED",
+  "analysisType": "SIMULATED",
+  "startDate": "2022-01-01T00:00:00",
+  "endDate": "2022-12-31T23:59:59.999",
+  "periodStart": 1,
+  "periodEnd": 10000,
+  "stochasticYltUuids": [
+    "d95d92d3-f7aa-4918-adf1-e15beea0d3cf"
+  ],
+  "dataVersionUuid": "4b292524-d70c-4edb-9137-e9bc4bb41016",
+  "programUuid": "b857ae98-3dba-43e0-8627-fc365753727f",
+  "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+  "cplts": [
+    {
+      "uuid": "c65d8ed0-7834-4f28-a8ff-01b4043b113f",
+      "ipltUuid": "34ecbcea-dd8b-46f3-a3c9-0123fbf21de6",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "44c6043b-8877-47bb-9c38-509933c985e7",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    },
+    {
+      "uuid": "628367f0-5bf7-44a1-9bbf-2cf31ae51e42",
+      "ipltUuid": "2a46626f-90f7-41c4-b6e8-4ccab3ac9501",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "69c63942-a586-4c49-b3e4-411f82ec6aba",
+      "termCurrencyCode": "USD",
+      "totalAmount": 50000000
+    },
+    {
+      "uuid": "343000f2-3a3a-4c1b-a16f-d365a64e6619",
+      "ipltUuid": "e3f226db-e26e-4ec1-8239-6ca64972e3d1",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "9c3f1c9a-09b3-449f-825e-0a7807df85e3",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    },
+    {
+      "uuid": "1d5b3c13-21c9-47c6-a907-09f05f7bbd44",
+      "ipltUuid": "13002faf-c70e-4ae5-a06b-1c8947bee02f",
+      "programRevisionUuid": "ba298bd4-96c6-42ad-af1b-36f58cf33f33",
+      "contractUuid": "c6deec63-6b23-49e8-a61b-4c2d90c1f1f8",
+      "termCurrencyCode": "USD",
+      "totalAmount": 100000000
+    }
+  ],
+  "complexityScore": 60,
+  "totalContracts": 4,
+  "currencySetUuid": "10dde323-735b-457f-a64b-1fe8a45d31f0",
+  "inputs": [],
+  "outputs": [
+    "EPCURVES",
+    "ANALYSIS_METRICS",
+    "PERIL_REGION_METRICS"
+  ],
+  "currencyCode": "USD"
+}
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>analysis  Uuid</td>
+<td>Unique Identifier by analysis</td>
+</tr>
+</tbody></table>
+<h2 id='get-cplt'>Get CPLT</h2>
+<p>In Miu Contracts, the analysis runs on a Portfolio or a Program; each is a combination of one or many Contracts(Could be thousands). The downloaded table lists the events in each simulated analysis period, the occurrence date, and the corresponding gross loss. Those losses get broken down to the underlying exposure level for each event. And so every row produced would have the following:</p>
+<h3 id='cplt-data-object'>CPLT Data Object</h3>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+    "cpltUuid": "c65d8ed0-7834-4f28-a8ff-01b4043b113f",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  }
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cpltUuid</td>
+<td>Unique Identifier for a CPLT</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Date-time of the loss occurrence</td>
+</tr>
+<tr>
+<td>eventId</td>
+<td>-</td>
+</tr>
+<tr>
+<td>exposureUuid</td>
+<td>Uuid of the <a href="https://jdaif.github.io/slate/?python#exposure">Exposure</a> that contained the event</td>
+</tr>
+<tr>
+<td>periodNumber</td>
+<td>Simulation Period that produced that Loss</td>
+</tr>
+<tr>
+<td>payout</td>
+<td>Value amount of the loss</td>
+</tr>
+<tr>
+<td>lossQuantile</td>
+<td>Loss Quantile from the YLT</td>
+</tr>
+</tbody></table>
+<h3 id='get-cplt-by-analysis'>Get CPLT by Analysis</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_cplt_data</span><span class="p">(</span><span class="s">'31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://analysis.miuinsights.com/v3/analyses/31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
+</code></pre></div>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>[
+  {
+    "cpltUuid": "c65d8ed0-7834-4f28-a8ff-01b4043b113f",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  },
+  {
+    "cpltUuid": "343000f2-3a3a-4c1b-a16f-d365a64e6619",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  },
+  {
+    "cpltUuid": "1d5b3c13-21c9-47c6-a907-09f05f7bbd44",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  }
+]
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>analysis  Uuid</td>
+<td>Unique Identifier by analysis</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+In this json, the CPLT data output was limited to 1 period
+</aside>
+<h3 id='get-cplt-by-cplt-uuid'>Get CPLT by CPLT Uuid</h3>
+<p>Instead of retrieving the CPLT for the entire analysis, we can limit it to a specific contract by providing its CPLT Uuid</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_cplt_data_via_uuid</span><span class="p">(</span><span class="s">'31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span><span class="p">)</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> <span class="s1">'GET'</span> <span class="se">\</span>
+  <span class="s1">'https://analysis.miuinsights.com/v3/cplts/343000f2-3a3a-4c1b-a16f-d365a64e6619/data?periodStart=1&amp;periodEnd=1&amp;includeExposureMetadata=false'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer QC6f6uhFdykBmmT9wXBDfTpACyScORaTtLnIVmkg'</span>
+</code></pre></div>
+<blockquote>
+<p>Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>[
+  {
+    "cpltUuid": "343000f2-3a3a-4c1b-a16f-d365a64e6619",
+    "date": "2022-09-28T00:00:01",
+    "eventId": 2873023,
+    "exposureUuid": "99c2a627-1cc0-4581-b1e0-3cb72e9d788d",
+    "periodNumber": 1,
+    "payout": 100000000,
+    "lossQuantile": 0.410706755006686
+  }
+]
+
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CPLT  Uuid</td>
+<td>Unique Identifier by analysis</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+In this json, the CPLT data output was limited to 1 period
+</aside>
+<h1 id='references'>References</h1>
+<p>Since API calls require the use of Uuid instead of codes, the functions below facilitate the transition between Uuid and code for the most commonly used Uuids:
+a.  Get_Peril_Uuid: Peril Uuid using Peril code
+b.  Get_Region_Uuid: Region Uuid using the Region code
+c.  Get_data_version_Uuid: Get the dataversion Uuid by providing the dataversion code example: 21, 18, etc.,
+d.  Get_sub_region_resolution_uuid: sometimes, we are required to provide the sub_region resolution when pulling out data. Example Country, state, etc., 
+e.  Get_Region_name: In the opposite direction, this function retrieves the region name of a specific Region Uuid.
+f.  Get_Peril_name: this function retrieves the Peril name for a given UUID.
+g.  Get_LOB_name: This function returns the Line of the business name given the Uuid.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code>
+<span class="k">def</span> <span class="nf">Get_Peril_Uuid</span><span class="p">(</span><span class="n">Peril</span><span class="p">):</span>
+    <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">peril</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">Peril_Uuid</span> <span class="o">=</span> <span class="n">Peril_Uuid</span><span class="p">[</span><span class="n">Peril_Uuid</span><span class="p">[</span><span class="s">'code'</span><span class="p">]</span><span class="o">==</span><span class="n">Peril</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Peril_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">Get_Region_Uuid</span><span class="p">(</span><span class="n">Region</span><span class="p">):</span>
+    <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">is_sub_region</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">exclude_bottom_regions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">Region_Uuid2</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">is_sub_region</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">exclude_bottom_regions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_Uuid1</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">Region_Uuid1</span> <span class="o">=</span> <span class="n">Region_Uuid1</span><span class="p">[[</span><span class="s">'uuid'</span><span class="p">,</span><span class="s">'description'</span><span class="p">,</span><span class="s">'code'</span><span class="p">]]</span>
+    <span class="n">Region_Uuid2</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_Uuid2</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">Region_Uuid2</span> <span class="o">=</span> <span class="n">Region_Uuid2</span><span class="p">[[</span><span class="s">'uuid'</span><span class="p">,</span> <span class="s">'description'</span><span class="p">,</span><span class="s">'code'</span><span class="p">]]</span>
+    <span class="n">Region_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">Region_Uuid1</span><span class="p">,</span><span class="n">Region_Uuid2</span><span class="p">])</span>
+    <span class="n">Region_Uuid</span> <span class="o">=</span> <span class="n">Region_Uuid</span><span class="p">[</span><span class="n">Region_Uuid</span><span class="p">[</span><span class="s">'code'</span><span class="p">]</span><span class="o">==</span><span class="n">Region</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Region_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">Get_data_version_Uuid</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
+    <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">data_version</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">include_deleted</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">version_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">version_Uuid</span> <span class="o">=</span> <span class="n">version_Uuid</span><span class="p">[</span><span class="n">version_Uuid</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">==</span><span class="n">version</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">version_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">Get_sub_region_resolution_uuid</span><span class="p">(</span><span class="n">SBR</span><span class="p">):</span>
+    <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">resolution</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">SBR_Uuid</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">SBR_Uuid</span> <span class="o">=</span> <span class="n">SBR_Uuid</span><span class="p">[</span><span class="n">SBR_Uuid</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">==</span><span class="n">SBR</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">SBR_Uuid</span><span class="p">[</span><span class="s">'uuid'</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">Get_Region_name</span><span class="p">(</span><span class="n">Region_Uuid</span><span class="p">):</span>
+    <span class="n">Region_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">region</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">Region_Uuid</span><span class="p">)</span>
+    <span class="n">Region_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Region_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Region_name</span> <span class="o">=</span><span class="n">Region_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Region_name</span>
+
+<span class="k">def</span> <span class="nf">Get_Peril_name</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">):</span>
+    <span class="n">Peril_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">peril</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">Peril_Uuid</span><span class="p">)</span>
+    <span class="n">Peril_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Peril_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Peril_name</span> <span class="o">=</span><span class="n">Peril_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Peril_name</span>
+
+<span class="k">def</span> <span class="nf">Get_LOB_name</span><span class="p">(</span><span class="n">LOB_Uuid</span><span class="p">):</span>
+    <span class="n">LOB_name</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">lob</span><span class="p">.</span><span class="n">get_via_uuid</span><span class="p">(</span><span class="n">LOB_Uuid</span><span class="p">)</span>
+    <span class="n">LOB_name</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">LOB_name</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">LOB_name</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span>
+</code></pre></div><h1 id='common-workflows'>Common Workflows</h1>
+<p>Now that we covered all Objects and basic calls, below we have some common workflows that utilize a sequence of calls or an iteration of the same call to achieve some of the most common workflows.</p>
+<h2 id='get-portfolio-table-and-create-new-portfolio'>Get Portfolio table and create new Portfolio</h2>
+<p>When we create a portfolio manually in the UI or through the API, we can retrieve the metadata for this Portfolio and create a report or create a new portfolio using the Contract UUIDs and participation shares.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'expand_frame_repr'</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="n">Credentials</span> <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Get_contract_dic</span><span class="p">(</span><span class="n">Contract_dic</span><span class="p">):</span>
+    <span class="n">uuid</span><span class="o">=</span> <span class="n">Contract_dic</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'uuid'</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Contract_dic</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">)</span>
+    <span class="n">participation</span> <span class="o">=</span> <span class="n">Contract_dic</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'participation'</span><span class="p">)</span>
+    <span class="n">isin</span> <span class="o">=</span> <span class="n">Contract_dic</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'isin'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">uuid</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">participation</span><span class="p">,</span> <span class="n">isin</span>
+
+<span class="k">def</span> <span class="nf">Get_spread</span><span class="p">(</span><span class="n">program_revision</span><span class="p">):</span>
+    <span class="n">Program</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">program</span><span class="p">.</span><span class="n">get_by_revision_uuid</span><span class="p">(</span><span class="n">program_revision</span><span class="p">)</span>
+    <span class="n">Program</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Program</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">notes</span><span class="o">=</span> <span class="n">Program</span><span class="p">[</span><span class="s">'program'</span><span class="p">][</span><span class="s">'notes'</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">notes</span>
+
+<span class="k">def</span> <span class="nf">Get_Portfolio_table</span><span class="p">(</span><span class="n">Portfolio_revision_Uuid</span><span class="p">):</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">portfolio</span><span class="p">.</span><span class="n">get_by_revision_uuid</span><span class="p">(</span><span class="n">Portfolio_revision_Uuid</span><span class="p">)</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Portfolio</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Portfolio</span><span class="p">[</span><span class="s">'contractsByProgram'</span><span class="p">])</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">.</span><span class="n">explode</span><span class="p">(</span><span class="s">'contracts'</span><span class="p">)</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">[[</span><span class="s">'programRevisionUuid'</span><span class="p">,</span><span class="s">'programName'</span><span class="p">,</span><span class="s">'programRevisionResetYear'</span><span class="p">,</span><span class="s">'contracts'</span><span class="p">,</span><span class="s">'dataVersionUuids'</span><span class="p">]]</span>
+    <span class="n">Portfolio</span><span class="p">[</span><span class="s">'contracts'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Portfolio</span><span class="p">[</span><span class="s">'contracts'</span><span class="p">].</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">Get_contract_dic</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="n">Portfolio</span><span class="p">[[</span><span class="s">'uuid'</span><span class="p">,</span> <span class="s">'name'</span><span class="p">,</span> <span class="s">'participation'</span><span class="p">,</span> <span class="s">'isin'</span><span class="p">]]</span> <span class="o">=</span><span class="n">Portfolio</span><span class="p">[</span><span class="s">'contracts'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">Portfolio</span> <span class="o">=</span><span class="n">Portfolio</span><span class="p">[[</span><span class="s">'programRevisionUuid'</span><span class="p">,</span><span class="s">'programName'</span><span class="p">,</span><span class="s">'programRevisionResetYear'</span><span class="p">,</span><span class="s">'uuid'</span><span class="p">,</span><span class="s">'name'</span><span class="p">,</span><span class="s">'isin'</span><span class="p">,</span><span class="s">'participation'</span><span class="p">]]</span>
+    <span class="n">Portfolio</span><span class="p">[</span><span class="s">'notes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Portfolio</span><span class="p">[</span><span class="s">'programRevisionUuid'</span><span class="p">].</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">Get_spread</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">Portfolio</span>
+
+
+<span class="c1"># The function below takes the Contract Uuid and the participation from a dataframe and creates a new Portfolio:
+# Parameters are
+# Portfolio name
+# Revision name
+# Table with Contract Uuids and participation
+</span>
+<span class="k">def</span> <span class="nf">Create_Portfolio</span><span class="p">(</span><span class="n">Portfolio</span><span class="p">,</span><span class="n">Portfolio_name</span><span class="p">,</span><span class="n">Revision_name</span><span class="p">):</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">[[</span><span class="s">'uuid'</span><span class="p">,</span> <span class="s">'participation'</span><span class="p">]]</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s">"records"</span><span class="p">)</span>
+    <span class="n">Portfolio</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Portfolio</span><span class="p">)</span>
+    <span class="n">Portfolio_Json</span> <span class="o">=</span><span class="p">{</span>
+        <span class="s">"name"</span><span class="p">:</span> <span class="n">Portfolio_name</span><span class="p">,</span>
+        <span class="s">"portfolioRevisionName"</span><span class="p">:</span> <span class="n">Revision_name</span><span class="p">,</span>
+        <span class="s">"contracts"</span><span class="p">:</span> <span class="n">Portfolio</span>
+    <span class="p">}</span>
+    <span class="n">Portfolio_Json</span> <span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">Portfolio_Json</span><span class="p">)</span>
+    <span class="n">Credentials</span><span class="p">.</span><span class="n">portfolio</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">Portfolio_Json</span><span class="p">)</span>
+
+<span class="n">Portfolio</span> <span class="o">=</span> <span class="n">Get_Portfolio_table</span><span class="p">(</span><span class="s">"b8d9a144-738e-4159-81f0-066968d10ef7"</span><span class="p">)</span>
+<span class="n">Portfolio_name</span><span class="o">=</span> <span class="s">'Portfolio Test'</span>
+<span class="n">Revision_name</span> <span class="o">=</span> <span class="s">'Revision Test 1'</span>
+<span class="n">Create_Portfolio</span><span class="p">(</span><span class="n">Portfolio</span><span class="p">)</span>
+
+
+</code></pre></div><h2 id='get-portfolio-table-and-create-new-portfolio-2'>Get Portfolio table and create new Portfolio</h2>
+<p>When we create a portfolio manually in the UI or through the API, we can retrieve the metadata for this Portfolio and create a report or create a new portfolio using the Contract UUIDs and participation shares.</p>
+<h3 id='get_analysis_info'>Get_Analysis_Info</h3>
+<p>By providing the analysis_Uuid, this call returns a data frame that contains information about the analysis, including portfolio UUID, portfolio revision UUID, risk start date, risk end date, analysis start and end time, and others.</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'expand_frame_repr'</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+
+<span class="n">Credentials</span>  <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">Get_Analysis_Info</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">):</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_analysis_by_uuid</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Analysis</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Analysis_Info_1</span> <span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Analysis</span><span class="p">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">14</span><span class="p">])</span>
+    <span class="n">Analysis_Info_2</span> <span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Analysis</span><span class="p">.</span><span class="n">items</span><span class="p">())[</span><span class="mi">15</span><span class="p">:</span><span class="mi">18</span><span class="p">])</span>
+    <span class="n">Analysis_Info</span> <span class="o">=</span> <span class="n">Analysis_Info_1</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Analysis_Info_2</span><span class="p">)</span>
+    <span class="n">Analysis_Info</span> <span class="o">=</span><span class="n">Analysis_Info</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s">'Object'</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="s">'Description'</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">Analysis_Info</span>
+<span class="n">analysis_Uuid</span> <span class="o">=</span> <span class="s">'31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span>
+<span class="n">Analysis_Name</span><span class="o">=</span><span class="n">Get_analysis_name</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+<span class="n">Analysis_Info</span> <span class="o">=</span><span class="n">Get_Analysis_Info</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+<span class="n">Analysis_Info</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"Analysis_Info_"</span><span class="o">+</span><span class="n">Analysis_Name</span><span class="o">+</span><span class="s">".csv"</span><span class="p">)</span>
+
+</code></pre></div>
+<p>Response
+<img src="images/img_7.png" alt="img_7.png" /></p>
+<h3 id='get_analysis_cplt_info'>Get_Analysis_CPLT_Info</h3>
+<p>Get_Analysis_CPLT_Info – F1.2: This function returns a table containing the CPLTUUID and description for each CPLT generated by the analysis</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'expand_frame_repr'</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+
+<span class="n">Credentials</span>  <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Get_Analysis_CPLT_INFO</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">):</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_analysis_by_uuid</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Analysis</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Analysis_Name</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'analysisName'</span><span class="p">)</span>
+    <span class="n">Analysis_CPLT</span> <span class="o">=</span><span class="n">Analysis</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'cplts'</span><span class="p">)</span>
+    <span class="n">Analysis_CPLT</span> <span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Analysis_CPLT</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Analysis_CPLT</span>
+
+<span class="k">def</span> <span class="nf">Get_analysis_name</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">):</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_analysis_by_uuid</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Analysis</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Analysis_Name</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'analysisName'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Analysis_Name</span>
+
+<span class="n">analysis_Uuid</span> <span class="o">=</span> <span class="s">'31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span>
+<span class="n">Analysis_Name</span><span class="o">=</span><span class="n">Get_analysis_name</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+<span class="n">Analysis_CPLT_INFO</span> <span class="o">=</span> <span class="n">Get_Analysis_CPLT_INFO</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+<span class="n">Analysis_CPLT_INFO</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"Analysis_CPLT_Info_"</span><span class="o">+</span><span class="n">Analysis_Name</span><span class="o">+</span><span class="s">".csv"</span><span class="p">)</span>
+</code></pre></div>
+<p>Response</p>
+
+<p><img src="images/img_8.png" alt="img_8.png" /></p>
+<h3 id='iv-get_analysis_ylt'>iv. Get_Analysis_YLT</h3>
+<p>This call returns a list with the UUIDs of the stochastic/scenario/Real-time profiles used in the analysis. The function links these UUIDs to another call and returns the description and Peril/Region of every YLT</p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
+<span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'expand_frame_repr'</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+
+<span class="n">Credentials</span>  <span class="o">=</span> <span class="n">Clients</span><span class="p">.</span><span class="n">from_credentials</span><span class="p">(</span><span class="n">user_name</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">UserInfo</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">Environment</span><span class="p">.</span><span class="n">PROD</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Get_Analysis_YLTS</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">):</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_analysis_by_uuid</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Analysis</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Analysis_YLT</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'stochasticYltUuids'</span><span class="p">)</span>
+    <span class="n">Analysis_YLT</span> <span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Analysis_YLT</span><span class="p">)</span>
+    <span class="n">Analysis_YLT</span> <span class="o">=</span><span class="n">Analysis_YLT</span><span class="p">.</span><span class="n">rename</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span><span class="s">'uuid'</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="s">'columns'</span><span class="p">)</span>
+    <span class="n">YLTs</span><span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">yltlibrary</span><span class="p">.</span><span class="n">get_by_data_version</span><span class="p">(</span><span class="n">data_version</span><span class="o">=</span><span class="n">Analysis</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'dataVersionUuid'</span><span class="p">))</span>
+    <span class="n">YLTs</span><span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">YLTs</span><span class="p">.</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">Analysis_YLT</span><span class="o">=</span> <span class="n">Analysis_YLT</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">YLTs</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s">'uuid'</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s">'left'</span><span class="p">)</span>
+    <span class="n">Analysis_YLT</span><span class="o">=</span> <span class="n">Analysis_YLT</span><span class="p">[[</span><span class="s">'uuid'</span><span class="p">,</span><span class="s">'perilCode'</span><span class="p">,</span><span class="s">'regionCode'</span><span class="p">,</span><span class="s">'description'</span><span class="p">,</span><span class="s">'typeCode'</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">Analysis_YLT</span>
+
+<span class="k">def</span> <span class="nf">Get_analysis_name</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">):</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">.</span><span class="n">analysis</span><span class="p">.</span><span class="n">get_analysis_by_uuid</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+    <span class="n">Analysis</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Analysis</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">Analysis_Name</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'analysisName'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Analysis_Name</span>
+
+<span class="c1">### Calling the functions above and saving them into CSVs
+</span><span class="n">analysis_Uuid</span> <span class="o">=</span> <span class="s">'31d6a477-fcc2-4d2f-bb4c-71d9d7aa393b'</span>
+<span class="n">Analysis_Name</span><span class="o">=</span><span class="n">Get_analysis_name</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+<span class="n">Analysis_YLTS</span> <span class="o">=</span> <span class="n">Get_Analysis_YLTS</span><span class="p">(</span><span class="n">analysis_Uuid</span><span class="p">)</span>
+<span class="n">Analysis_YLTS</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"CPLT_"</span><span class="o">+</span><span class="n">Analysis_Name</span><span class="o">+</span><span class="s">".csv"</span><span class="p">)</span>
+</code></pre></div>
+<p>Response</p>
+
+<p><img src="images/img_10.png" alt="img_10.png" /></p>
+<h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
