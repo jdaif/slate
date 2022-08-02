@@ -9,7 +9,7 @@
             name="description"
             content="Documentation for Miu Contracts API"
         >
-    <title>MIU Contracts API</title>
+    <title>Miu Contracts API</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -323,6 +323,9 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#python-library" class="toc-h1 toc-link" data-title="Python Library">Python Library</a>
+          </li>
+          <li>
             <a href="#exposure-library" class="toc-h1 toc-link" data-title="Exposure Library">Exposure Library</a>
               <ul class="toc-list-h2">
                   <li>
@@ -594,18 +597,16 @@
 
 <p>The Miu APIs are REST APIs and use JSON format requests and responses.</p>
 
-<p>In general, all programming languages that can access RESful services can be used to access Miu APIs. We recommend the following languages:</p>
+<p>In general, all programming languages that can access Restful services can be used to access Miu APIs. We recommend using Python since users can take advantage of the Miu Python API library. The library is comprehensive and was developed to expedite user integration.Clients can also choose from the following languages:</p>
 
 <ul>
-<li><p>Python</p></li>
 <li><p>Java</p></li>
 <li><p>C#</p></li>
 <li><p>JavaScrip</p></li>
 <li><p>Visual Basic</p></li>
-<li><p>R</p>
-<h1 id='miu-client-api-library-install'>Miu client-api library install:</h1></li>
+<li><p>R</p></li>
 </ul>
-
+<h1 id='miu-client-api-library-install'>Miu client-api library install:</h1>
 <blockquote>
 <p>To import Miu API Python library, you will need to import both commonsutils.clients and apiclient.exposurelibrary.elt_client</p>
 </blockquote>
@@ -618,13 +619,13 @@
 <p>Make sure to replace <code>UserInfo</code> with your credentials.</p>
 </blockquote>
 
-<p>Quick guide on how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu API python Library: </p>
+<p>Quick guide on how to build a virtual environment in PyCharm that is fully compatible with our API library and how to install the Miu API python Library: </p>
 
 <ol>
-<li> Create a new Miu Contracts dedicated environment in pycharm.</li>
-<li> You can set up a virtual environment to install the dependencies for the Miu-API python without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.</li>
-<li> Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users[user]\PycharmProjects\Python2\venv\Scripts</li>
-<li> Open the Command Prompt in Windows and redirect to the above directory using the following script: Cd C:\Users[user]\PycharmProjects\Python2\venv\Scripts</li>
+<li> Create a new Miu Contracts dedicated environment in <a href="https://www.jetbrains.com/pycharm/download/#section=windows">PyCharm Community or Professional</a>.</li>
+<li> You can set up a virtual environment to install the dependencies for the Miu-API Client without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.</li>
+<li> Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users[user]\PyCharmProjects\Python2\venv\Scripts</li>
+<li> Open the Command Prompt in Windows and redirect to the above directory using the following script: Cd C:\Users[user]\PyCharmProjects\Python2\venv\Scripts</li>
 <li> Run the following code to install requirements to the new virtual environment : pip install -r requirements.txt</li>
 <li> Run the following code to install miu-api client : pip install miu-api-client --extra-index-url=https://pypi.miuinsights.com/srwz2bogyPJO7NRcOA8cPO1Q0HXpnYyGfU55TibhVKV </li>
 </ol>
@@ -653,17 +654,28 @@ curl <span class="nt">-X</span> <span class="s1">'POST'</span> <span class="se">
 
 <p>Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: <a href="https://www.miuinsights.com/login?returnUrl=contracts">MIU Insight</a>.</p>
 
-<p>MIU Contracts expects an API token with every API request to the server. </p>
+<p>Miu Contracts expects an API token with every API request to the server. </p>
 
 <p><code>Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp</code></p>
 
 <aside class="notice">
 Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization
 </aside>
-<h1 id='exposure-library'>Exposure Library</h1>
-<p>In Miu Contracts, users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors based on ELT or HD-PLT ILCs. Those objects get labeled as SF_ELT or SF_PLT.</p>
+<h1 id='python-library'>Python Library</h1>
+<p>The Miu API client Python Library was developed to save our users the pain of developing all API calls from scratch. </p>
 
-<p>When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. </p>
+<p>The API Python library organizes Miu Contract&#39;s objects into separate sections; this way of structuring things makes coding much more straightforward and scripts shorter. You can recursively expand the calls available for every Object by specifying nested calls after the dot. This document provides:</p>
+
+<ul>
+<li>A description and attributes for every Object</li>
+<li>Required and optional parameters for every call</li>
+<li>Quick codes that could simplify your use cases</li>
+<li>Python scripts for major workflows</li>
+</ul>
+<h1 id='exposure-library'>Exposure Library</h1>
+<p>In Miu Contracts, users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors based on ELT or HD-PLT ILCs (useful for ILWs) . Those objects get labeled as SF_ELT or SF_PLT.</p>
+
+<p>When importing Event Loss tables for Peril-Regions modeled by RMS, EventIds in either ELTs or HD-PLTs are matched to the events under Miu Contracts&#39; Library and risk data is automatically assigned to its respective Peril and Regions for any data version. EventId objects can be accessed using the sequence of calls that is covered in the next section. </p>
 
 <p>Users can import event loss tables (ELTs)  without associating them with RMS peril models. In conjunction with the ability to import YLTs, users can model contract losses upon event-based exposures that reflect custom or third-party views of risk. </p>
 
@@ -672,13 +684,13 @@ Available Data versions for:  ELT: V17, V18 and V21  ||  HD-PLT: V1.0 and V2.0
 </aside>
 
 <aside class="notice">
-When importing a third-party view of risk, choose the UNMD data version.
+When importing a third-party view of risk, select UNMD as your data version.
 </aside>
 <h2 id='event'>Event</h2>
-<p>Under this section we find the calls to retrieve Event set Information from Miu Contracts EventInfo library. There is a unique Event-Info table for every Peril, Region, and Data-version combination. </p>
+<p>Under this section we find the calls to retrieve Event set Information from the Miu Contracts&#39; EventInfo library. There is a unique Event-Info table for every Peril, Region, and Data-version combination. </p>
 <h3 id='event-catalogue-object'>Event Catalogue Object</h3>
 <blockquote>
-<p>Event Object</p>
+<p>Event Catalog Object</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="nl">"perilUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b5a2bd67-f6f2-433f-8a43-76d35b1da722"</span><span class="p">,</span><span class="w">
@@ -698,19 +710,19 @@ When importing a third-party view of risk, choose the UNMD data version.
 </thead><tbody>
 <tr>
 <td>Peril Uuid</td>
-<td>Universal Unique identifier  provided for every Peril across regions</td>
+<td>Universal Unique identifier for every Peril across regions</td>
 </tr>
 <tr>
 <td>Peril Code</td>
-<td>Code identifier provided for every Peril across regions</td>
+<td>Code identifier  for every Peril across regions</td>
 </tr>
 <tr>
 <td>Region Uuid</td>
-<td>Universal Unique identifier provided for every Region across perils</td>
+<td>Universal Unique identifier  for every Region across perils</td>
 </tr>
 <tr>
 <td>Region Code</td>
-<td>Code identifier provided for every Region across perils</td>
+<td>Code identifier  for every Region across perils</td>
 </tr>
 <tr>
 <td>Data Version</td>
@@ -718,7 +730,7 @@ When importing a third-party view of risk, choose the UNMD data version.
 </tr>
 </tbody></table>
 <h3 id='get-event-catalogs'>Get Event Catalogs</h3>
-<p>This call lists all available Event catalogues.</p>
+<p>This call lists all available Event catalogs. You can use them to identify what Models are available in your library by Peril, Region, or data version.</p>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">commons.utils.clients</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">apiclient.exposurelibrary.elt_client</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -806,11 +818,11 @@ When importing a third-party view of risk, choose the UNMD data version.
 </thead><tbody>
 <tr>
 <td>eventId</td>
-<td>Id provided by RMS for every event</td>
+<td>Event&#39;s unique identifier</td>
 </tr>
 <tr>
 <td>perilUuid</td>
-<td>Unique Peril identifier across all Regions</td>
+<td>Universal Unique identifier for every Peril across regions</td>
 </tr>
 <tr>
 <td>perilCode</td>
@@ -1234,10 +1246,6 @@ This call accepts one or a list of items for all the parameters mentioned above.
 <td>Id provided by RMS for every event</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember 
-</aside>
 <h3 id='find-exposure-39-s-peril-amp-region'>Find exposure&#39;s Peril &amp; Region</h3>
 <p>This call returns the Peril/Region for an exposure Uuid.</p>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">UserInfo</span>
@@ -1581,8 +1589,9 @@ The financial model takes the ground up PLT for each location coverage as an inp
 <h1 id='contract'>Contract</h1>
 <p>A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can be one or many contracts in a program.</p>
 <h2 id='contract-object'>Contract Object</h2>
-<p>This is an object representing the Contract details. You can retrieve it to see the properties of your Contract and its structure.
-The structure varies from one Contract to another depending on the contract calculation template, number of attached exposures, and the loss flow.</p>
+<p>You can retrieve the Contract Object to view its properties, calculation template parameters, attached exposures, inured losses, and other metadata.</p>
+
+<p>The structure varies from one Contract to another depending on the contract calculation template, the number of attached exposures, and the loss flow.</p>
 
 <blockquote>
 <p>Contract Object</p>
@@ -2098,7 +2107,7 @@ The description for each program revision  returned by this call is less detaile
 </tr>
 <tr>
 <td>finalizedBy</td>
-<td>Uuid of teh user that finalized the revision</td>
+<td>Uuid of the user that finalized the revision</td>
 </tr>
 <tr>
 <td>companyUuid</td>
