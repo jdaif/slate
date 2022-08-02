@@ -1,5 +1,5 @@
 ---
-title: MIU Contracts API
+title: Miu Contracts API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -27,9 +27,7 @@ Welcome. This guide is a general overview of the Miu micro-services and APIs.
 
 The Miu APIs are REST APIs and use JSON format requests and responses.
 
-In general, all programming languages that can access RESful services can be used to access Miu APIs. We recommend the following languages:
-
-- Python
+In general, all programming languages that can access Restful services can be used to access Miu APIs. We recommend using Python since users can take advantage of the Miu Python API library. The library is comprehensive and was developed to expedite user integration.Clients can also choose from the following languages:
 
 - Java
 
@@ -40,6 +38,8 @@ In general, all programming languages that can access RESful services can be use
 - Visual Basic
 
 - R
+
+
 # Miu client-api library install:
 
 > To import Miu API Python library, you will need to import both commonsutils.clients and apiclient.exposurelibrary.elt_client
@@ -57,12 +57,12 @@ Credentials = Clients.from_credentials(user_name=UserInfo.user_name, password=Us
 
 > Make sure to replace `UserInfo` with your credentials.
 
-Quick guide on how to build a virtual environment in pycharm that is fully compatible with our API library and how to install the Miu API python Library: 
+Quick guide on how to build a virtual environment in PyCharm that is fully compatible with our API library and how to install the Miu API python Library: 
  
-1.	Create a new Miu Contracts dedicated environment in pycharm.
-2.	You can set up a virtual environment to install the dependencies for the Miu-API python without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.
-4.	Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users\[user]\PycharmProjects\Python2\venv\Scripts
-5.	Open the Command Prompt in Windows and redirect to the above directory using the following script: Cd C:\Users\[user]\PycharmProjects\Python2\venv\Scripts
+1.	Create a new Miu Contracts dedicated environment in [PyCharm Community or Professional](https://www.jetbrains.com/pycharm/download/#section=windows).
+2.	You can set up a virtual environment to install the dependencies for the Miu-API Client without it being affected by general Python updates in your main Python enviroment. You can set up your virtual environment with your current Python version.
+4.	Copy the requirements file to the script folder under the location directory of your virtual environment. C:\Users\[user]\PyCharmProjects\Python2\venv\Scripts
+5.	Open the Command Prompt in Windows and redirect to the above directory using the following script: Cd C:\Users\[user]\PyCharmProjects\Python2\venv\Scripts
 6.	Run the following code to install requirements to the new virtual environment : pip install -r requirements.txt
 7.	Run the following code to install miu-api client : pip install miu-api-client --extra-index-url=https://pypi.miuinsights.com/srwz2bogyPJO7NRcOA8cPO1Q0HXpnYyGfU55TibhVKV 
  
@@ -98,7 +98,7 @@ curl -X 'POST' \
 
 Miu Contracts generates an access token when provided with Miu insight’s user_name and password. If you need to reset your password, please access the following link: [MIU Insight](https://www.miuinsights.com/login?returnUrl=contracts).
 
-MIU Contracts expects an API token with every API request to the server. 
+Miu Contracts expects an API token with every API request to the server. 
 
 `Authorization:WiHwMQeD580lL0bjTmr76maLe2EDJxDtaIn4TQgp `
 
@@ -106,12 +106,27 @@ MIU Contracts expects an API token with every API request to the server.
 Access tokens are used in token-based authentication to allow an application to access an API. The application receives an access token after a user successfully authenticates and authorizes access, then passes the access token as a credential when it calls the target API. The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions specified by the scope that was granted during authorization
 </aside>
 
+
+# Python Library
+
+The Miu API client Python Library was developed to save our users the pain of developing all API calls from scratch. 
+
+The API Python library organizes Miu Contract's objects into separate sections; this way of structuring things makes coding much more straightforward and scripts shorter. You can recursively expand the calls available for every Object by specifying nested calls after the dot. This document provides:
+
+- A description and attributes for every Object
+- Required and optional parameters for every call
+- Quick codes that could simplify your use cases
+- Python scripts for major workflows
+
+
+
+
 # Exposure Library
 
 
-In Miu Contracts, users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors based on ELT or HD-PLT ILCs. Those objects get labeled as SF_ELT or SF_PLT.
+In Miu Contracts, users can import Event Loss tables, Period Loss tables, or HD Period Loss tables. Clients can also create share factors based on ELT or HD-PLT ILCs (useful for ILWs) . Those objects get labeled as SF_ELT or SF_PLT.
 
-When importing Loss tables for Peril-Regions modeled by RMS, ELTs, and HD-PLTs are matched to the Event library in Miu Contracts and assigned their respective Peril and Regions for the corresponding data version. 
+When importing Event Loss tables for Peril-Regions modeled by RMS, EventIds in either ELTs or HD-PLTs are matched to the events under Miu Contracts' Library and risk data is automatically assigned to its respective Peril and Regions for any data version. EventId objects can be accessed using the sequence of calls that is covered in the next section. 
 
 Users can import event loss tables (ELTs)  without associating them with RMS peril models. In conjunction with the ability to import YLTs, users can model contract losses upon event-based exposures that reflect custom or third-party views of risk. 
 
@@ -129,17 +144,17 @@ Available Data versions for:  ELT: V17, V18 and V21  ||  HD-PLT: V1.0 and V2.0
 </aside>
 
 <aside class="notice">
-When importing a third-party view of risk, choose the UNMD data version.
+When importing a third-party view of risk, select UNMD as your data version.
 </aside>
 
 ## Event 
 
-Under this section we find the calls to retrieve Event set Information from Miu Contracts EventInfo library. There is a unique Event-Info table for every Peril, Region, and Data-version combination. 
+Under this section we find the calls to retrieve Event set Information from the Miu Contracts' EventInfo library. There is a unique Event-Info table for every Peril, Region, and Data-version combination. 
 
 
 ### Event Catalogue Object
 
-> Event Object
+> Event Catalog Object
 
 ```json
   {
@@ -153,19 +168,20 @@ Under this section we find the calls to retrieve Event set Information from Miu 
 
 Catalog Object includes:
 
-| Attributes   | Description                                                          |
-|--------------|----------------------------------------------------------------------|
-| Peril Uuid   | Universal Unique identifier  provided for every Peril across regions | 
-| Peril Code   | Code identifier provided for every Peril across regions              | 
-| Region Uuid  | Universal Unique identifier provided for every Region across perils  |
-| Region Code  | Code identifier provided for every Region across perils              |
-| Data Version | Data version associated with this catalogue                          |
+| Attributes   | Description                                                 |
+|--------------|-------------------------------------------------------------|
+| Peril Uuid   | Universal Unique identifier for every Peril across regions  | 
+| Peril Code   | Code identifier  for every Peril across regions             | 
+| Region Uuid  | Universal Unique identifier  for every Region across perils |
+| Region Code  | Code identifier  for every Region across perils             |
+| Data Version | Data version associated with this catalogue                 |
 
 
 
 ### Get Event Catalogs  
 
-This call lists all available Event catalogues.
+This call lists all available Event catalogs. You can use them to identify what Models are available in your library by Peril, Region, or data version.
+
 
 
 ```python
@@ -247,18 +263,18 @@ curl -X 'GET' \
   
 ```
 
-| Attributes        | Description                                         |
-|-------------------|-----------------------------------------------------|
-| eventId           | Id provided by RMS for every event                  | 
-| perilUuid         | Unique Peril identifier across all Regions          | 
-| perilCode         | Unique Peril code across all Regions                |
-| primaryRegionUuid | Unique Parent Region identifier across all Perils   | 
-| primaryRegionCode | Unique Parent Region code across all Perils         |
-| dataVersionUuid   | Unique data version Identifier                      | 
-| description       | Event description provided by RMS.                  |
-| rate              | Default RMS rate for an event. Example LTR for NAHU | 
-| alternativeRate   | Alternative rate for an event. Example MTR for NAHU |
-| landFallInfo      | Available for every Landfall                        | 
+| Attributes        | Description                                                 |
+|-------------------|-------------------------------------------------------------|
+| eventId           | Event's unique identifier                                   | 
+| perilUuid         | Universal Unique identifier for every Peril across regions  | 
+| perilCode         | Unique Peril code across all Regions                        |
+| primaryRegionUuid | Unique Parent Region identifier across all Perils           | 
+| primaryRegionCode | Unique Parent Region code across all Perils                 |
+| dataVersionUuid   | Unique data version Identifier                              | 
+| description       | Event description provided by RMS.                          |
+| rate              | Default RMS rate for an event. Example LTR for NAHU         | 
+| alternativeRate   | Alternative rate for an event. Example MTR for NAHU         |
+| landFallInfo      | Available for every Landfall                                | 
 
 <aside class="notice">
 Events are inherited from parent regions. For example: the US and Mexico have the same Event info since they share the same Parent Region, North America.
@@ -565,9 +581,6 @@ curl -X 'GET' \
 
 
 
-<aside class="success">
-Remember 
-</aside>
 
 
 ### Find exposure's Peril & Region
@@ -893,8 +906,11 @@ The financial model takes the ground up PLT for each location coverage as an inp
 A Contract represents an individual ILS class or reinsurance layer (i.e. within a treaty or bond). There can be one or many contracts in a program.
 
 ## Contract Object
-This is an object representing the Contract details. You can retrieve it to see the properties of your Contract and its structure.
-The structure varies from one Contract to another depending on the contract calculation template, number of attached exposures, and the loss flow.
+
+You can retrieve the Contract Object to view its properties, calculation template parameters, attached exposures, inured losses, and other metadata.
+
+The structure varies from one Contract to another depending on the contract calculation template, the number of attached exposures, and the loss flow.
+
 
 > Contract Object
 
@@ -962,6 +978,7 @@ The structure varies from one Contract to another depending on the contract calc
 
 
 ## Find Contracts
+
 To find Contracts by program revision, uuid, program status, isPublic status, ISIN or to filter by latest revision or exposure uuid, you can use this call.
 
 ```python
@@ -1327,7 +1344,7 @@ The table below contains the attributes returned when calling a program object -
 | modifiedAt       | -                                                                                                                  | 
 | modifiedBy       | Uuid of user that modified the program                                                                             |
 | finalizedAt      | The date when the program revision was finalized                                                                   |
-| finalizedBy      | Uuid of teh user that finalized the revision                                                                       |
+| finalizedBy      | Uuid of the user that finalized the revision                                                                       |
 | companyUuid      | Specific to each company                                                                                           | 
 | isPublic         | True/False if the program in general is public or not                                                              | 
 | isPublicRevision | True/False if the program revision  is public or not                                                               |
